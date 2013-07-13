@@ -21,8 +21,13 @@ define('BONUS_JEWELS_OLD', 4.5);      //4.5% healing on old rings and nackless
 define('BONUS_JEWELS_NEW', 2);        //2% healing on new rings and nackless
 define('BONUS_SPECIAL_RING', 5);      //5% bonus on special rings
 
+define('BONUS_CHEST_OLD_BASE', 9.5);  //9.5% recieved bonus with old chest at +0
+define('BONUS_CHEST_OLD', 10.4);      //10.4% recieved bonus with old chest
+define('BONUS_CHEST_NEW', 6.9);       //6.9% recieved bonus with new chest
+
 define('BONUS_EARRING_OLD', 4.5);     //4.5% recieved bonus with old earrings
 define('BONUS_EARRING_NEW', 2);       //2% recieved bonus with new earrings
+
 define('BONUS_HEART_POTION', 17);     //17% recieved bonus with heart potion 3
 
 
@@ -34,9 +39,11 @@ $numberFields = array(
 	'glovesBonusBase' => 0, 'glovesBonusZero' => 1, 'glovesBonusPlus' => 1,
 	'glovesBonusMw' => 3,
 	'oldJewels' => 3, 'newJewels' => 0, 'specialRings' => 2,
+	'includeTargetBonus' => 0,
+	'chestBonusBase' => 1, 'chestBonusZero' => 0, 'chestBonusPlus' => 1,
 	'oldEarrings' => 0, 'newEarrings' => 0, 'heartPotion' => 0
 );
-$typeFields = array('weaponType', 'glovesType');
+$typeFields = array('weaponType', 'glovesType', 'chestType');
 
 
 //set helper functions
@@ -79,6 +86,16 @@ function createInfo($id, $description, $info, $value = null){
 		$html .= '<input type="hidden" name="'.r($id).'" id="'.r($id).'" value="'.r($value).'"/>';
 	}
 	return $html;
+}
+
+function createCheck($id, $description, $current){
+	$html = createLabel($id, $description);
+	$html .= '<input type="checkbox" value="1" id="'.r($id).'" name="'.r($id).'" '.($current ? 'checked="checked"' : '').'/>';
+	return $html;
+}
+
+function createSpacing(){
+	return '<hr/>';
 }
 
 function sumHealBonusWeapon($data){
@@ -167,6 +184,10 @@ function sumHealBonusJewels($data){
 }
 
 function sumTargetHealBonus($data){
+	if(!$data->includeTargetBonus){
+		return 0;
+	}
+
 	//limit max earrings to 2
 	if($data->oldEarrings + $data->newEarrings > 2){
 		$data->oldEarrings = min(2, $data->oldEarrings);
@@ -174,6 +195,24 @@ function sumTargetHealBonus($data){
 	}
 
 	$bonus = 0;
+
+	//base (current only)
+	if($data->chestType==TYPE_CURRENT AND $data->chestBonusBase){
+		$bonus += BONUS_CHEST_OLD_BASE;
+	}
+
+	//+0 (current only)
+	if($data->chestType==TYPE_CURRENT AND $data->chestBonusZero){
+		$bonus += BONUS_CHEST_OLD_BASE;
+	}
+
+	//plus
+	if($data->chestType==TYPE_CURRENT AND $data->chestBonusPlus){
+		$bonus += BONUS_CHEST_OLD;
+	}
+	elseif($data->chestBonusPlus){
+		$bonus += BONUS_CHEST_NEW;
+	}
 
 	$bonus += $data->oldEarrings * BONUS_EARRING_OLD;
 	$bonus += $data->newEarrings * BONUS_EARRING_NEW;
@@ -254,9 +293,15 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 				display: inline-block;
 				width: 300px;
 			}
+			hr {
+				clear: left;
+				margin: 10px 0px;
+				padding: 0px;
+				border-style: none;
+				border-bottom: 1px solid black;
+			}
 			.result {
-				background-color: rgba(255, 0, 0, 0.9);
-				color: #FFF;
+				background-color: rgba(255, 150, 0, 0.9);
 			}
 			ul, li {
 				margin: 0px;
@@ -283,6 +328,36 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 					el.set('value', (enabled ? 1 : 0));
 					document.getElements('label[for="'+el.get('id')+'"], #info_'+el.get('id')).setStyle('display', (enabled ? null : 'none'));
 				};
+				var limitFields = function(elements, limit){
+					var doLimit = function(){
+						if(this.get('value').toInt()>limit){
+							this.set('value', limit);
+						}
+						var total = elements.get('value').reduce(function(pv, cv) { return pv.toInt() + cv.toInt(); });
+						if(total>limit){
+							var remaining = limit - this.get('value').toInt();
+							elements.each(function(el){
+								if(el==this){
+									return;
+								}
+								if(el.get('tag')=='select'){
+									var values = el.getElements('option').get('value'),
+										max = Math.max.apply(null, values),
+										set = Math.min(max, remaining);
+
+									el.set('value', set);
+									remaining -= set;
+								}
+								else{
+									el.set('value', ramaining);
+									remaining = 0;
+								}
+							}, this);
+						}
+					};
+					elements.addEvent('change', doLimit);
+					doLimit.apply(elements[0]);
+				};
 
 				//hide some weapon stats on specific types
 				var changeWeaponFields = function(){
@@ -307,32 +382,20 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 				changeGlovesFields();
 
 				//cant have more then 3 rings/nacklesses total
-				var maxJewels = function(){
-					var limit = 3,
-						otherEl = document.id(this.get('id')=='oldJewels' ? 'newJewels' : 'oldJewels'),
-						thisValue = this.get('value').toInt(),
-						otherValue = otherEl.get('value').toInt();
+				limitFields(document.getElements('#oldJewels, #newJewels'), 3);
 
-					if(thisValue + otherValue > limit){
-						otherEl.set('value', limit - thisValue);
-					}
-				}
-				document.getElements('#oldJewels, #newJewels').addEvent('change', maxJewels);
-				maxJewels.apply(document.id('oldJewels'));
+				//hide some chest stats on specific types
+				var changeChestFields = function(){
+					var type = this.get('value');
+
+					toggleSelect(document.id('chestBonusBase'), type!=<?php echo TYPE_NEW; ?>);
+					toggleSelect(document.id('chestBonusZero'), type!=<?php echo TYPE_NEW; ?>);
+				}.bind(document.id('chestType'));
+				document.id('chestType').addEvent('change', changeChestFields);
+				changeChestFields();
 
 				//cant have more then 2 earrings total
-				var maxEarrings = function(){
-					var limit = 2,
-						otherEl = document.id(this.get('id')=='oldEarrings' ? 'newEarrings' : 'oldEarrings'),
-						thisValue = this.get('value').toInt(),
-						otherValue = otherEl.get('value').toInt();
-
-					if(thisValue + otherValue > limit){
-						otherEl.set('value', limit - thisValue);
-					}
-				}
-				document.getElements('#oldEarrings, #newEarrings').addEvent('change', maxEarrings);
-				maxEarrings.apply(document.id('oldEarrings'));
+				limitFields(document.getElements('#oldEarrings, #newEarrings'), 2);
 
 				//enable disabled selects on submit so we dont miss out values
 				document.getElements('form').addEvent('submit', function(){
@@ -444,8 +507,22 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 			<fieldset>
 				<legend>heilboni des ziels</legend>
 
+				<?php echo createCheck('includeTargetBonus', 'heilboni des ziels mit einrechnen', $data->includeTargetBonus); ?>
+				<?php echo createSpacing(); ?>
+
+				<?php echo createSelect('chestType', 'oberteil des ziels', $data->chestType, array(
+					TYPE_CURRENT 	=> 'aktuell',
+					TYPE_NEW 		=> 'neu'
+				)); ?>
+				<?php echo createSelect('chestBonusBase', 'mit basis heilbonus', $data->chestBonusBase); ?>
+				<?php echo createSelect('chestBonusZero', 'mit heilbonus bei +0', $data->chestBonusZero); ?>
+				<?php echo createSelect('chestBonusPlus', 'mit heilbonus auf plusboni', $data->chestBonusPlus); ?>
+				<?php echo createSpacing(); ?>
+
 				<?php echo createSelect('oldEarrings', 'anzahl alter ohrringe des ziels mit 4,5%', $data->oldEarrings, array(0, 1, 2)); ?>
 				<?php echo createSelect('newEarrings', 'anzahl neuer ohrringe des ziels mit 2%', $data->newEarrings, array(0, 1, 2)); ?>
+				<?php echo createSpacing(); ?>
+
 				<?php echo createSelect('heartPotion', 'ziel nutzt herztrank III', $data->heartPotion); ?>
 			</fieldset>
 
