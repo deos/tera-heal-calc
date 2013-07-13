@@ -295,8 +295,8 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 			}
 			hr {
 				clear: left;
-				margin: 10px 0px;
-				padding: 0px;
+				margin: 0px 0px 10px;
+				padding: 10px 0px 0px;
 				border-style: none;
 				border-bottom: 1px solid black;
 			}
