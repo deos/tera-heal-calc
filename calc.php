@@ -295,7 +295,7 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 			}
 			hr {
 				clear: left;
-				margin: 0px 0px 10px;
+				margin: 0px -10px 10px;
 				padding: 10px 0px 0px;
 				border-style: none;
 				border-bottom: 1px solid black;
@@ -451,7 +451,9 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 				<?php echo createInfo('weaponHeal', 'heilbonus waffe:', f($weaponHealBonus, 1).' %'); ?>
 				<?php echo createInfo('glovesHeal', 'heilbonus handschuhen:', f($glovesHealBonus, 1).' %'); ?>
 				<?php echo createInfo('jewelsHeal', 'heilbonus schmuck:', f($jewelsHealBonus, 1).' %'); ?>
-				<?php echo createInfo('targetHeal', 'heilbonus des ziels:', f($targetHealBonus, 1).' %'); ?>
+				<?php if($data->includeTargetBonus): ?>
+					<?php echo createInfo('targetHeal', 'heilbonus des ziels:', f($targetHealBonus, 1).' %'); ?>
+				<?php endif; ?>
 				<?php echo createInfo('healOutput', 'geheilte HP:', f($healing, 0, ',', '.')); ?>
 			</fieldset>
 			<?php
