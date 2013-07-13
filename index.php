@@ -454,7 +454,7 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 				<?php if($data->includeTargetBonus): ?>
 					<?php echo createInfo('targetHeal', 'heilbonus des ziels:', f($targetHealBonus, 1).' %'); ?>
 				<?php endif; ?>
-				<?php echo createInfo('healOutput', 'geheilte HP:', f($healing, 0, ',', '.')); ?>
+				<?php echo createInfo('healOutput', 'geheilte HP:', f($healing)); ?>
 			</fieldset>
 			<?php
 		}
