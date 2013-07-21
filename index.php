@@ -261,7 +261,7 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Tera Heilrechner</title>
+		<title>Tera Heilungsrechner</title>
 
 		<script src="//ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
 
@@ -446,7 +446,7 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 	<body>
 
 		<header>
-			<h1>Tera Heilrechner</h1>
+			<h1>Tera Heilungsrechner</h1>
 		</header>
 
 		<?php
