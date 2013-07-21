@@ -340,6 +340,10 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 				padding: 0px;
 				list-style: none;
 			}
+			li:before {
+				content:'-';
+				margin-right: 5px;
+			}
 			footer {
 				float: right;
 				margin: 20px 0px 10px 0px;
@@ -584,13 +588,13 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 					<li>ergebnisse sind gerundet, geringe abweichungen sind normal</li>
 					<li>es wird immer von meisterwerk +12 items ausgegangen</li>
 					<li>die werte der neuen items sind noch nicht endgültig und können sich noch ändern, was wirklich ist wird sich erst zeigen wenn das patch im westen angekommen ist</li>
+					<li>dank für die berechnungsformel geht an <a href="http://tera-forums.enmasse.com/forums/mystic/topics/Guide-Karyudos-Mystic-Guide">Karyudo</a> und alle die sonst beteiligt waren!</li>
 				</ul>
 			</fieldset>
 
 			<input type="submit" name="submit" value="berechnen"/>
 
 			<footer>
-				Dank für die Berechnungsformel an <a href="http://tera-forums.enmasse.com/forums/mystic/topics/Guide-Karyudos-Mystic-Guide">Karyudo</a> und alle die sonst beteiligt waren!<br/>
 				Rechner &copy; deos.dev@gmail.com 2013
 			</footer>
 		</form>
