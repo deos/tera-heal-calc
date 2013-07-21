@@ -1,6 +1,7 @@
 <?php
 
 //define constants
+define('TYPE_NONE', '-2');
 define('TYPE_OLD', '-1');
 define('TYPE_CURRENT', '0');
 define('TYPE_NEW', '1');
@@ -21,6 +22,9 @@ define('BONUS_JEWELS_OLD', 4.5);      //4.5% healing on old rings and nackless
 define('BONUS_JEWELS_NEW', 2);        //2% healing on new rings and nackless
 define('BONUS_SPECIAL_RING', 5);      //5% bonus on special rings
 
+define('BONUS_ZYRK', 1);              //1% healing from healing zyrk
+define('BONUS_ZYRK_PRISTINE', 2);     //2% healing from pristine healing zyrk
+
 define('BONUS_CHEST_OLD_BASE', 9.5);  //9.5% recieved bonus with old chest at +0
 define('BONUS_CHEST_OLD', 10.4);      //10.4% recieved bonus with old chest
 define('BONUS_CHEST_NEW', 6.9);       //6.9% recieved bonus with new chest
@@ -39,6 +43,7 @@ $numberFields = array(
 	'glovesBonusBase' => 0, 'glovesBonusZero' => 1, 'glovesBonusPlus' => 1,
 	'glovesBonusMw' => 3,
 	'oldJewels' => 3, 'newJewels' => 0, 'specialRings' => 2,
+	'zyrks' => 0, 'pristineZyrks' => 0,
 	'includeTargetBonus' => 0,
 	'chestBonusBase' => 1, 'chestBonusZero' => 0, 'chestBonusPlus' => 1,
 	'oldEarrings' => 0, 'newEarrings' => 0, 'heartPotion' => 0
@@ -79,9 +84,9 @@ function createSelect($id, $description, $current, array $values = array(1 => 'j
 	return $html;
 }
 
-function createInfo($id, $description, $info, $value = null){
+function createInfo($id, $description, $info, $value = null, $selectable = false){
 	$html = createLabel($id, $description);
-	$html .= '<input type="button" disabled="disabled" value="'.r($info).'" id="info_'.r($id).'"/>';
+	$html .= '<input '.($selectable ? 'type="text" readonly="readonly"' : 'type="button" disabled="disabled"').' value="'.r($info).'" id="info_'.r($id).'"/>';
 	if($value!==null){
 		$html .= '<input type="hidden" name="'.r($id).'" id="'.r($id).'" value="'.r($value).'"/>';
 	}
@@ -99,6 +104,10 @@ function createSpacing(){
 }
 
 function sumHealBonusWeapon($data){
+	if($data->weaponType==TYPE_NONE){
+		return 0;
+	}
+
 	$bonus = 0;
 
 	//base
@@ -136,6 +145,10 @@ function sumHealBonusWeapon($data){
 }
 
 function sumHealBonusGloves($data){
+	if($data->glovesType==TYPE_NONE){
+		return 0;
+	}
+
 	$bonus = 0;
 
 	//base (new only)
@@ -179,6 +192,21 @@ function sumHealBonusJewels($data){
 	$bonus += $data->oldJewels * BONUS_JEWELS_OLD;
 	$bonus += $data->newJewels * BONUS_JEWELS_NEW;
 	$bonus += $data->specialRings * BONUS_SPECIAL_RING;
+
+	return $bonus;
+}
+
+function sumHealBonusCrystals($data){
+	//limit max crystals to 4
+	if($data->zyrks + $data->pristineZyrks > 4){
+		$data->zyrks = min(4, $data->zyrks);
+		$data->pristineZyrks = 4 - $data->zyrks;
+	}
+
+	$bonus = 0;
+
+	$bonus += $data->zyrks * BONUS_ZYRK;
+	$bonus += $data->pristineZyrks * BONUS_ZYRK_PRISTINE;
 
 	return $bonus;
 }
@@ -276,7 +304,11 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 			label, input:not([type="hidden"]):not([type="submit"]), select {
 				float: left;
 			}
-			input[type="button"]{
+			input[type="text"], input[type="number"]{
+				width: 100px;
+				text-align: center;
+			}
+			input[type="button"], input[type="text"][readonly]{
 				border-style: none;
 				color: #000;
 				background-color: #FFF;
@@ -384,6 +416,9 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 				//cant have more then 3 rings/nacklesses total
 				limitFields(document.getElements('#oldJewels, #newJewels'), 3);
 
+				//cant use more then 4 zyrks total
+				limitFields(document.getElements('#zyrks, #pristineZyrks'), 4);
+
 				//hide some chest stats on specific types
 				var changeChestFields = function(){
 					var type = this.get('value');
@@ -425,7 +460,7 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 			}
 		}
 		foreach($typeFields as $field){
-			if(array_key_exists($field, $_REQUEST) AND in_array($_REQUEST[$field], array(TYPE_OLD, TYPE_CURRENT, TYPE_NEW))){
+			if(array_key_exists($field, $_REQUEST) AND in_array($_REQUEST[$field], array(TYPE_NONE, TYPE_OLD, TYPE_CURRENT, TYPE_NEW))){
 				$data->$field = $_REQUEST[$field];
 			}
 			else{
@@ -440,6 +475,7 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 			$weaponHealBonus = sumHealBonusWeapon($data);
 			$glovesHealBonus = sumHealBonusGloves($data);
 			$jewelsHealBonus = sumHealBonusJewels($data);
+			$crystalHealBonus = sumHealBonusCrystals($data);
 			$healBonus = $weaponHealBonus + $glovesHealBonus + $jewelsHealBonus;
 			$targetHealBonus = sumTargetHealBonus($data);
 
@@ -448,13 +484,18 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 			<fieldset class="result">
 				<legend>Ergebnis</legend>
 
-				<?php echo createInfo('weaponHeal', 'heilbonus waffe:', f($weaponHealBonus, 1).' %'); ?>
-				<?php echo createInfo('glovesHeal', 'heilbonus handschuhen:', f($glovesHealBonus, 1).' %'); ?>
-				<?php echo createInfo('jewelsHeal', 'heilbonus schmuck:', f($jewelsHealBonus, 1).' %'); ?>
+				<?php echo createInfo('weaponHeal', 'heilbonus waffe:', f($weaponHealBonus, 1).' %', null, true); ?>
+				<?php echo createInfo('glovesHeal', 'heilbonus handschuhen:', f($glovesHealBonus, 1).' %', null, true); ?>
+				<?php echo createInfo('jewelsHeal', 'heilbonus schmuck:', f($jewelsHealBonus, 1).' %', null, true); ?>
+				<?php echo createInfo('crystalsHeal', 'heilbonus kristalle:', f($crystalHealBonus, 1).' %', null, true); ?>
+				<?php echo createSpacing(); ?>
+
 				<?php if($data->includeTargetBonus): ?>
-					<?php echo createInfo('targetHeal', 'heilbonus des ziels:', f($targetHealBonus, 1).' %'); ?>
+					<?php echo createInfo('targetHeal', 'heilbonus des ziels:', f($targetHealBonus, 1).' %', null, true); ?>
+					<?php echo createSpacing(); ?>
 				<?php endif; ?>
-				<?php echo createInfo('healOutput', 'geheilte HP:', f($healing)); ?>
+
+				<?php echo createInfo('healOutput', 'geheilte HP:', f($healing), null, true); ?>
 			</fieldset>
 			<?php
 		}
@@ -473,6 +514,7 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 				<legend>waffe</legend>
 
 				<?php echo createSelect('weaponType', 'typ', $data->weaponType, array(
+					//TYPE_NONE		=> 'keine',
 					TYPE_OLD 		=> 'alt (mit power als mw bonus)',
 					TYPE_CURRENT 	=> 'aktuell (mit heilung als mw bonus)',
 					TYPE_NEW 		=> 'neu (mit angr.geschw. als mw bonus)'
@@ -488,6 +530,7 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 				<legend>handschuhe</legend>
 
 				<?php echo createSelect('glovesType', 'typ', $data->glovesType, array(
+					//TYPE_NONE		=> 'keine',
 					TYPE_OLD 		=> 'alt (mit kraft als mw bonus)',
 					TYPE_CURRENT 	=> 'aktuell (mit rollbarem mw bonus)',
 					TYPE_NEW 		=> 'neu (mit heilung als mw bonus)'
@@ -504,6 +547,13 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 				<?php echo createSelect('oldJewels', 'anzahl alter ringe/halsketten mit 4,5%', $data->oldJewels, array(0, 1, 2, 3)); ?>
 				<?php echo createSelect('newJewels', 'anzahl neuer ringe/halsketten mit 2%', $data->newJewels, array(0, 1, 2, 3)); ?>
 				<?php echo createSelect('specialRings', 'anzahl ringe mit 5% bonus', $data->specialRings, array(0, 1, 2)); ?>
+			</fieldset>
+
+			<fieldset>
+				<legend>kristalle</legend>
+
+				<?php echo createSelect('zyrks', 'anzahl 1% heilzirkone', $data->zyrks, array(0, 1, 2, 3, 4)); ?>
+				<?php echo createSelect('pristineZyrks', 'anzahl 2% heilzirkone', $data->pristineZyrks, array(0, 1, 2, 3, 4)); ?>
 			</fieldset>
 
 			<fieldset>
