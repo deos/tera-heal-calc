@@ -476,7 +476,7 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 			$glovesHealBonus = sumHealBonusGloves($data);
 			$jewelsHealBonus = sumHealBonusJewels($data);
 			$crystalHealBonus = sumHealBonusCrystals($data);
-			$healBonus = $weaponHealBonus + $glovesHealBonus + $jewelsHealBonus;
+			$healBonus = $weaponHealBonus + $glovesHealBonus + $jewelsHealBonus + $crystalHealBonus;
 			$targetHealBonus = sumTargetHealBonus($data);
 
 			$healing = calc($skillBase, $weaponBase, $healBonus, $targetHealBonus);
