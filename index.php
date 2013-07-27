@@ -1,11 +1,23 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<meta charset="utf-8" />
-		<title>Tera Heilungsrechner</title>
-
 		<?php require('constants.php'); ?>
 		<?php require('functions.php'); ?>
+		<?php require('locale/languages.php'); ?>
+
+		<?php
+		//get data
+		$data = new stdClass();
+		getData($data, $typeFields, $numberFields, $languages);
+
+		//load language
+		require('locale/'.$data->language.'.php');
+		$desc = (object)$descriptions;
+		$boolValues = array(1 => $desc->yes, 0 => $desc->no);
+		?>
+
+		<meta charset="utf-8" />
+		<title><?php e($desc->result); ?></title>
 
 		<link rel="stylesheet" type="text/css" href="style.css" media="screen">
 		<script src="//ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
@@ -14,125 +26,123 @@
 	<body>
 
 		<header>
-			<h1>Tera Heilungsrechner</h1>
+			<h1><?php e($desc->title); ?></h1>
 		</header>
 
-		<?php
-		//get data
-		$data = new stdClass();
-		getData($data, $typeFields, $numberFields);
-
-		//calculate
-		if(array_key_exists('submit', $_REQUEST)){
-			$skillBase = $data->skillBase;
-			$weaponBase = $data->weaponBase;
-			$weaponHealBonus = sumHealBonusWeapon($data);
-			$glovesHealBonus = sumHealBonusGloves($data);
-			$jewelsHealBonus = sumHealBonusJewels($data);
-			$crystalHealBonus = sumHealBonusCrystals($data);
-			$healBonus = $weaponHealBonus + $glovesHealBonus + $jewelsHealBonus + $crystalHealBonus;
-			$targetHealBonus = sumTargetHealBonus($data);
-
-			$healing = calc($skillBase, $weaponBase, $healBonus, $targetHealBonus);
-			?>
-			<fieldset class="result">
-				<legend>Ergebnis</legend>
-
-				<?php echo createInfo('weaponHeal', 'heilbonus waffe:', f($weaponHealBonus, 1).' %', null, true); ?>
-				<?php echo createInfo('glovesHeal', 'heilbonus handschuhen:', f($glovesHealBonus, 1).' %', null, true); ?>
-				<?php echo createInfo('jewelsHeal', 'heilbonus schmuck:', f($jewelsHealBonus, 1).' %', null, true); ?>
-				<?php echo createInfo('crystalsHeal', 'heilbonus kristalle:', f($crystalHealBonus, 1).' %', null, true); ?>
-				<?php echo createSpacing(); ?>
-
-				<?php if($data->includeTargetBonus): ?>
-					<?php echo createInfo('targetHeal', 'heilbonus des ziels:', f($targetHealBonus, 1).' %', null, true); ?>
-					<?php echo createSpacing(); ?>
-				<?php endif; ?>
-
-				<?php echo createInfo('healOutput', 'geheilte HP:', f($healing), null, true); ?>
-			</fieldset>
-			<?php
-		}
-		?>
-
 		<form action="" method="post">
-			<fieldset>
-				<legend>basiswerte</legend>
+			<?php
+			//calculate
+			if(array_key_exists('submitButton', $_REQUEST)){
+				$skillBase = $data->skillBase;
+				$weaponBase = $data->weaponBase;
+				$weaponHealBonus = sumHealBonusWeapon($data);
+				$glovesHealBonus = sumHealBonusGloves($data);
+				$jewelsHealBonus = sumHealBonusJewels($data);
+				$crystalHealBonus = sumHealBonusCrystals($data);
+				$healBonus = $weaponHealBonus + $glovesHealBonus + $jewelsHealBonus + $crystalHealBonus;
+				$targetHealBonus = sumTargetHealBonus($data);
 
-				<?php echo createInput('weaponBase', 'basisheilung der waffe', $data->weaponBase); ?>
-				<?php echo createInput('skillBase', 'basisheilung des skills', $data->skillBase); ?>
+				$healing = calc($skillBase, $weaponBase, $healBonus, $targetHealBonus);
+				?>
+				<fieldset class="result">
+					<legend><?php e($desc->result); ?></legend>
+
+					<?php echo createInfo('weaponHeal', $desc->resultWeapon, f($weaponHealBonus, 1).' %', null, true); ?>
+					<?php echo createInfo('glovesHeal', $desc->resultGloves, f($glovesHealBonus, 1).' %', null, true); ?>
+					<?php echo createInfo('jewelsHeal', $desc->resultJewels, f($jewelsHealBonus, 1).' %', null, true); ?>
+					<?php echo createInfo('crystalsHeal', $desc->resultCrystals, f($crystalHealBonus, 1).' %', null, true); ?>
+					<?php echo createSpacing(); ?>
+
+					<?php if($data->includeTargetBonus): ?>
+						<?php echo createInfo('targetHeal', $desc->resultTarget, f($targetHealBonus, 1).' %', null, true); ?>
+						<?php echo createSpacing(); ?>
+					<?php endif; ?>
+
+					<?php echo createInfo('healOutput', $desc->resultHeal, f($healing), null, true); ?>
+				</fieldset>
+				<?php
+			}
+			?>
+
+			<?php echo createSelect('language', null, $data->language, $languages); ?>
+
+			<fieldset>
+				<legend><?php e($desc->base); ?></legend>
+
+				<?php echo createInput('weaponBase', $desc->baseWeapon, $data->weaponBase); ?>
+				<?php echo createInput('skillBase', $desc->baseSkill, $data->skillBase); ?>
 			</fieldset>
 
 			<fieldset>
-				<legend>waffe</legend>
+				<legend><?php e($desc->weapon); ?></legend>
 
-				<?php echo createSelect('weaponType', 'typ', $data->weaponType, array(
-					//TYPE_NONE		=> 'keine',
-					TYPE_OLD 		=> 'alt (mit power als mw bonus)',
-					TYPE_CURRENT 	=> 'aktuell (mit heilung als mw bonus)',
-					TYPE_NEW 		=> 'neu (mit angr.geschw. als mw bonus)'
+				<?php echo createSelect('weaponType', $desc->weaponType, $data->weaponType, array(
+					//TYPE_NONE		=> $desc->weaponTypeNone,
+					TYPE_OLD 		=> $desc->weaponTypeOld,
+					TYPE_CURRENT 	=> $desc->weaponTypeCurrent,
+					TYPE_NEW 		=> $desc->weaponTypeNew
 				)); ?>
-				<?php echo createSelect('weaponBonusBase', 'mit basis heilbonus', $data->weaponBonusBase); ?>
-				<?php echo createSelect('weaponBonusZero', 'mit heilbonus bei +0', $data->weaponBonusZero); ?>
-				<?php echo createSelect('weaponBonusPlus', 'mit heilbonus auf plusboni', $data->weaponBonusPlus); ?>
-				<?php echo createInfo('weaponBonusFix', 'mit heilbonus auf +2/+4', 'ja', $data->weaponBonusFix); ?>
-				<?php echo createInfo('weaponBonusMw', 'mit heilbonus auf mw boni', 'ja', $data->weaponBonusMw); ?>
+				<?php echo createSelect('weaponBonusBase', $desc->weaponBase, $data->weaponBonusBase, $boolValues); ?>
+				<?php echo createSelect('weaponBonusZero', $desc->weaponZero, $data->weaponBonusZero, $boolValues); ?>
+				<?php echo createSelect('weaponBonusPlus', $desc->weaponPlus, $data->weaponBonusPlus, $boolValues); ?>
+				<?php echo createInfo('weaponBonusFix', $desc->weaponFix, $desc->yes, $data->weaponBonusFix); ?>
+				<?php echo createInfo('weaponBonusMw', $desc->weaponMw, $desc->yes, $data->weaponBonusMw); ?>
 			</fieldset>
 
 			<fieldset>
-				<legend>handschuhe</legend>
+				<legend><?php e($desc->gloves); ?></legend>
 
-				<?php echo createSelect('glovesType', 'typ', $data->glovesType, array(
-					//TYPE_NONE		=> 'keine',
-					TYPE_OLD 		=> 'alt (mit kraft als mw bonus)',
-					TYPE_CURRENT 	=> 'aktuell (mit rollbarem mw bonus)',
-					TYPE_NEW 		=> 'neu (mit heilung als mw bonus)'
+				<?php echo createSelect('glovesType', $desc->glovesType, $data->glovesType, array(
+					//TYPE_NONE		=> $desc->glovesTypeNone,
+					TYPE_OLD 		=> $desc->glovesTypeOld,
+					TYPE_CURRENT 	=> $desc->glovesTypeCurrent,
+					TYPE_NEW 		=> $desc->glovesTypeNew
 				)); ?>
-				<?php echo createInfo('glovesBonusBase', 'mit basis heilbonus', 'ja', $data->glovesBonusBase); ?>
-				<?php echo createSelect('glovesBonusZero', 'mit heilbonus bei +0', $data->glovesBonusZero); ?>
-				<?php echo createSelect('glovesBonusPlus', 'mit heilbonus auf plusboni', $data->glovesBonusPlus); ?>
-				<?php echo createSelect('glovesBonusMw', 'mit heilbonus auf mw boni', $data->glovesBonusMw, array(0, 1, 2, 3)); ?>
+				<?php echo createInfo('glovesBonusBase', $desc->glovesBase, $desc->yes, $data->glovesBonusBase); ?>
+				<?php echo createSelect('glovesBonusZero', $desc->glovesZero, $data->glovesBonusZero, $boolValues); ?>
+				<?php echo createSelect('glovesBonusPlus', $desc->glovesPlus, $data->glovesBonusPlus, $boolValues); ?>
+				<?php echo createSelect('glovesBonusMw', $desc->glovesMw, $data->glovesBonusMw, range(0, 3)); ?>
 			</fieldset>
 
 			<fieldset>
-				<legend>schmuck</legend>
+				<legend><?php e($desc->jewels); ?></legend>
 
-				<?php echo createSelect('oldJewels', 'anzahl alter ringe/halsketten mit 4,5%', $data->oldJewels, array(0, 1, 2, 3)); ?>
-				<?php echo createSelect('newJewels', 'anzahl neuer ringe/halsketten mit 2%', $data->newJewels, array(0, 1, 2, 3)); ?>
-				<?php echo createSelect('specialRings', 'anzahl ringe mit 5% bonus', $data->specialRings, array(0, 1, 2)); ?>
+				<?php echo createSelect('oldJewels', $desc->jewelsOld, $data->oldJewels, range(0, 3)); ?>
+				<?php echo createSelect('newJewels', $desc->jewelsNew, $data->newJewels, range(0, 3)); ?>
+				<?php echo createSelect('specialRings', $desc->jewelsSpecial, $data->specialRings, range(0, 2)); ?>
 			</fieldset>
 
 			<fieldset>
-				<legend>kristalle</legend>
+				<legend><?php e($desc->crystals); ?></legend>
 
-				<?php echo createSelect('zyrks', 'anzahl 1% heilzirkone', $data->zyrks, array(0, 1, 2, 3, 4)); ?>
-				<?php echo createSelect('pristineZyrks', 'anzahl 2% heilzirkone', $data->pristineZyrks, array(0, 1, 2, 3, 4)); ?>
+				<?php echo createSelect('zyrks', $desc->crystalsZyrks, $data->zyrks, range(0, 4)); ?>
+				<?php echo createSelect('pristineZyrks', $desc->crystalsPristineZyrks, $data->pristineZyrks, range(0, 4)); ?>
 			</fieldset>
 
 			<fieldset>
-				<legend>heilboni des ziels</legend>
+				<legend><?php e($desc->target); ?></legend>
 
-				<?php echo createCheck('includeTargetBonus', 'heilboni des ziels mit einrechnen', $data->includeTargetBonus); ?>
+				<?php echo createCheck('includeTargetBonus', $desc->targetInclude, $data->includeTargetBonus); ?>
 				<?php echo createSpacing(); ?>
 
-				<?php echo createSelect('chestType', 'oberteil des ziels', $data->chestType, array(
-					TYPE_CURRENT 	=> 'aktuell',
-					TYPE_NEW 		=> 'neu'
+				<?php echo createSelect('chestType', $desc->chestType, $data->chestType, array(
+					TYPE_CURRENT 	=> $desc->chestTypeCurrent,
+					TYPE_NEW 		=> $desc->chestTypeNew
 				)); ?>
-				<?php echo createSelect('chestBonusBase', 'mit basis heilbonus', $data->chestBonusBase); ?>
-				<?php echo createSelect('chestBonusZero', 'mit heilbonus bei +0', $data->chestBonusZero); ?>
-				<?php echo createSelect('chestBonusPlus', 'mit heilbonus auf plusboni', $data->chestBonusPlus); ?>
+				<?php echo createSelect('chestBonusBase', $desc->chestBase, $data->chestBonusBase, $boolValues); ?>
+				<?php echo createSelect('chestBonusZero', $desc->chestZero, $data->chestBonusZero, $boolValues); ?>
+				<?php echo createSelect('chestBonusPlus', $desc->chestPlus, $data->chestBonusPlus, $boolValues); ?>
 				<?php echo createSpacing(); ?>
 
-				<?php echo createSelect('oldEarrings', 'anzahl alter ohrringe des ziels mit 4,5%', $data->oldEarrings, array(0, 1, 2)); ?>
-				<?php echo createSelect('newEarrings', 'anzahl neuer ohrringe des ziels mit 2%', $data->newEarrings, array(0, 1, 2)); ?>
+				<?php echo createSelect('oldEarrings', $desc->earringsOld, $data->oldEarrings, range(0, 2)); ?>
+				<?php echo createSelect('newEarrings', $desc->earringsNew, $data->newEarrings, range(0, 2)); ?>
 				<?php echo createSpacing(); ?>
 
-				<?php echo createSelect('heartPotion', 'ziel nutzt herztrank III', $data->heartPotion); ?>
+				<?php echo createSelect('heartPotion', $desc->targetHeartPotion, $data->heartPotion, $boolValues); ?>
 			</fieldset>
 
 			<fieldset>
-				<legend>Hinweise</legend>
+				<legend><?php e($desc->info); ?></legend>
 				<ul>
 					<li>ergebnisse sind gerundet, geringe abweichungen sind normal</li>
 					<li>es wird immer von meisterwerk +12 items ausgegangen</li>
@@ -141,10 +151,10 @@
 				</ul>
 			</fieldset>
 
-			<input type="submit" name="submit" value="berechnen"/>
+			<input type="submit" name="submitButton" value="berechnen"/>
 
 			<footer>
-				Rechner &copy; deos.dev@gmail.com 2013
+				&copy; deos.dev@gmail.com 2013
 			</footer>
 		</form>
 	</body>

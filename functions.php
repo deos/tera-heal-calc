@@ -13,6 +13,9 @@ function f($number, $comma = 0){
 }
 
 function createLabel($id, $description){
+	if(!$id OR !$description){
+		return false;
+	}
 	return '<label for="'.r($id).'">'.r($description).'</label>';
 }
 
@@ -24,7 +27,7 @@ function createInput($id, $description, $value, $type='number'){
 	return $html;
 }
 
-function createSelect($id, $description, $current, array $values = array(1 => 'ja', 0 => 'nein')){
+function createSelect($id, $description, $current, array $values){
 	$html = createLabel($id, $description);
 
 	$html .= '<select size="1" name="'.r($id).'" id="'.r($id).'">';
@@ -214,7 +217,7 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 }
 
 
-function getData(stdClass $data, $typeFields, $numberFields){
+function getData(stdClass $data, $typeFields, $numberFields, array $languages){
 	//get values
 	foreach($numberFields as $field=>$default){
 		if(array_key_exists($field, $_REQUEST)){
@@ -232,4 +235,11 @@ function getData(stdClass $data, $typeFields, $numberFields){
 			$data->$field = TYPE_CURRENT;
 		}
 	}
+
+	$data->language = ((array_key_exists('language', $_REQUEST) AND array_key_exists($_REQUEST['language'], $languages)) ? $_REQUEST['language'] : getDefaultLanguage($languages));
 };
+
+function getDefaultLanguage(array $languages){
+	$keys = array_keys($languages);
+	return $keys[0];
+}

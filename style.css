@@ -12,18 +12,26 @@ body {
 h1 {
 	margin: 0px 0px 10px 0px;
 }
+form {
+	position: relative;
+}
+form > select {
+	position: absolute;
+	top: -2em;
+	right: 0px;
+	font-size: 14pt;
+}
 fieldset{
 	margin: 0px 0px 10px;
 	padding: 0px 10px 10px 10px;
 	border: 1px solid black;
 	background-color: #FFF;
-	line-height: 24px;
+	line-height: 26px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
 legend, label {
 	font-weight: bold;
-	text-transform: capitalize;
 }
 legend {
 	padding: 2px 7px;
@@ -32,6 +40,9 @@ legend {
 	-webkit-border-radius: 5px 5px 0px 0px;
 	border-radius: 5px 5px 0px 0px;
 	background-color: inherit;
+}
+input, select {
+	font-size: inherit;
 }
 label, input:not([type="hidden"]):not([type="submit"]), select {
 	float: left;
@@ -55,7 +66,7 @@ input[type="submit"]{
 label {
 	clear: left;
 	display: inline-block;
-	width: 300px;
+	width: 450px;
 }
 hr {
 	clear: left;
