@@ -1,0 +1,235 @@
+<?php
+
+function e($text){
+	echo r($text);
+}
+
+function r($text){
+	return htmlspecialchars($text);
+}
+
+function f($number, $comma = 0){
+	return number_format($number, $comma, ',', '.');
+}
+
+function createLabel($id, $description){
+	return '<label for="'.r($id).'">'.r($description).'</label>';
+}
+
+function createInput($id, $description, $value, $type='number'){
+	$html = createLabel($id, $description);
+
+	$html .= '<input type="'.r($type).'" id="'.r($id).'" name="'.r($id).'" value="'.r($value).'"/>';
+
+	return $html;
+}
+
+function createSelect($id, $description, $current, array $values = array(1 => 'ja', 0 => 'nein')){
+	$html = createLabel($id, $description);
+
+	$html .= '<select size="1" name="'.r($id).'" id="'.r($id).'">';
+	foreach($values as $k=>$v){
+		$html .= '<option value="'.r($k).'" '.($current==$k ? 'selected="selected"' : '').'>'.r($v).'</option>';
+	}
+	$html .= '</select>';
+
+	return $html;
+}
+
+function createInfo($id, $description, $info, $value = null, $selectable = false){
+	$html = createLabel($id, $description);
+
+	$html .= '<input '.($selectable ? 'type="text" readonly="readonly"' : 'type="button" disabled="disabled"').' value="'.r($info).'" id="info_'.r($id).'"/>';
+	if($value!==null){
+		$html .= '<input type="hidden" name="'.r($id).'" id="'.r($id).'" value="'.r($value).'"/>';
+	}
+
+	return $html;
+}
+
+function createCheck($id, $description, $current){
+	$html = createLabel($id, $description);
+
+	$html .= '<input type="checkbox" value="1" id="'.r($id).'" name="'.r($id).'" '.($current ? 'checked="checked"' : '').'/>';
+
+	return $html;
+}
+
+function createSpacing(){
+	return '<hr/>';
+}
+
+function sumHealBonusWeapon($data){
+	if($data->weaponType==TYPE_NONE){
+		return 0;
+	}
+
+	$bonus = 0;
+
+	//base
+	if($data->weaponType!=TYPE_NEW AND $data->weaponBonusBase){
+		$bonus += BONUS_WEAPON_OLD_BASE;
+	}
+	elseif($data->weaponBonusBase){
+		$bonus += BONUS_WEAPON_NEW;
+	}
+
+	//+0 (old and current only)
+	if($data->weaponType!=TYPE_NEW AND $data->weaponBonusZero){
+		$bonus += BONUS_WEAPON_OLD_BASE;
+	}
+
+	//plus
+	if($data->weaponType!=TYPE_NEW AND $data->weaponBonusPlus){
+		$bonus += BONUS_WEAPON_OLD;
+	}
+	elseif($data->weaponBonusPlus){
+		$bonus += BONUS_WEAPON_NEW;
+	}
+
+	//fix (current and new only)
+	if($data->weaponType!=TYPE_OLD AND $data->weaponBonusFix){
+		$bonus += BONUS_WEAPON_FIX;
+	}
+
+	//mw (current only)
+	if($data->weaponType==TYPE_CURRENT AND $data->weaponBonusMw){
+		$bonus += BONUS_WEAPON_OLD_MW;
+	}
+
+	return $bonus;
+}
+
+function sumHealBonusGloves($data){
+	if($data->glovesType==TYPE_NONE){
+		return 0;
+	}
+
+	$bonus = 0;
+
+	//base (new only)
+	if($data->glovesType==TYPE_NEW AND $data->glovesBonusBase){
+		$bonus += BONUS_GLOVES_NEW;
+	}
+
+	//+0 (old and current only)
+	if($data->glovesType!=TYPE_NEW AND $data->glovesBonusZero){
+		$bonus += BONUS_GLOVES_OLD_BASE;
+	}
+
+	//plus
+	if($data->glovesType==TYPE_NEW AND $data->glovesBonusPlus){
+		$bonus += BONUS_GLOVES_NEW;
+	}
+	elseif($data->glovesBonusPlus){
+		$bonus += BONUS_GLOVES_OLD;
+	}
+
+	//mw (current and new only)
+	if($data->glovesType==TYPE_CURRENT AND $data->glovesBonusMw > 0){
+		$bonus += BONUS_GLOVES_OLD_MW / 3 * $data->glovesBonusMw;
+	}
+	elseif($data->glovesType==TYPE_NEW AND $data->glovesBonusMw){
+		$bonus += BONUS_GLOVES_NEW_MW;
+	}
+
+	return $bonus;
+}
+
+function sumHealBonusJewels($data){
+	//limit max juwels to 3
+	if($data->oldJewels + $data->newJewels > 3){
+		$data->oldJewels = min(3, $data->oldJewels);
+		$data->newJewels = 3 - $data->oldJewels;
+	}
+
+	$bonus = 0;
+
+	$bonus += $data->oldJewels * BONUS_JEWELS_OLD;
+	$bonus += $data->newJewels * BONUS_JEWELS_NEW;
+	$bonus += $data->specialRings * BONUS_SPECIAL_RING;
+
+	return $bonus;
+}
+
+function sumHealBonusCrystals($data){
+	//limit max crystals to 4
+	if($data->zyrks + $data->pristineZyrks > 4){
+		$data->zyrks = min(4, $data->zyrks);
+		$data->pristineZyrks = 4 - $data->zyrks;
+	}
+
+	$bonus = 0;
+
+	$bonus += $data->zyrks * BONUS_ZYRK;
+	$bonus += $data->pristineZyrks * BONUS_ZYRK_PRISTINE;
+
+	return $bonus;
+}
+
+function sumTargetHealBonus($data){
+	if(!$data->includeTargetBonus){
+		return 0;
+	}
+
+	//limit max earrings to 2
+	if($data->oldEarrings + $data->newEarrings > 2){
+		$data->oldEarrings = min(2, $data->oldEarrings);
+		$data->newEarrings = 2 - $data->oldEarrings;
+	}
+
+	$bonus = 0;
+
+	//base (current only)
+	if($data->chestType==TYPE_CURRENT AND $data->chestBonusBase){
+		$bonus += BONUS_CHEST_OLD_BASE;
+	}
+
+	//+0 (current only)
+	if($data->chestType==TYPE_CURRENT AND $data->chestBonusZero){
+		$bonus += BONUS_CHEST_OLD_BASE;
+	}
+
+	//plus
+	if($data->chestType==TYPE_CURRENT AND $data->chestBonusPlus){
+		$bonus += BONUS_CHEST_OLD;
+	}
+	elseif($data->chestBonusPlus){
+		$bonus += BONUS_CHEST_NEW;
+	}
+
+	$bonus += $data->oldEarrings * BONUS_EARRING_OLD;
+	$bonus += $data->newEarrings * BONUS_EARRING_NEW;
+
+	if($data->heartPotion){
+		$bonus += BONUS_HEART_POTION;
+	}
+
+	return $bonus;
+}
+
+function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
+	//Healing done = HealSpellBase * (1 + HPOnWeapon * (1 + BonusHealingDone) / 1000) * (1 + HealingReceivedOnTarget)
+	return floor($skillBase * (1 + $weaponBase * (1 + $healBonus/100) / 1000) * (1 + $targetHealBonus/100));
+}
+
+
+function getData(stdClass $data, $typeFields, $numberFields){
+	//get values
+	foreach($numberFields as $field=>$default){
+		if(array_key_exists($field, $_REQUEST)){
+			$data->$field = (int)$_REQUEST[$field];
+		}
+		else{
+			$data->$field = $default;
+		}
+	}
+	foreach($typeFields as $field){
+		if(array_key_exists($field, $_REQUEST) AND in_array($_REQUEST[$field], array(TYPE_NONE, TYPE_OLD, TYPE_CURRENT, TYPE_NEW))){
+			$data->$field = $_REQUEST[$field];
+		}
+		else{
+			$data->$field = TYPE_CURRENT;
+		}
+	}
+};

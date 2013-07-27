@@ -1,0 +1,83 @@
+html {
+	padding: 0px;
+	margin: 0px;
+}
+body {
+	margin: 0px;
+	padding: 20px;
+	background-color: #CCC;
+	color: #000;
+	font-size: 12pt;
+}
+h1 {
+	margin: 0px 0px 10px 0px;
+}
+fieldset{
+	margin: 0px 0px 10px;
+	padding: 0px 10px 10px 10px;
+	border: 1px solid black;
+	background-color: #FFF;
+	line-height: 24px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+legend, label {
+	font-weight: bold;
+	text-transform: capitalize;
+}
+legend {
+	padding: 2px 7px;
+	border: 1px solid black;
+	border-bottom-style: none;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+	background-color: inherit;
+}
+label, input:not([type="hidden"]):not([type="submit"]), select {
+	float: left;
+}
+input[type="text"], input[type="number"]{
+	width: 100px;
+	text-align: center;
+}
+input[type="button"], input[type="text"][readonly]{
+	border-style: none;
+	color: #000;
+	background-color: #FFF;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+input[type="submit"]{
+	display: block;
+	margin: 15px auto 0px;
+	font-size: 120%;
+}
+label {
+	clear: left;
+	display: inline-block;
+	width: 300px;
+}
+hr {
+	clear: left;
+	margin: 0px -10px 10px;
+	padding: 10px 0px 0px;
+	border-style: none;
+	border-bottom: 1px solid black;
+}
+.result {
+	background-color: rgba(255, 150, 0, 0.9);
+}
+ul, li {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+li:before {
+	content:'-';
+	margin-right: 5px;
+}
+footer {
+	float: right;
+	margin: 20px 0px 10px 0px;
+	text-align: right;
+}
