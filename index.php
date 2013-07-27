@@ -64,7 +64,7 @@
 			}
 			?>
 
-			<?php echo createSelect('language', null, $data->language, $languages); ?>
+			<?php echo createSelect('language', null, $data->language, array_unique($languages)); ?>
 
 			<fieldset>
 				<legend><?php e($desc->base); ?></legend>

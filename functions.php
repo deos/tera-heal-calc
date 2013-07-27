@@ -241,12 +241,13 @@ function getData(stdClass $data, $typeFields, $numberFields, array $languages){
 
 function getDefaultLanguage(array $languages){
 	$clientLangs = parseClientLang();
+	$languageFiles = array_unique($languages);
 
 	//check client languages for what i can get you
 	foreach($clientLangs as $key=>$relevance){
 		$key = str_replace('-', '_', $key);
 		if(array_key_exists($key, $languages)){
-			return $key;
+			return array_search($languages[$key], $languageFiles);
 		}
 	}
 
