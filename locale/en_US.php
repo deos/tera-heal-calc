@@ -37,8 +37,8 @@ $descriptions = array(
 	'jewelsSpecial' 			=> 'Number of rings with special 5% healbonus',
 
 	'crystals' 					=> 'Crystals',
-	'crystalsZyrks' 			=> 'Number of cyrks with 1% healbonus',
-	'crystalsPristineZyrks'		=> 'Number of cyrks with 2% healbonus',
+	'crystalsZyrks' 			=> 'Number of zyrks with 1% healbonus',
+	'crystalsPristineZyrks'		=> 'Number of zyrks with 2% healbonus',
 
 	'target'					=> 'Healbonuses on target',
 	'targetInclude' 			=> 'Include healbonuses on target',

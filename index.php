@@ -17,7 +17,7 @@
 		?>
 
 		<meta charset="utf-8" />
-		<title><?php e($desc->result); ?></title>
+		<title><?php e($desc->title); ?></title>
 
 		<link rel="stylesheet" type="text/css" href="style.css" media="screen">
 		<script src="//ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>

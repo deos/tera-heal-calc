@@ -37,8 +37,8 @@ $descriptions = array(
 	'jewelsSpecial' 			=> 'Anzahl Ringe mit besonderem 5% Heilbonus',
 
 	'crystals' 					=> 'Kristalle',
-	'crystalsZyrks' 			=> 'Anzahl Hilzirkone mit 1%',
-	'crystalsPristineZyrks'		=> 'Anzahl Hilzirkone mit 2%',
+	'crystalsZyrks' 			=> 'Anzahl Heilzirkone mit 1%',
+	'crystalsPristineZyrks'		=> 'Anzahl Heilzirkone mit 2%',
 
 	'target'					=> 'Heilboni des Ziels',
 	'targetInclude' 			=> 'Heilboni des Ziels mit einrechnen',
