@@ -12,6 +12,10 @@ body {
 h1 {
 	margin: 0px 0px 10px 0px;
 }
+a {
+	color: blue;
+	font-weight: bold;
+}
 form {
 	position: relative;
 }

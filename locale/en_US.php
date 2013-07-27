@@ -62,5 +62,11 @@ $descriptions = array(
 	'resultTarget' 				=> 'Healbonuses on target:',
 	'resultHeal' 				=> 'Healed HP:',
 
-	'info'						=> 'Information'
+	'info'						=> 'Information',
+	'infoTexts'					=> array(
+		'Little deviations between results and real ingame heals are normal, but barely noticeable',
+		'The calculation will be emanated from masterwork +12 items',
+		'Values of the mentioned upcoming items are not yet final and can change',
+		'Thanks for the calculation formula goes to <a href="http://tera-forums.enmasse.com/forums/mystic/topics/Guide-Karyudos-Mystic-Guide">Karyudo</a> and everybody else involved!'
+	)
 );

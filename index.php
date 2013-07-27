@@ -144,10 +144,9 @@
 			<fieldset>
 				<legend><?php e($desc->info); ?></legend>
 				<ul>
-					<li>ergebnisse sind gerundet, geringe abweichungen sind normal</li>
-					<li>es wird immer von meisterwerk +12 items ausgegangen</li>
-					<li>die werte der neuen items sind noch nicht endgültig und können sich noch ändern, was wirklich ist wird sich erst zeigen wenn das patch im westen angekommen ist</li>
-					<li>dank für die berechnungsformel geht an <a href="http://tera-forums.enmasse.com/forums/mystic/topics/Guide-Karyudos-Mystic-Guide">Karyudo</a> und alle die sonst beteiligt waren!</li>
+					<?php foreach($desc->infoTexts as $text): ?>
+						<li><?php echo $text; ?></li>
+					<?php endforeach; ?>
 				</ul>
 			</fieldset>
 
