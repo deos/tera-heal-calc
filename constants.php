@@ -85,7 +85,8 @@ $skills->priest = array(
 	'healingImmersion' => 3543,
 	'restorativeBurst' => 575,
 	'regenerationCircle' => 214,
-	'blessingOfBalder' => 73
+	'blessingOfBalder' => 73,
+	'healThyself' => 2437
 );
 
 

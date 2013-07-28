@@ -17,7 +17,7 @@ $descriptions = array(
 	'weaponBase' 				=> 'Mit Heilbonus auf Basiswerten',
 	'weaponZero' 				=> 'Mit Heilbonus bei +0',
 	'weaponPlus' 				=> 'Mit Heilbonus auf Plusboni',
-	'weaponFix' 				=> 'Mit fixem Heilbonus auf +2/+4',
+	'weaponFix' 				=> 'Mit fixem Heilbonus auf +4/+8',
 	'weaponMw'	 				=> 'Mit Heilbonus auf Meisterwerk Boni',
 
 	'gloves'					=> 'Handschuhe',
@@ -89,6 +89,7 @@ $descriptions = array(
 		'healingImmersion' 								=> 'Heilendes Eintauchen',
 		'restorativeBurst' 								=> 'Heilender Schub',
 		'regenerationCircle' 							=> 'Regenerationskreis',
-		'blessingOfBalder' 								=> 'Segen von Balder'
+		'blessingOfBalder' 								=> 'Segen von Balder',
+		'healThyself'									=> 'Selbsheilung'
 	)
 );

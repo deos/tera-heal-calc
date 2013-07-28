@@ -17,7 +17,7 @@ $descriptions = array(
 	'weaponBase' 				=> 'Has healbonus on base stat',
 	'weaponZero' 				=> 'Has healbonus at +0',
 	'weaponPlus' 				=> 'Has healbonus at plus bonuses',
-	'weaponFix' 				=> 'Has fixed healbonuses at +2/+4',
+	'weaponFix' 				=> 'Has fixed healbonuses at +4/+8',
 	'weaponMw'	 				=> 'Has healbonus as masterwork bonuses',
 
 	'gloves'					=> 'Gloves',
@@ -89,6 +89,7 @@ $descriptions = array(
 		'healingImmersion' 								=> 'Healing immersion',
 		'restorativeBurst' 								=> 'Restoration burst',
 		'regenerationCircle' 							=> 'Regeneration circle',
-		'blessingOfBalder' 								=> 'Blessing of balder'
+		'blessingOfBalder' 								=> 'Blessing of balder',
+		'healThyself'									=> 'Heal thyself'
 	)
 );
