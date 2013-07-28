@@ -98,8 +98,9 @@ fieldset > div:hover {
 fieldset > div > ul {
 	display: none;
 	position: absolute;
-	right: -2px;
+	right: -1px;
 	margin-top: 1px;
+	min-width: 105%;
 	text-align: center;
 	border: 1px solid black;
 	-webkit-border-radius: 5px 0px 5px 5px;
