@@ -66,7 +66,29 @@ $descriptions = array(
 	'infoTexts'					=> array(
 		'Geringe Abweichungen der Ergebnisse zu tatsächlichen Heilungen im Spiel sind normal, sind jedoch kaum merklich',
 		'Es wird für die Berechnung immer von Meisterwerk +12 items ausgegangen',
+		'Begrenzungen einzelner Skills werden nicht berücksichtigt',
 		'Die Werte der aufgeführten kommenden Items sind noch nicht endgültig und können sich noch ändern',
 		'Dank für die Berechnungsformel geht an <a href="http://tera-forums.enmasse.com/forums/mystic/topics/Guide-Karyudos-Mystic-Guide">Karyudo</a> und alle die sonst beteiligt waren!'
+	),
+
+	'mysticWeapons'				=> 'Mystiker Waffen',
+	'mysticSkills'				=> 'Mystiker Skills',
+	'priestWeapons'				=> 'Priester Waffen',
+	'priestSkills'				=> 'Priester Skills',
+	'weaponNames'				=> array(
+		'abyss'											=> 'Abgrund',
+		'nexus/conjunct'								=> 'Nexus / Verbund',
+		'queen/mayhem/adonis'							=> 'Regentin / Schlachtenkämpfer / "Adonis"',
+		'visionmaker/bloodrave/aphrodite/conjunct2'		=> 'Visionär / Bluttaumel / "Aphrodite" / "Skrupelloser Verbund"',
+		'visionmaker2'									=> '"Strahlender Visionär" / "Skrupelloser Visionär"'
+	),
+	'skillNames'				=> array(
+		'titanicFavor' 									=> 'Gefallen der Titanen',
+		'focusHeal' 									=> 'Konzentrierte Heilung',
+		'healingCircle'									=> 'Heilungskreis',
+		'healingImmersion' 								=> 'Heilendes Eintauchen',
+		'restorativeBurst' 								=> 'Heilender Schub',
+		'regenerationCircle' 							=> 'Regenerationskreis',
+		'blessingOfBalder' 								=> 'Segen von Balder'
 	)
 );

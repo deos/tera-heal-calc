@@ -66,7 +66,29 @@ $descriptions = array(
 	'infoTexts'					=> array(
 		'Little deviations between results and real ingame heals are normal, but barely noticeable',
 		'The calculation will be emanated from masterwork +12 items',
+		'Limits of some skills are not regarded',
 		'Values of the mentioned upcoming items are not yet final and can change',
 		'Thanks for the calculation formula goes to <a href="http://tera-forums.enmasse.com/forums/mystic/topics/Guide-Karyudos-Mystic-Guide">Karyudo</a> and everybody else involved!'
+	),
+
+	'mysticWeapons'				=> 'Mystic weapons',
+	'mysticSkills'				=> 'Mystic skills',
+	'priestWeapons'				=> 'Priest weapons',
+	'priestSkills'				=> 'Priest skills',
+	'weaponNames'				=> array(
+		'abyss'											=> 'Abyss',
+		'nexus/conjunct'								=> 'Nexus / Conjunct',
+		'queen/mayhem/adonis'							=> 'Regent / Mayhem / "Adonis"',
+		'visionmaker/bloodrave/aphrodite/conjunct2'		=> 'Visionmaker / Bloodrave / "Aphrodite" / "Ruthless conjunct"',
+		'visionmaker2'									=> '"Luminous visionmaker" / "Ruthless visionmaker"'
+	),
+	'skillNames'				=> array(
+		'titanicFavor' 									=> 'Titanic favor',
+		'focusHeal' 									=> 'Fokus heal',
+		'healingCircle'									=> 'Healing circle',
+		'healingImmersion' 								=> 'Healing immersion',
+		'restorativeBurst' 								=> 'Restoration burst',
+		'regenerationCircle' 							=> 'Regeneration circle',
+		'blessingOfBalder' 								=> 'Blessing of balder'
 	)
 );

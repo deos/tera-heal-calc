@@ -58,6 +58,19 @@ function createCheck($id, $description, $current){
 	return $html;
 }
 
+function createInfoList($id, $description, array $items, $target=null){
+	$html = '<div id="'.r($id).'" '.($target ? 'data-target="'.r($target).'"' : '').'>';
+	$html .= '<span>'.r($description).'</span>';
+	$html .= '<ul>';
+	foreach($items as $itemId=>$itemText){
+		$html .= '<li data-value='.r($itemId).'>'.r($itemText).'</li>';
+	}
+	$html .= '</ul>';
+	$html .= '</div>';
+
+	return $html;
+}
+
 function createSpacing(){
 	return '<hr/>';
 }

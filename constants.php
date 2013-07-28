@@ -58,6 +58,37 @@ $numberFields = array(
 $typeFields = array('weaponType', 'glovesType', 'chestType');
 
 
+//weapon base stat list for shortcuts
+$weapons = new stdClass();
+$weapons->mystic = array(
+	5442, 5823, 6231, 6667, 7133
+);
+$weapons->priest = array(
+	5852, 6261, 6700, 7169, 7670
+);
+$weaponNames = array(
+	'abyss',
+	'nexus/conjunct',
+	'queen/mayhem/adonis',
+	'visionmaker/bloodrave/aphrodite/conjunct2',
+	'visionmaker2'
+);
+
+//skill base stat list for shortcuts
+$skills = new stdClass();
+$skills->mystic = array(
+	'titanicFavor' => 2392
+);
+$skills->priest = array(
+	'focusHeal' => 2360,
+	'healingCircle' => 3908,
+	'healingImmersion' => 3543,
+	'restorativeBurst' => 575,
+	'regenerationCircle' => 214,
+	'blessingOfBalder' => 73
+);
+
+
 //type constants for js
 ?>
 <script type="text/javascript">

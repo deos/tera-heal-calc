@@ -86,6 +86,17 @@ window.addEvent('domready', function(){
 	//cant have more then 2 earrings total
 	limitFields(document.getElements('#oldEarrings, #newEarrings'), 2);
 
+	//add shortcut methods
+	document.getElements('div[data-target]').addEvent('click:relay(li[data-value])', function(e){
+		if(e){
+			e.preventDefault();
+		}
+		var input = document.id(this.getParent('div').get('data-target'));
+		if(input){
+			input.set('value', this.get('data-value')).focus();
+		}
+	})
+
 	//enable disabled selects on submit so we dont miss out values
 	document.getElements('form').addEvent('submit', function(){
 		this.getElements('select').set('disabled', false);
@@ -93,7 +104,7 @@ window.addEvent('domready', function(){
 
 	//change language
 	document.id('language').addEvent('change', function(){
-	    this.getParent('form').submit();
+		this.getParent('form').submit();
 	});
 
 });

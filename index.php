@@ -13,7 +13,18 @@
 		//load language
 		require('locale/'.$data->language.'.php');
 		$desc = (object)$descriptions;
+
+		//translation preperations
 		$boolValues = array(1 => $desc->yes, 0 => $desc->no);
+		$weaponNames = array_map(function($step) use ($desc){
+			return $desc->weaponNames[$step];
+		}, $weaponNames);
+		$skills->mystic = array_map(function($skill) use ($desc){
+			return $desc->skillNames[$skill];
+		}, array_flip($skills->mystic));
+		$skills->priest = array_map(function($skill) use ($desc){
+			return $desc->skillNames[$skill];
+		}, array_flip($skills->priest));
 		?>
 
 		<meta charset="utf-8" />
@@ -70,7 +81,12 @@
 				<legend><?php e($desc->base); ?></legend>
 
 				<?php echo createInput('weaponBase', $desc->baseWeapon, $data->weaponBase); ?>
+				<?php echo createInfoList('weaponBaseMystic', $desc->mysticWeapons, array_combine($weapons->mystic, $weaponNames), 'weaponBase'); ?>
+				<?php echo createInfoList('weaponBasePriest', $desc->priestWeapons, array_combine($weapons->priest, $weaponNames), 'weaponBase'); ?>
+
 				<?php echo createInput('skillBase', $desc->baseSkill, $data->skillBase); ?>
+				<?php echo createInfoList('skillBaseMystic', $desc->mysticSkills, $skills->mystic, 'skillBase'); ?>
+				<?php echo createInfoList('skillBasePriest', $desc->priestSkills, $skills->priest, 'skillBase'); ?>
 			</fieldset>
 
 			<fieldset>
