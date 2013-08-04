@@ -5,6 +5,7 @@ html {
 body {
 	margin: 0px;
 	padding: 20px;
+	min-width: 950px;
 	background-color: #CCC;
 	color: #000;
 	font-size: 12pt;

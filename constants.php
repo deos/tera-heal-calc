@@ -1,45 +1,56 @@
 <?php
 
 //types
-define('TYPE_NONE', '-2');
-define('TYPE_OLD', '-1');
-define('TYPE_CURRENT', '0');
-define('TYPE_NEW', '1');
+define('TYPE_NONE', 0);                  //no item
+define('TYPE_OLD', 1);                   //item pre patch QoA2
+define('TYPE_CURRENT', 2);               //item past patch QoA2 (current items)
+define('TYPE_NEW', 3);                   //items past patch Fortress (upcoming items)
+
+//enchantments
+define('ENCHANT_NONE', 0);               //no enchant or non-enchantable item
+define('ENCHANT_NINE', 1);               //enchant to +9
+define('ENCHANT_MW_NINE', 2);            //enchant to +9 and masterwork
+define('ENCHANT_MW_TWELVE', 3);          //enchant to +12 and masterwork (max)
 
 //weapon
-define('BONUS_WEAPON_OLD_BASE', 7.5); //7.5% on old weapons at base and +0
-define('BONUS_WEAPON_OLD', 8);        //8% on old weapons
-define('BONUS_WEAPON_OLD_MW', 4.5);   //3*1.5% on old weapon mw
-define('BONUS_WEAPON_NEW', 6);        //6% on new weapons
-define('BONUS_WEAPON_FIX', 6);        //2+4% at 2/4 on weapons, current and new
+define('BONUS_WEAPON_OLD_PLAIN', 7);     //7% on old non-mw weapons on all stats
+define('BONUS_WEAPON_OLD_BASE', 7.5);    //7.5% on old weapons at base and +0
+define('BONUS_WEAPON_OLD', 8);           //8% on old weapons
+define('BONUS_WEAPON_OLD_MW', 4.5);      //3*1.5% on old weapon mw
+define('BONUS_WEAPON_NEW_PLAIN', 4.5);   //4.5% on new non-mw weapons
+define('BONUS_WEAPON_NEW', 6);           //6% on new weapons
+define('BONUS_WEAPON_FIX', 6);           //2+4% at 2/4 on weapons, current and new
 
 //gloves
-define('BONUS_GLOVES_OLD_BASE', 5.1); //5.1% on old gloves at +0
-define('BONUS_GLOVES_OLD', 5.7);      //5.7%% on old gloves
-define('BONUS_GLOVES_OLD_MW', 4.5);   //3*1.5% on old gloves mw
-define('BONUS_GLOVES_NEW', 3);        //3% on new gloves
-define('BONUS_GLOVES_NEW_MW', 6);     //3*2% at on new globes mw
+define('BONUS_GLOVES_OLD_PLAIN', 4.5);   //4.5% on old non-mw gloves on all stats
+define('BONUS_GLOVES_OLD_BASE', 5.1);    //5.1% on old gloves at +0
+define('BONUS_GLOVES_OLD', 5.7);         //5.7%% on old gloves
+define('BONUS_GLOVES_OLD_MW', 4.5);      //3*1.5% on old gloves mw
+define('BONUS_GLOVES_NEW_PLAIN', 2.25);  //2.25% on old non-mw gloves
+define('BONUS_GLOVES_NEW', 3);           //3% on new gloves
+define('BONUS_GLOVES_NEW_MW', 6);        //3*2% at on new globes mw
 
 //jewels
-define('BONUS_JEWELS_OLD', 4.5);      //4.5% healing on old rings and nackless
-define('BONUS_JEWELS_NEW', 2);        //2% healing on new rings and nackless
-define('BONUS_SPECIAL_RING', 5);      //5% bonus on special rings
+define('BONUS_JEWELS_OLD', 4.5);         //4.5% healing on old rings and nackless
+define('BONUS_JEWELS_NEW', 2);           //2% healing on new rings and nackless
+define('BONUS_SPECIAL_RING', 5);         //5% bonus on special rings
 
 //zyrks
-define('BONUS_ZYRK', 1);              //1% healing from healing zyrk
-define('BONUS_ZYRK_PRISTINE', 2);     //2% healing from pristine healing zyrk
+define('BONUS_ZYRK', 1);                 //1% healing from healing zyrk
+define('BONUS_ZYRK_PRISTINE', 2);        //2% healing from pristine healing zyrk
 
 //chest
-define('BONUS_CHEST_OLD_BASE', 9.5);  //9.5% recieved bonus with old chest at +0
-define('BONUS_CHEST_OLD', 10.4);      //10.4% recieved bonus with old chest
-define('BONUS_CHEST_NEW', 6.9);       //6.9% recieved bonus with new chest
+define('BONUS_CHEST_OLD_PLAIN', 8.6);    //8.6% recieved bonus with old non-mw chests on all stats
+define('BONUS_CHEST_OLD_BASE', 9.5);     //9.5% recieved bonus with old chest at +0
+define('BONUS_CHEST_OLD', 10.4);         //10.4% recieved bonus with old chest
+define('BONUS_CHEST_NEW', 6.9);          //6.9% recieved bonus with new chest
 
 //earrings
-define('BONUS_EARRING_OLD', 4.5);     //4.5% recieved bonus with old earrings
-define('BONUS_EARRING_NEW', 2);       //2% recieved bonus with new earrings
+define('BONUS_EARRING_OLD', 4.5);        //4.5% recieved bonus with old earrings
+define('BONUS_EARRING_NEW', 2);          //2% recieved bonus with new earrings
 
 //potion
-define('BONUS_HEART_POTION', 17);     //17% recieved bonus with heart potion 3
+define('BONUS_HEART_POTION', 17);        //17% recieved bonus with heart potion 3
 
 
 //fields
