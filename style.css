@@ -12,6 +12,10 @@ body {
 }
 h1 {
 	margin: 0px 0px 10px 0px;
+	font-size: 2em;
+}
+h1 span {
+	font-size: 0.4em;
 }
 a {
 	color: blue;

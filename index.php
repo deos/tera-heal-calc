@@ -37,7 +37,10 @@
 	<body>
 
 		<header>
-			<h1><?php e($desc->title); ?></h1>
+			<h1>
+				<?php e($desc->title); ?>
+				<span>(<?php e(VERSION); ?>)</span>
+			</h1>
 		</header>
 
 		<form action="" method="post">

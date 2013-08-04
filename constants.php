@@ -1,5 +1,8 @@
 <?php
 
+//version
+define('VERSION', 'V0.8');
+
 //types
 define('TYPE_NONE', 0);                  //no item
 define('TYPE_OLD', 1);                   //item pre patch QoA2
