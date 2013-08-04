@@ -163,7 +163,11 @@ function sumHealBonusJewels($data){
 
 	$bonus += $data->oldJewels * BONUS_JEWELS_OLD;
 	$bonus += $data->newJewels * BONUS_JEWELS_NEW;
-	$bonus += $data->specialRings * BONUS_SPECIAL_RING;
+	$bonus += $data->specialRings * BONUS_JEWELS_SPECIAL_RING;
+
+	if($data->jewelSet1){
+		$bonus += BONUS_JEWELS_SET_1;
+	}
 
 	return $bonus;
 }

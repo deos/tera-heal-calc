@@ -35,6 +35,7 @@ $descriptions = array(
 	'jewelsOld' 				=> 'Anzahl aktueller Ringe/Halsketten mit 4,5% Heilbonus',
 	'jewelsNew' 				=> 'Anzahl kommender Ringe/Halsketten mit 2% Heilbonus',
 	'jewelsSpecial' 			=> 'Anzahl Ringe mit besonderem 5% Heilbonus',
+	'jewelSet1'					=> 'Setbonus des kommenden Schmucks (2 Teile nötig)',
 
 	'crystals' 					=> 'Kristalle',
 	'crystalsZyrks' 			=> 'Anzahl Heilzirkone mit 1%',

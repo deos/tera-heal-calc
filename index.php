@@ -121,6 +121,9 @@
 				<?php echo createSelect('oldJewels', $desc->jewelsOld, $data->oldJewels, range(0, 3)); ?>
 				<?php echo createSelect('newJewels', $desc->jewelsNew, $data->newJewels, range(0, 3)); ?>
 				<?php echo createSelect('specialRings', $desc->jewelsSpecial, $data->specialRings, range(0, 2)); ?>
+				<?php echo createSpacing(); ?>
+
+				<?php echo createSelect('jewelSet1', $desc->jewelSet1, $data->jewelSet1, $boolValues); ?>
 			</fieldset>
 
 			<fieldset>

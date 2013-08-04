@@ -36,7 +36,8 @@ define('BONUS_GLOVES_NEW_MW', 6);        //3*2% at on new globes mw
 //jewels
 define('BONUS_JEWELS_OLD', 4.5);         //4.5% healing on old rings and nackless
 define('BONUS_JEWELS_NEW', 2);           //2% healing on new rings and nackless
-define('BONUS_SPECIAL_RING', 5);         //5% bonus on special rings
+define('BONUS_JEWELS_SPECIAL_RING', 5);  //5% bonus on special rings
+define('BONUS_JEWELS_SET_1', 3);         //3% set bonus on upcoming jewels (set 1 since there may be more in the future)
 
 //zyrks
 define('BONUS_ZYRK', 1);                 //1% healing from healing zyrk
@@ -64,6 +65,7 @@ $numberFields = array(
 	'glovesBonusBase' => 0, 'glovesBonusZero' => 1, 'glovesBonusPlus' => 1,
 	'glovesBonusMw' => 3,
 	'oldJewels' => 3, 'newJewels' => 0, 'specialRings' => 2,
+	'jewelSet1' => 0,
 	'zyrks' => 0, 'pristineZyrks' => 0,
 	'includeTargetBonus' => 0,
 	'chestBonusBase' => 1, 'chestBonusZero' => 0, 'chestBonusPlus' => 1,

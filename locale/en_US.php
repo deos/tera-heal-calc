@@ -35,6 +35,7 @@ $descriptions = array(
 	'jewelsOld' 				=> 'Number of current rings/necklaces with 4.5% healbonus',
 	'jewelsNew' 				=> 'Number of upcoming rings/necklaces with 2% healbonus',
 	'jewelsSpecial' 			=> 'Number of rings with special 5% healbonus',
+	'jewelSet1'					=> 'Set bonus on upcoming jewels (needs 2 items)',
 
 	'crystals' 					=> 'Crystals',
 	'crystalsZyrks' 			=> 'Number of zyrks with 1% healbonus',
