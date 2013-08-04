@@ -95,7 +95,7 @@ window.addEvent('domready', function(){
 		if(input){
 			input.set('value', this.get('data-value')).focus();
 		}
-	})
+	});
 
 	//enable disabled selects on submit so we dont miss out values
 	document.getElements('form').addEvent('submit', function(){

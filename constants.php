@@ -58,7 +58,9 @@ define('BONUS_HEART_POTION', 17);        //17% recieved bonus with heart potion 
 
 
 //fields
-$numberFields = array(
+$fields = new stdClass();
+$fields->type = array('weaponType', 'glovesType', 'chestType');
+$fields->number = array(
 	'weaponBase' => 0, 'skillBase' => 0,
 	'weaponBonusBase' => 1, 'weaponBonusZero' => 0, 'weaponBonusPlus' => 1,
 	'weaponBonusFix' => 1, 'weaponBonusMw' => 1,
@@ -67,11 +69,12 @@ $numberFields = array(
 	'oldJewels' => 3, 'newJewels' => 0, 'specialRings' => 2,
 	'jewelSet1' => 0,
 	'zyrks' => 0, 'pristineZyrks' => 0,
-	'includeTargetBonus' => 0,
 	'chestBonusBase' => 1, 'chestBonusZero' => 0, 'chestBonusPlus' => 1,
 	'oldEarrings' => 0, 'newEarrings' => 0, 'heartPotion' => 0
 );
-$typeFields = array('weaponType', 'glovesType', 'chestType');
+$fields->bool = array(
+	'includeTargetBonus' => true,
+);
 
 
 //weapon base stat list for shortcuts
