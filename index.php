@@ -44,32 +44,24 @@
 			<?php
 			//calculate
 			if(array_key_exists('submitButton', $_REQUEST)){
-				$skillBase = $data->skillBase;
-				$weaponBase = $data->weaponBase;
-				$weaponHealBonus = sumHealBonusWeapon($data);
-				$glovesHealBonus = sumHealBonusGloves($data);
-				$jewelsHealBonus = sumHealBonusJewels($data);
-				$crystalHealBonus = sumHealBonusCrystals($data);
-				$healBonus = $weaponHealBonus + $glovesHealBonus + $jewelsHealBonus + $crystalHealBonus;
-				$targetHealBonus = sumTargetHealBonus($data);
-
-				$healing = calc($skillBase, $weaponBase, $healBonus, $targetHealBonus);
+				getResults($data);
 				?>
 				<fieldset class="result">
 					<legend><?php e($desc->result); ?></legend>
 
-					<?php echo createInfo('weaponHeal', $desc->resultWeapon, f($weaponHealBonus, 1).' %', null, true); ?>
-					<?php echo createInfo('glovesHeal', $desc->resultGloves, f($glovesHealBonus, 1).' %', null, true); ?>
-					<?php echo createInfo('jewelsHeal', $desc->resultJewels, f($jewelsHealBonus, 1).' %', null, true); ?>
-					<?php echo createInfo('crystalsHeal', $desc->resultCrystals, f($crystalHealBonus, 1).' %', null, true); ?>
+					<?php echo createInfo('weaponHeal', $desc->resultWeapon, f($data->weaponHealBonus, 1).' %', null, true); ?>
+					<?php echo createInfo('glovesHeal', $desc->resultGloves, f($data->glovesHealBonus, 1).' %', null, true); ?>
+					<?php echo createInfo('jewelsHeal', $desc->resultJewels, f($data->jewelsHealBonus, 1).' %', null, true); ?>
+					<?php echo createInfo('crystalsHeal', $desc->resultCrystals, f($data->crystalHealBonus, 1).' %', null, true); ?>
 					<?php echo createSpacing(); ?>
 
 					<?php if($data->includeTargetBonus): ?>
-						<?php echo createInfo('targetHeal', $desc->resultTarget, f($targetHealBonus, 1).' %', null, true); ?>
+						<?php echo createInfo('targetHeal', $desc->resultTarget, f($data->targetHealBonus, 1).' %', null, true); ?>
 						<?php echo createSpacing(); ?>
 					<?php endif; ?>
 
-					<?php echo createInfo('healOutput', $desc->resultHeal, f($healing), null, true); ?>
+					<?php echo createInfo('healOutput', $desc->resultHeal, f($data->healing), null, true); ?>
+					<?php echo createInfo('healOutput', $desc->resultHealCrit, f($data->critHealing), null, true); ?>
 				</fieldset>
 				<?php
 			}

@@ -229,6 +229,23 @@ function calc($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
 	return floor($skillBase * (1 + $weaponBase * (1 + $healBonus/100) / 1000) * (1 + $targetHealBonus/100));
 }
 
+function calcCrit($heal){
+	return floor($heal * 1.5);
+}
+
+function getResults(stdClass $data){
+	$data->weaponHealBonus = sumHealBonusWeapon($data);
+	$data->glovesHealBonus = sumHealBonusGloves($data);
+	$data->jewelsHealBonus = sumHealBonusJewels($data);
+	$data->crystalHealBonus = sumHealBonusCrystals($data);
+	$data->healBonus = $data->weaponHealBonus + $data->glovesHealBonus + $data->jewelsHealBonus + $data->crystalHealBonus;
+
+	$data->targetHealBonus = sumTargetHealBonus($data);
+
+	$data->healing = calc($data->skillBase, $data->weaponBase, $data->healBonus, $data->targetHealBonus);
+	$data->critHealing = calcCrit($data->healing);
+}
+
 
 function getData(stdClass $data, $typeFields, $numberFields, array $languages){
 	//get values

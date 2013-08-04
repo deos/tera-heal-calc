@@ -61,6 +61,7 @@ $descriptions = array(
 	'resultCrystals' 			=> 'Healbonuses on crystals:',
 	'resultTarget' 				=> 'Healbonuses on target:',
 	'resultHeal' 				=> 'Healed HP:',
+	'resultHealCrit'			=> 'Critical healed HP:',
 
 	'info'						=> 'Information',
 	'infoTexts'					=> array(

@@ -60,7 +60,8 @@ $descriptions = array(
 	'resultJewels' 				=> 'Heilbonus des Schmucks:',
 	'resultCrystals' 			=> 'Heilbonus der Kristalle:',
 	'resultTarget' 				=> 'Heilbonus des Ziels:',
-	'resultHeal' 				=> 'Geheilte HP:',
+	'resultHeal' 				=> 'HP durch Heilung:',
+	'resultHealCrit'			=> 'HP durch kritische Heilung:',
 
 	'info'						=> 'Hinweise',
 	'infoTexts'					=> array(
