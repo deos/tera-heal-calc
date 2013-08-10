@@ -15,8 +15,7 @@ header {
 	margin-bottom: 10px;
 }
 footer {
-	float: right;
-	margin-top: 1em;
+	margin-top: 10px;
 	text-align: right;
 }
 h1 {
@@ -44,7 +43,6 @@ input, select {
 form {
 	position: relative;
 	display: block;
-	padding-bottom: 2em;
 }
 fieldset {
 	margin: 0px;

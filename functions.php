@@ -71,10 +71,10 @@ abstract class UI {
 	 * @return null|string
 	 */
 	public static function createLabel($id, $description, $allowHtml = false){
-		if(!$id OR !$description){
+		if(!$description){
 			return null;
 		}
-		return '<label for="'.r($id).'">'.($allowHtml ? $description : r($description)).'</label>';
+		return '<label'.($id ? ' for="'.r($id).'"' : '').'>'.($allowHtml ? $description : r($description)).'</label>';
 	}
 
 	/**
@@ -129,7 +129,7 @@ abstract class UI {
 	 * @return string
 	 */
 	public static function createInfo($id, $description, $info, $value = null, $selectable = false){
-		$html = self::createLabel($id, $description);
+		$html = self::createLabel(null, $description);
 
 		$html .= '<input '.($selectable ? 'type="text" readonly="readonly"' : 'type="button" disabled="disabled"').' value="'.r($info).'" id="info_'.r($id).'"/>';
 		if($value!==null){

@@ -31,7 +31,7 @@
 			</h1>
 		</header>
 
-		<form action="" method="post">
+		<form action="<?php e($_SERVER['SCRIPT_NAME']); ?>" method="post">
 			<?php
 			//calculate
 			if(array_key_exists('submitButton', $_REQUEST)){
@@ -153,10 +153,10 @@
 			</fieldset>
 
 			<input type="submit" name="submitButton" value="berechnen"/>
-
-			<footer>
-				&copy; deos.dev@gmail.com 2013
-			</footer>
 		</form>
+
+		<footer>
+			&copy; deos.dev@gmail.com 2013 (<a href="https://github.com/deos/tera-heal-calc">github</a>)
+		</footer>
 	</body>
 </html>
