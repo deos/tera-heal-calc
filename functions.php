@@ -11,25 +11,25 @@ function e($text){
 	echo r($text);
 }
 
-	/**
-	 * return escaped text
-	 *
-	 * @param string $text Text to escape
-	 *
-	 * @return string
-	 */
+/**
+ * return escaped text
+ *
+ * @param string $text Text to escape
+ *
+ * @return string
+ */
 function r($text){
 	return htmlspecialchars($text);
 }
 
-	/**
-	 * format number
-	 *
-	 * @param integer $number The number being formatted
-	 * @param integer $comma  [optional] Sets the number of decimal points (default 0)
-	 *
-	 * @return string
-	 */
+/**
+ * format number
+ *
+ * @param integer $number The number being formatted
+ * @param integer $comma  [optional] Sets the number of decimal points (default 0)
+ *
+ * @return string
+ */
 function f($number, $comma = 0){
 	return number_format($number, $comma, ',', '.');
 }
@@ -41,18 +41,40 @@ function f($number, $comma = 0){
 abstract class UI {
 
 	/**
+	 * Create legend element
+	 *
+	 * @param string      $description Description text
+	 * @param string|null $labelId     [optional] Label element ID (default null)
+	 *
+	 * @return string
+	 */
+	public static function createLegend($description, $labelId = null){
+		$html = '<legend>';
+		if($labelId){
+			$html .= self::createLabel($labelId, '<span>+</span><span>-</span> '.r($description), true);
+		}
+		else{
+			$html .= r($description);
+		}
+		$html .= '</legend>';
+
+		return $html;
+	}
+
+	/**
 	 * Create label element
 	 *
 	 * @param string $id          Element ID
 	 * @param string $description Description text
+	 * @param bool   $allowHtml   [optional] Show description direct without escaping to allow html (default false)
 	 *
-	 * @return bool|string
+	 * @return null|string
 	 */
-	public static function createLabel($id, $description){
+	public static function createLabel($id, $description, $allowHtml = false){
 		if(!$id OR !$description){
-			return false;
+			return null;
 		}
-		return '<label for="'.r($id).'">'.r($description).'</label>';
+		return '<label for="'.r($id).'">'.($allowHtml ? $description : r($description)).'</label>';
 	}
 
 	/**

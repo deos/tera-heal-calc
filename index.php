@@ -27,7 +27,7 @@
 		<header>
 			<h1>
 				<?php e($desc->title); ?>
-				<span>(<?php e(VERSION); ?>)</span>
+				<span><?php e(VERSION); ?></span>
 			</h1>
 		</header>
 
@@ -38,7 +38,7 @@
 				Data::getResults($data);
 				?>
 				<fieldset class="result">
-					<legend><?php e($desc->result); ?></legend>
+					<?php echo UI::createLegend($desc->result); ?>
 
 					<?php echo UI::createInfo('weaponHeal', $desc->resultWeapon, f($data->weaponHealBonus, 1).' %', null, true); ?>
 					<?php echo UI::createInfo('glovesHeal', $desc->resultGloves, f($data->glovesHealBonus, 1).' %', null, true); ?>
@@ -61,7 +61,7 @@
 			<?php echo UI::createSelect('language', null, $data->language, array_unique($languages)); ?>
 
 			<fieldset>
-				<legend><?php e($desc->base); ?></legend>
+				<?php echo UI::createLegend($desc->base); ?>
 
 				<?php echo UI::createInput('weaponBase', $desc->baseWeapon, $data->weaponBase); ?>
 				<?php echo UI::createInfoList('weaponBaseMystic', $desc->mysticWeapons, array_combine($weapons->mystic, $weaponNames), 'weaponBase'); ?>
@@ -73,7 +73,7 @@
 			</fieldset>
 
 			<fieldset>
-				<legend><?php e($desc->weapon); ?></legend>
+				<?php echo UI::createLegend($desc->weapon); ?>
 
 				<?php echo UI::createSelect('weaponType', $desc->weaponType, $data->weaponType, array(
 					//TYPE_NONE		=> $desc->weaponTypeNone,
@@ -89,7 +89,7 @@
 			</fieldset>
 
 			<fieldset>
-				<legend><?php e($desc->gloves); ?></legend>
+				<?php echo UI::createLegend($desc->gloves); ?>
 
 				<?php echo UI::createSelect('glovesType', $desc->glovesType, $data->glovesType, array(
 					//TYPE_NONE		=> $desc->glovesTypeNone,
@@ -104,7 +104,7 @@
 			</fieldset>
 
 			<fieldset>
-				<legend><?php e($desc->jewels); ?></legend>
+				<?php echo UI::createLegend($desc->jewels); ?>
 
 				<?php echo UI::createSelect('oldJewels', $desc->jewelsOld, $data->oldJewels, range(0, 3)); ?>
 				<?php echo UI::createSelect('newJewels', $desc->jewelsNew, $data->newJewels, range(0, 3)); ?>
@@ -115,14 +115,14 @@
 			</fieldset>
 
 			<fieldset>
-				<legend><?php e($desc->crystals); ?></legend>
+				<?php echo UI::createLegend($desc->crystals); ?>
 
 				<?php echo UI::createSelect('zyrks', $desc->crystalsZyrks, $data->zyrks, range(0, 4)); ?>
 				<?php echo UI::createSelect('pristineZyrks', $desc->crystalsPristineZyrks, $data->pristineZyrks, range(0, 4)); ?>
 			</fieldset>
 
 			<fieldset>
-				<legend><?php e($desc->target); ?></legend>
+				<?php echo UI::createLegend($desc->target); ?>
 
 				<?php echo UI::createCheck('includeTargetBonus', $desc->targetInclude, $data->includeTargetBonus); ?>
 				<?php echo UI::createSpacing(); ?>
@@ -144,7 +144,7 @@
 			</fieldset>
 
 			<fieldset>
-				<legend><?php e($desc->info); ?></legend>
+				<?php echo UI::createLegend($desc->info); ?>
 				<ul>
 					<?php foreach($desc->infoTexts as $text): ?>
 						<li><?php echo $text; ?></li>
