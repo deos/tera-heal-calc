@@ -1,7 +1,7 @@
 <?php
 
 //version
-define('VERSION', 'V0.8');
+define('VERSION', 'V0.9');
 
 //types
 define('TYPE_NONE', 0);                  //no item
@@ -31,7 +31,7 @@ define('BONUS_GLOVES_OLD', 5.7);         //5.7%% on old gloves
 define('BONUS_GLOVES_OLD_MW', 4.5);      //3*1.5% on old gloves mw
 define('BONUS_GLOVES_NEW_PLAIN', 2.25);  //2.25% on old non-mw gloves
 define('BONUS_GLOVES_NEW', 3);           //3% on new gloves
-define('BONUS_GLOVES_NEW_MW', 6);        //3*2% at on new globes mw
+define('BONUS_GLOVES_NEW_MW', 4.5);      //4.5% at on new globes mw
 
 //jewels
 define('BONUS_JEWELS_OLD', 4.5);         //4.5% healing on old rings and nackless
@@ -47,7 +47,8 @@ define('BONUS_ZYRK_PRISTINE', 2);        //2% healing from pristine healing zyrk
 define('BONUS_CHEST_OLD_PLAIN', 8.6);    //8.6% recieved bonus with old non-mw chests on all stats
 define('BONUS_CHEST_OLD_BASE', 9.5);     //9.5% recieved bonus with old chest at +0
 define('BONUS_CHEST_OLD', 10.4);         //10.4% recieved bonus with old chest
-define('BONUS_CHEST_NEW', 6.9);          //6.9% recieved bonus with new chest
+define('BONUS_CHEST_NEW_PLAIN', 4.5);    //4.5% recieved bonus with new non-mw chest
+define('BONUS_CHEST_NEW', 6);            //6% recieved bonus with new chest
 
 //earrings
 define('BONUS_EARRING_OLD', 4.5);        //4.5% recieved bonus with old earrings
@@ -60,6 +61,7 @@ define('BONUS_HEART_POTION', 17);        //17% recieved bonus with heart potion 
 //fields
 $fields = new stdClass();
 $fields->type = array('weaponType', 'glovesType', 'chestType');
+$fields->enchant = array('weaponEnchant', 'glovesEnchant', 'chestEnchant');
 $fields->number = array(
 	'weaponBase' => 0, 'skillBase' => 0,
 	'weaponBonusBase' => 1, 'weaponBonusZero' => 0, 'weaponBonusPlus' => 1,
@@ -108,6 +110,14 @@ $skills->priest = array(
 	'healThyself' => 2437
 );
 
+//enchant levels
+$enchants = array(
+	ENCHANT_NONE => 'none',
+	ENCHANT_NINE => 'nine',
+	ENCHANT_MW_NINE => 'mw_nine',
+	ENCHANT_MW_TWELVE => 'mw_twelve'
+);
+
 
 //type constants for js
 ?>
@@ -117,5 +127,13 @@ $skills->priest = array(
 		'old': <?php echo TYPE_OLD; ?>,
 		'current': <?php echo TYPE_CURRENT; ?>,
 		'new': <?php echo TYPE_NEW; ?>
+	};
+	window.enchants = {
+		'none': <?php echo ENCHANT_NONE; ?>,
+		'nine': <?php echo ENCHANT_NINE; ?>,
+		'mw' :{
+			'nine': <?php echo ENCHANT_MW_NINE; ?>,
+			'twelve': <?php echo ENCHANT_MW_TWELVE; ?>
+		}
 	};
 </script>

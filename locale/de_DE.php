@@ -8,8 +8,10 @@ $descriptions = array(
 	'baseWeapon' 				=> 'Basisheilung der Waffe',
 	'baseSkill' 				=> 'Basisheilung der Fertigkeit',
 
+	'type'						=> 'Art',
+	'enchant'					=> 'Verzauberung',
+
 	'weapon'					=> 'Waffe',
-	'weaponType' 				=> 'Typ',
 	'weaponTypeNone' 			=> 'Waffe nicht einberechnen',
 	'weaponTypeOld' 			=> 'Waffe des alten Systems (mit Kraft als Meisterwerk Boni)',
 	'weaponTypeCurrent' 		=> 'Waffe des aktuellen Systems (mit Heilung als Meiswerwerk Boni)',
@@ -21,7 +23,6 @@ $descriptions = array(
 	'weaponMw'	 				=> 'Mit Heilbonus auf Meisterwerk Boni',
 
 	'gloves'					=> 'Handschuhe',
-	'glovesType' 				=> 'Typ',
 	'glovesTypeNone' 			=> 'Handschuhe nicht einrechnen',
 	'glovesTypeOld' 			=> 'Handschuhe des alten Systems (mit Kraft als Meisterwerk Boni)',
 	'glovesTypeCurrent'	 		=> 'Handschuhe des aktuellen Systems (mit rollbaren Meisterwerk Boni)',
@@ -45,7 +46,7 @@ $descriptions = array(
 	'targetInclude' 			=> 'Heilboni des Ziels mit einrechnen',
 	'targetHeartPotion' 		=> 'Ziel nutzt einen Herztrank III',
 
-	'chestType' 				=> 'Typ',
+	'chestTypeNone' 			=> 'Oberteil nicht einrechnen',
 	'chestTypeCurrent' 			=> 'Oberteil des aktuellen Systems',
 	'chestTypeNew' 				=> 'Oberteil des kommenden Systems',
 	'chestBase' 				=> 'Mit Heilbonus auf Basiswerten',
@@ -93,5 +94,11 @@ $descriptions = array(
 		'regenerationCircle' 							=> 'Regenerationskreis',
 		'blessingOfBalder' 								=> 'Segen von Balder',
 		'healThyself'									=> 'Selbsheilung'
+	),
+	'enchants'					=> array(
+		'none' 											=> 'Nicht verzaubert oder nicht verzauberbar',
+		'nine' 											=> 'Verzaubert auf +9',
+		'mw_nine'										=> 'Meisterwerk verzaubert auf +9',
+		'mw_twelve'										=> 'Meisterwerk verzaubert auf +12'
 	)
 );

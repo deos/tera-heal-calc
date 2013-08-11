@@ -208,7 +208,7 @@ abstract class Data {
 	public static function init(stdClass $fields, array $languages){
 		$data = new stdClass();
 
-		self::getData($data, $fields->type, $fields->number, $fields->bool);
+		self::getData($data, $fields->type, $fields->enchant, $fields->number, $fields->bool);
 
 		$data->language = Language::getLanguage($languages);
 
@@ -218,14 +218,15 @@ abstract class Data {
 	/**
 	 * Fill data object
 	 *
-	 * @param stdClass $data         Data object
-	 * @param array    $typeFields   List of "type" field IDs
-	 * @param array    $numberFields List of "number" fields and their default value (id=>defaultValue)
-	 * @param array    $boolFields   List of "bool" fields and their default value (id=>defaultValue)
+	 * @param stdClass $data          Data object
+	 * @param array    $typeFields    List of "type" field IDs
+	 * @param array    $enchantFields List of "enchant" field IDs
+	 * @param array    $numberFields  List of "number" fields and their default value (id=>defaultValue)
+	 * @param array    $boolFields    List of "bool" fields and their default value (id=>defaultValue)
 	 *
 	 * @return void
 	 */
-	private static function getData(stdClass $data, array $typeFields, array $numberFields, array $boolFields){
+	private static function getData(stdClass $data, array $typeFields, array $enchantFields, array $numberFields, array $boolFields){
 		//type fields (default to TYPE_CURRENT)
 		foreach($typeFields as $field){
 			if(array_key_exists($field, $_REQUEST) AND in_array($_REQUEST[$field], array(TYPE_NONE, TYPE_OLD, TYPE_CURRENT, TYPE_NEW))){
@@ -233,6 +234,16 @@ abstract class Data {
 			}
 			else{
 				$data->$field = TYPE_CURRENT;
+			}
+		}
+
+		//echant fields (default to MW+12)
+		foreach($enchantFields as $field){
+			if(array_key_exists($field, $_REQUEST) AND in_array($_REQUEST[$field], array(ENCHANT_NONE, ENCHANT_NINE, ENCHANT_MW_NINE, ENCHANT_MW_TWELVE))){
+				$data->$field = $_REQUEST[$field];
+			}
+			else{
+				$data->$field = ENCHANT_MW_TWELVE;
 			}
 		}
 
@@ -293,35 +304,36 @@ abstract class Data {
 		}
 
 		$bonus = 0;
+		$isMw = ($data->weaponEnchant==ENCHANT_MW_NINE OR $data->weaponEnchant==ENCHANT_MW_TWELVE);
 
 		//base
 		if($data->weaponType!=TYPE_NEW AND $data->weaponBonusBase){
-			$bonus += BONUS_WEAPON_OLD_BASE;
+			$bonus += ($isMw ? BONUS_WEAPON_OLD_BASE : BONUS_WEAPON_OLD_PLAIN);
 		}
 		elseif($data->weaponBonusBase){
-			$bonus += BONUS_WEAPON_NEW;
+			$bonus += ($isMw ? BONUS_WEAPON_NEW : BONUS_WEAPON_NEW_PLAIN);
 		}
 
 		//+0 (old and current only)
 		if($data->weaponType!=TYPE_NEW AND $data->weaponBonusZero){
-			$bonus += BONUS_WEAPON_OLD_BASE;
+			$bonus += ($isMw ? BONUS_WEAPON_OLD_BASE : BONUS_WEAPON_OLD_PLAIN);
 		}
 
 		//plus
-		if($data->weaponType!=TYPE_NEW AND $data->weaponBonusPlus){
-			$bonus += BONUS_WEAPON_OLD;
+		if($data->weaponType!=TYPE_NEW AND $data->weaponBonusPlus AND $data->weaponEnchant!=ENCHANT_NONE){
+			$bonus += ($isMw ? BONUS_WEAPON_OLD : BONUS_WEAPON_OLD_PLAIN);
 		}
-		elseif($data->weaponBonusPlus){
-			$bonus += BONUS_WEAPON_NEW;
+		elseif($data->weaponBonusPlus AND $data->weaponEnchant!=ENCHANT_NONE){
+			$bonus += ($isMw ? BONUS_WEAPON_NEW : BONUS_WEAPON_NEW_PLAIN);
 		}
 
 		//fix (current and new only)
-		if($data->weaponType!=TYPE_OLD AND $data->weaponBonusFix){
+		if($data->weaponType!=TYPE_OLD AND $data->weaponBonusFix AND $data->weaponEnchant!=ENCHANT_NONE){
 			$bonus += BONUS_WEAPON_FIX;
 		}
 
 		//mw (current only)
-		if($data->weaponType==TYPE_CURRENT AND $data->weaponBonusMw){
+		if($data->weaponType==TYPE_CURRENT AND $data->weaponBonusMw AND $data->weaponEnchant==ENCHANT_MW_TWELVE){
 			$bonus += BONUS_WEAPON_OLD_MW;
 		}
 
@@ -341,30 +353,31 @@ abstract class Data {
 		}
 
 		$bonus = 0;
+		$isMw = ($data->glovesEnchant==ENCHANT_MW_NINE OR $data->glovesEnchant==ENCHANT_MW_TWELVE);
 
 		//base (new only)
 		if($data->glovesType==TYPE_NEW AND $data->glovesBonusBase){
-			$bonus += BONUS_GLOVES_NEW;
+			$bonus += ($isMw ? BONUS_GLOVES_NEW : BONUS_GLOVES_NEW_PLAIN);
 		}
 
 		//+0 (old and current only)
 		if($data->glovesType!=TYPE_NEW AND $data->glovesBonusZero){
-			$bonus += BONUS_GLOVES_OLD_BASE;
+			$bonus += ($isMw ? BONUS_GLOVES_OLD_BASE : BONUS_GLOVES_OLD_PLAIN);
 		}
 
 		//plus
-		if($data->glovesType==TYPE_NEW AND $data->glovesBonusPlus){
-			$bonus += BONUS_GLOVES_NEW;
+		if($data->glovesType==TYPE_NEW AND $data->glovesBonusPlus AND $data->glovesEnchant!=ENCHANT_NONE){
+			$bonus += ($isMw ? BONUS_GLOVES_NEW : BONUS_GLOVES_NEW_PLAIN);
 		}
-		elseif($data->glovesBonusPlus){
-			$bonus += BONUS_GLOVES_OLD;
+		elseif($data->glovesBonusPlus AND $data->glovesEnchant!=ENCHANT_NONE){
+			$bonus += ($isMw ? BONUS_GLOVES_OLD : BONUS_GLOVES_OLD_PLAIN);
 		}
 
 		//mw (current and new only)
-		if($data->glovesType==TYPE_CURRENT AND $data->glovesBonusMw > 0){
+		if($data->glovesType==TYPE_CURRENT AND $data->glovesBonusMw > 0 AND $data->glovesEnchant==ENCHANT_MW_TWELVE){
 			$bonus += BONUS_GLOVES_OLD_MW / 3 * $data->glovesBonusMw;
 		}
-		elseif($data->glovesType==TYPE_NEW AND $data->glovesBonusMw){
+		elseif($data->glovesType==TYPE_NEW AND $data->glovesBonusMw AND $data->glovesEnchant==ENCHANT_MW_TWELVE){
 			$bonus += BONUS_GLOVES_NEW_MW;
 		}
 
@@ -430,30 +443,38 @@ abstract class Data {
 		}
 
 		$bonus = 0;
+		$isMw = ($data->chestEnchant==ENCHANT_MW_NINE OR $data->chestEnchant==ENCHANT_MW_TWELVE);
+
+		//earrings
+		$bonus += $data->oldEarrings * BONUS_EARRING_OLD;
+		$bonus += $data->newEarrings * BONUS_EARRING_NEW;
+
+		//heart potion
+		if($data->heartPotion){
+			$bonus += BONUS_HEART_POTION;
+		}
+
+		//if chest is disabled, stop here
+		if($data->chestType==TYPE_NONE){
+			return $bonus;
+		}
 
 		//base (current only)
 		if($data->chestType==TYPE_CURRENT AND $data->chestBonusBase){
-			$bonus += BONUS_CHEST_OLD_BASE;
+			$bonus += ($isMw ? BONUS_CHEST_OLD_BASE : BONUS_CHEST_OLD_PLAIN);
 		}
 
 		//+0 (current only)
 		if($data->chestType==TYPE_CURRENT AND $data->chestBonusZero){
-			$bonus += BONUS_CHEST_OLD_BASE;
+			$bonus += ($isMw ? BONUS_CHEST_OLD_BASE : BONUS_CHEST_OLD_PLAIN);
 		}
 
 		//plus
-		if($data->chestType==TYPE_CURRENT AND $data->chestBonusPlus){
-			$bonus += BONUS_CHEST_OLD;
+		if($data->chestType==TYPE_CURRENT AND $data->chestBonusPlus AND $data->chestEnchant!=ENCHANT_NONE){
+			$bonus += ($isMw ? BONUS_CHEST_OLD : BONUS_CHEST_OLD_PLAIN);
 		}
-		elseif($data->chestBonusPlus){
-			$bonus += BONUS_CHEST_NEW;
-		}
-
-		$bonus += $data->oldEarrings * BONUS_EARRING_OLD;
-		$bonus += $data->newEarrings * BONUS_EARRING_NEW;
-
-		if($data->heartPotion){
-			$bonus += BONUS_HEART_POTION;
+		elseif($data->chestBonusPlus AND $data->chestEnchant!=ENCHANT_NONE){
+			$bonus += ($isMw ? BONUS_CHEST_NEW : BONUS_CHEST_NEW_PLAIN);
 		}
 
 		return $bonus;
@@ -585,6 +606,20 @@ abstract class Language {
 		}, array_flip($skills->priest));
 
 		return $skills;
+	}
+
+	/**
+	 * Get translated enchantments
+	 *
+	 * @param array    $enchants Enchantments
+	 * @param stdClass $desc     Description object
+	 *
+	 * @return array
+	 */
+	public static function translateEnchants(array $enchants, stdClass $desc){
+		return array_map(function($enchant) use ($desc){
+			return $desc->enchants[$enchant];
+		}, $enchants);
 	}
 
 	/**

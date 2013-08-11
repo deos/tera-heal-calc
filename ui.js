@@ -1,10 +1,13 @@
 window.addEvent('domready', function(){
 
 	//helper functions
-	var toggleSelect = function(el, enabled, value){
+	var toggleSelect = function(el, enabled, value, callback){
 		el.set('disabled', !enabled);
 		if(!enabled){
 			el.set('value', value || 0);
+            if(callback){
+                callback.apply(el);
+            }
 		}
 	};
 
@@ -44,44 +47,48 @@ window.addEvent('domready', function(){
 		doLimit.apply(elements[0]);
 	};
 
+    //element checker to toggle element visibility based on input
+    var toggleElements = function(){
+        var types = {
+            'weapon': document.id('weaponType').get('value').toInt(),
+            'gloves': document.id('glovesType').get('value').toInt(),
+            'chest': document.id('chestType').get('value').toInt()
+        };
+        var enchants = {
+            'weapon': document.id('weaponEnchant').get('value').toInt(),
+            'gloves': document.id('glovesEnchant').get('value').toInt(),
+            'chest': document.id('chestEnchant').get('value').toInt()
+        };
+        var globalTypes = window.types,
+            globalEnchants = window.enchants;
 
-	//hide some weapon stats on specific types
-	var changeWeaponFields = function(){
-		var type = this.get('value');
+        //weapon
+        toggleSelect(document.id('weaponBonusZero'), types.weapon!=globalTypes.new);
+        toggleSelect(document.id('weaponBonusPlus'), enchants.weapon!=globalEnchants.none);
+        toggleInfo(document.id('weaponBonusFix'), types.weapon>=globalTypes.current && enchants.weapon!=globalEnchants.none);
+        toggleInfo(document.id('weaponBonusMw'), types.weapon==globalTypes.current && enchants.weapon==globalEnchants.mw.twelve);
 
-		toggleSelect(document.id('weaponBonusZero'), type!=window.types.new);
-		toggleInfo(document.id('weaponBonusFix'), type>=window.types.current);
-		toggleInfo(document.id('weaponBonusMw'), type==window.types.current);
-	}.bind(document.id('weaponType'));
-	document.id('weaponType').addEvent('change', changeWeaponFields);
-	changeWeaponFields();
+        //gloves
+        toggleSelect(document.id('glovesEnchant'), types.gloves!=globalTypes.none, globalEnchants.none, function(){ enchants.gloves = this.get('value').toInt(); });
+        toggleInfo(document.id('glovesBonusBase'), types.gloves==globalTypes.new);
+        toggleSelect(document.id('glovesBonusZero'), types.gloves!=globalTypes.new && types.gloves!=globalTypes.none);
+        toggleSelect(document.id('glovesBonusPlus'), types.gloves!=globalTypes.none && enchants.gloves!=globalEnchants.none);
+        toggleSelect(document.id('glovesBonusMw'), types.gloves==globalTypes.current && types.gloves!=globalTypes.none && enchants.gloves==globalEnchants.mw.twelve, ((types.gloves==globalTypes.new && enchants.gloves==globalEnchants.mw.twelve) ? 3 : 0));
 
-	//hide some gloves stats on specific types
-	var changeGlovesFields = function(){
-		var type = this.get('value');
-
-		toggleInfo(document.id('glovesBonusBase'), type==window.types.new);
-		toggleSelect(document.id('glovesBonusZero'), type!=window.types.new);
-		toggleSelect(document.id('glovesBonusMw'), type==window.types.current, (type==window.types.new ? 3 : 0));
-	}.bind(document.id('glovesType'));
-	document.id('glovesType').addEvent('change', changeGlovesFields);
-	changeGlovesFields();
+        //chest
+        toggleSelect(document.id('chestEnchant'), types.chest!=globalTypes.none, globalEnchants.none, function(){ enchants.chest = this.get('value').toInt(); });
+        toggleSelect(document.id('chestBonusBase'), types.chest!=globalTypes.new && types.chest!=globalTypes.none);
+        toggleSelect(document.id('chestBonusZero'), types.chest!=globalTypes.new && types.chest!=globalTypes.none);
+        toggleSelect(document.id('chestBonusPlus'),  types.chest!=globalTypes.none && enchants.chest!=globalEnchants.none);
+    };
+    document.getElements('#weaponType, #weaponEnchant, #glovesType, #glovesEnchant, #chestType, #chestEnchant').addEvent('change', toggleElements);
+    toggleElements();
 
 	//cant have more then 3 rings/nacklesses total
 	limitFields(document.getElements('#oldJewels, #newJewels'), 3);
 
 	//cant use more then 4 zyrks total
 	limitFields(document.getElements('#zyrks, #pristineZyrks'), 4);
-
-	//hide some chest stats on specific types
-	var changeChestFields = function(){
-		var type = this.get('value');
-
-		toggleSelect(document.id('chestBonusBase'), type!=window.types.new);
-		toggleSelect(document.id('chestBonusZero'), type!=window.types.new);
-	}.bind(document.id('chestType'));
-	document.id('chestType').addEvent('change', changeChestFields);
-	changeChestFields();
 
 	//cant have more then 2 earrings total
 	limitFields(document.getElements('#oldEarrings, #newEarrings'), 2);

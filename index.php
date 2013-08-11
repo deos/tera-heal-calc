@@ -13,6 +13,7 @@
 		$desc = Language::init($data);
 		$weaponNames = Language::translateWeaponNames($weaponNames, $desc);
 		$skills = Language::translateSkills($skills, $desc);
+		$enchants = Language::translateEnchants($enchants, $desc);
 		?>
 
 		<meta charset="utf-8" />
@@ -40,14 +41,14 @@
 				<fieldset class="result">
 					<?php echo UI::createLegend($desc->result); ?>
 
-					<?php echo UI::createInfo('weaponHeal', $desc->resultWeapon, f($data->weaponHealBonus, 1).' %', null, true); ?>
-					<?php echo UI::createInfo('glovesHeal', $desc->resultGloves, f($data->glovesHealBonus, 1).' %', null, true); ?>
-					<?php echo UI::createInfo('jewelsHeal', $desc->resultJewels, f($data->jewelsHealBonus, 1).' %', null, true); ?>
-					<?php echo UI::createInfo('crystalsHeal', $desc->resultCrystals, f($data->crystalHealBonus, 1).' %', null, true); ?>
+					<?php echo UI::createInfo('weaponHeal', $desc->resultWeapon, f($data->weaponHealBonus, 2).' %', null, true); ?>
+					<?php echo UI::createInfo('glovesHeal', $desc->resultGloves, f($data->glovesHealBonus, 2).' %', null, true); ?>
+					<?php echo UI::createInfo('jewelsHeal', $desc->resultJewels, f($data->jewelsHealBonus, 2).' %', null, true); ?>
+					<?php echo UI::createInfo('crystalsHeal', $desc->resultCrystals, f($data->crystalHealBonus, 2).' %', null, true); ?>
 					<?php echo UI::createSpacing(); ?>
 
 					<?php if($data->includeTargetBonus): ?>
-						<?php echo UI::createInfo('targetHeal', $desc->resultTarget, f($data->targetHealBonus, 1).' %', null, true); ?>
+						<?php echo UI::createInfo('targetHeal', $desc->resultTarget, f($data->targetHealBonus, 2).' %', null, true); ?>
 						<?php echo UI::createSpacing(); ?>
 					<?php endif; ?>
 
@@ -75,12 +76,14 @@
 			<fieldset>
 				<?php echo UI::createLegend($desc->weapon); ?>
 
-				<?php echo UI::createSelect('weaponType', $desc->weaponType, $data->weaponType, array(
-					//TYPE_NONE		=> $desc->weaponTypeNone,
+				<?php echo UI::createSelect('weaponType', $desc->type, $data->weaponType, array(
 					TYPE_OLD 		=> $desc->weaponTypeOld,
 					TYPE_CURRENT 	=> $desc->weaponTypeCurrent,
 					TYPE_NEW 		=> $desc->weaponTypeNew
 				)); ?>
+				<?php echo UI::createSelect('weaponEnchant', $desc->enchant, $data->weaponEnchant, $enchants); ?>
+				<?php echo UI::createSpacing(); ?>
+
 				<?php echo UI::createSelect('weaponBonusBase', $desc->weaponBase, $data->weaponBonusBase, $desc->boolValues); ?>
 				<?php echo UI::createSelect('weaponBonusZero', $desc->weaponZero, $data->weaponBonusZero, $desc->boolValues); ?>
 				<?php echo UI::createSelect('weaponBonusPlus', $desc->weaponPlus, $data->weaponBonusPlus, $desc->boolValues); ?>
@@ -91,12 +94,15 @@
 			<fieldset>
 				<?php echo UI::createLegend($desc->gloves); ?>
 
-				<?php echo UI::createSelect('glovesType', $desc->glovesType, $data->glovesType, array(
-					//TYPE_NONE		=> $desc->glovesTypeNone,
+				<?php echo UI::createSelect('glovesType', $desc->type, $data->glovesType, array(
+					TYPE_NONE		=> $desc->glovesTypeNone,
 					TYPE_OLD 		=> $desc->glovesTypeOld,
 					TYPE_CURRENT 	=> $desc->glovesTypeCurrent,
 					TYPE_NEW 		=> $desc->glovesTypeNew
 				)); ?>
+				<?php echo UI::createSelect('glovesEnchant', $desc->enchant, $data->glovesEnchant, $enchants); ?>
+				<?php echo UI::createSpacing(); ?>
+
 				<?php echo UI::createInfo('glovesBonusBase', $desc->glovesBase, $desc->yes, $data->glovesBonusBase); ?>
 				<?php echo UI::createSelect('glovesBonusZero', $desc->glovesZero, $data->glovesBonusZero, $desc->boolValues); ?>
 				<?php echo UI::createSelect('glovesBonusPlus', $desc->glovesPlus, $data->glovesBonusPlus, $desc->boolValues); ?>
@@ -127,10 +133,12 @@
 				<?php echo UI::createCheck('includeTargetBonus', $desc->targetInclude, $data->includeTargetBonus); ?>
 				<?php echo UI::createSpacing(); ?>
 
-				<?php echo UI::createSelect('chestType', $desc->chestType, $data->chestType, array(
+				<?php echo UI::createSelect('chestType', $desc->type, $data->chestType, array(
+					TYPE_NONE		=> $desc->chestTypeNone,
 					TYPE_CURRENT 	=> $desc->chestTypeCurrent,
 					TYPE_NEW 		=> $desc->chestTypeNew
 				)); ?>
+				<?php echo UI::createSelect('chestEnchant', $desc->enchant, $data->chestEnchant, $enchants); ?>
 				<?php echo UI::createSelect('chestBonusBase', $desc->chestBase, $data->chestBonusBase, $desc->boolValues); ?>
 				<?php echo UI::createSelect('chestBonusZero', $desc->chestZero, $data->chestBonusZero, $desc->boolValues); ?>
 				<?php echo UI::createSelect('chestBonusPlus', $desc->chestPlus, $data->chestBonusPlus, $desc->boolValues); ?>

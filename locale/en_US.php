@@ -8,8 +8,10 @@ $descriptions = array(
 	'baseWeapon' 				=> 'Base heal on weapon',
 	'baseSkill' 				=> 'Base heal on skill',
 
+	'type'						=> 'Type',
+	'enchant'					=> 'Enchantment',
+
 	'weapon'					=> 'Weapon',
-	'weaponType' 				=> 'Type',
 	'weaponTypeNone' 			=> 'Do not calculate weapon',
 	'weaponTypeOld' 			=> 'Weapon from old system (has power on masterwork bonuses)',
 	'weaponTypeCurrent' 		=> 'Weapon from current system (has heal on masterwork bonuses)',
@@ -21,7 +23,6 @@ $descriptions = array(
 	'weaponMw'	 				=> 'Has healbonus as masterwork bonuses',
 
 	'gloves'					=> 'Gloves',
-	'glovesType' 				=> 'Type',
 	'glovesTypeNone' 			=> 'Do not calculate gloves',
 	'glovesTypeOld' 			=> 'Gloves from old system (has power on masterwork bonuses)',
 	'glovesTypeCurrent'	 		=> 'Gloves from current system (has rollable masterwork bonuses)',
@@ -45,7 +46,7 @@ $descriptions = array(
 	'targetInclude' 			=> 'Include healbonuses on target',
 	'targetHeartPotion' 		=> 'Target uses heart potion III',
 
-	'chestType' 				=> 'Type',
+	'chestTypeNone' 			=> 'Do not calculate chest',
 	'chestTypeCurrent' 			=> 'Chest from current system',
 	'chestTypeNew' 				=> 'Chest from upcoming system',
 	'chestBase' 				=> 'Has healbonus on base stat',
@@ -93,5 +94,11 @@ $descriptions = array(
 		'regenerationCircle' 							=> 'Regeneration circle',
 		'blessingOfBalder' 								=> 'Blessing of balder',
 		'healThyself'									=> 'Heal thyself'
+	),
+	'enchants'					=> array(
+		'none' 											=> 'Not enchanted or not enchantable',
+		'nine' 											=> 'Enchantet to +9',
+		'mw_nine'										=> 'Masterwork enchanted to +9',
+		'mw_twelve'										=> 'Masterwork enchanted to +12'
 	)
 );
