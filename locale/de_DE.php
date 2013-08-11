@@ -64,7 +64,7 @@ $descriptions = array(
 	'resultJewels' 				=> 'Heilbonus des Schmucks:',
 	'resultCrystals' 			=> 'Heilbonus der Kristalle:',
 	'resultTarget' 				=> 'Heilbonus des Ziels:',
-	'resultMultiplier'			=> 'Multiplikator durch Verstärkungen',
+	'resultMultiplier'			=> 'Multiplikator durch Fertigkeitsverstärkungen',
 	'resultHeal' 				=> 'HP durch Heilung:',
 	'resultHealCrit'			=> 'HP durch kritische Heilung:',
 

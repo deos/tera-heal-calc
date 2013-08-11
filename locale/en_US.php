@@ -64,7 +64,7 @@ $descriptions = array(
 	'resultJewels' 				=> 'Healbonuses on jewels:',
 	'resultCrystals' 			=> 'Healbonuses on crystals:',
 	'resultTarget' 				=> 'Healbonuses on target:',
-	'resultMultiplier'			=> 'Multiplier from boosts',
+	'resultMultiplier'			=> 'Multiplier from skill boosts',
 	'resultHeal' 				=> 'Healed HP:',
 	'resultHealCrit'			=> 'Critical healed HP:',
 
