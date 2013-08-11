@@ -67,14 +67,15 @@ abstract class UI {
 	 * @param string $id          Element ID
 	 * @param string $description Description text
 	 * @param bool   $allowHtml   [optional] Show description direct without escaping to allow html (default false)
+	 * @param string $dataId      [optional] ID stored in data-id attribute (default null)
 	 *
 	 * @return null|string
 	 */
-	public static function createLabel($id, $description, $allowHtml = false){
+	public static function createLabel($id, $description, $allowHtml = false, $dataId = null){
 		if(!$description){
 			return null;
 		}
-		return '<label'.($id ? ' for="'.r($id).'"' : '').'>'.($allowHtml ? $description : r($description)).'</label>';
+		return '<label'.($id ? ' for="'.r($id).'"' : '').($dataId ? ' data-id="'.r($dataId).'"' : '').'>'.($allowHtml ? $description : r($description)).'</label>';
 	}
 
 	/**
@@ -129,7 +130,7 @@ abstract class UI {
 	 * @return string
 	 */
 	public static function createInfo($id, $description, $info, $value = null, $selectable = false){
-		$html = self::createLabel(null, $description);
+		$html = self::createLabel(null, $description, false, $id);
 
 		$html .= '<input '.($selectable ? 'type="text" readonly="readonly"' : 'type="button" disabled="disabled"').' value="'.r($info).'" id="info_'.r($id).'"/>';
 		if($value!==null){
@@ -238,7 +239,7 @@ abstract class Data {
 		//number fields
 		foreach($numberFields as $field=>$default){
 			if(array_key_exists($field, $_REQUEST)){
-				$data->$field = (int)$_REQUEST[$field];
+				$data->$field = max(0, (int)$_REQUEST[$field]);
 			}
 			else{
 				$data->$field = $default;

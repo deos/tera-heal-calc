@@ -10,7 +10,7 @@ window.addEvent('domready', function(){
 
 	var toggleInfo = function(el, enabled){
 		el.set('value', (enabled ? 1 : 0));
-		document.getElements('label[for="'+el.get('id')+'"], #info_'+el.get('id')).setStyle('display', (enabled ? null : 'none'));
+		document.getElements('label[data-id="'+el.get('id')+'"], #info_'+el.get('id')).setStyle('display', (enabled ? null : 'none'));
 	};
 
 	var limitFields = function(elements, limit){
