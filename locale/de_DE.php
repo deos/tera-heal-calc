@@ -5,6 +5,7 @@ $descriptions = array(
 	'no'						=> 'Nein',
 	'mystic'					=> 'Mystiker',
 	'priest'					=> 'Priester',
+	'calculate'					=> 'Berechnen',
 
 	'base'						=> 'Basiswerte',
 	'baseWeapon' 				=> 'Basisheilung der Waffe',

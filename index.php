@@ -225,7 +225,7 @@
 				</ul>
 			</fieldset>
 
-			<input type="submit" name="submitButton" value="berechnen"/>
+			<input type="submit" name="submitButton" value="<?php e($desc->calculate); ?>"/>
 		</form>
 
 		<footer>
