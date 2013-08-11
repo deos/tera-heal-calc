@@ -17,32 +17,46 @@ window.addEvent('domready', function(){
 	};
 
 	var limitFields = function(elements, limit){
-		var doLimit = function(){
-			if(this.get('value').toInt()>limit){
-				this.set('value', limit);
-			}
-			var total = elements.get('value').reduce(function(pv, cv) { return pv.toInt() + cv.toInt(); });
-			if(total>limit){
-				var remaining = limit - this.get('value').toInt();
-				elements.each(function(el){
-					if(el==this){
-						return;
-					}
-					if(el.get('tag')=='select'){
-						var values = el.getElements('option').get('value'),
-							max = Math.max.apply(null, values),
-							set = Math.min(max, remaining);
+        if(limit<=0 || elements.length<1){
+            return;
+        }
 
-						el.set('value', set);
-						remaining -= set;
-					}
-					else{
-						el.set('value', ramaining);
-						remaining = 0;
-					}
-				}, this);
+		var doLimit = function(){
+            var value = (this.get('type')=='checkbox' ? 0+this.get('checked') : this.get('value').toInt());
+
+			if(value>limit){
+                this.set('value', limit);
+                value = limit;
 			}
+
+            var remaining = limit - value;
+            elements.each(function(el){
+                if(el==this){
+                    return;
+                }
+                if(el.get('type')=='checkbox'){
+                    if(remaining==0){
+                        el.set('checked', false);
+                    }
+                    else{
+                        remaining -= 0+el.get('checked');
+                    }
+                }
+                else if(el.get('tag')=='select'){
+                    var values = el.getElements('option').get('value'),
+                        max = Math.max.apply(null, values),
+                        set = Math.min(max, Math.min(el.get('value').toInt(), remaining));
+
+                    el.set('value', set);
+                    remaining -= set;
+                }
+                else{
+                    el.set('value', remaining);
+                    remaining = 0;
+                }
+            }, this);
 		};
+
 		elements.addEvent('change', doLimit);
 		doLimit.apply(elements[0]);
 	};
@@ -92,6 +106,15 @@ window.addEvent('domready', function(){
 
 	//cant have more then 2 earrings total
 	limitFields(document.getElements('#oldEarrings, #newEarrings'), 2);
+
+    //cant use more then one glyph since you can only calc for one skill
+    limitFields(document.getElements('#glyphPriestHealingCircle, #glyphPriestHealingImmersion, #glyphPriestHealThyself'), 1);
+
+    //cant use more then one noctenium bonus since you can only calc for one skill
+    limitFields(document.getElements('#nocteniumPriestFocusHeal, #nocteniumPriestHealingCircle, #nocteniumPriestHealThyself, #nocteniumMysticTitanicFavor'), 1);
+
+    //cant use more then one chest stat since you can only calc for one skill
+    limitFields(document.getElements('#classEquipStatPriestFocusHeal, #classEquipStatPriestHealingCircle'), 1);
 
 	//add shortcut methods
 	document.getElements('div[data-target]').addEvent('click:relay(li[data-value])', function(e){

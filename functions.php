@@ -51,7 +51,7 @@ abstract class UI {
 	public static function createLegend($description, $labelId = null){
 		$html = '<legend>';
 		if($labelId){
-			$html .= self::createLabel($labelId, '<span>+</span><span>-</span> '.r($description), true);
+			$html .= self::createLabel($labelId, '<span>[ + ]</span><span>[ - ]</span> '.r($description), true);
 		}
 		else{
 			$html .= r($description);
@@ -288,6 +288,7 @@ abstract class Data {
 		$data->targetHealBonus = self::sumTargetHealBonus($data);
 
 		$data->healing = self::calcHeal($data->skillBase, $data->weaponBase, $data->healBonus, $data->targetHealBonus);
+		self::multiplyHealing($data);
 		$data->critHealing = self::calcCritHeal($data->healing);
 	}
 
@@ -504,6 +505,54 @@ abstract class Data {
 	 */
 	public static function calcCritHeal($heal){
 		return floor($heal * 1.5);
+	}
+
+	/**
+	 * Add scaling bonuses to heal output from glyphs, noctenium and class equip bonuses
+	 *
+	 * @param stdClass $data Data object
+	 *
+	 * @return void
+	 */
+	public static function multiplyHealing(stdClass $data){
+		$multiplier = 100;
+
+		//glyphs
+		if($data->glyphPriestHealingCircle){
+			$multiplier += GLYPH_HEALINGCIRCLE;
+		}
+		if($data->glyphPriestHealingImmersion){
+			$multiplier += GLYPH_HEALINGIMMERSION;
+		}
+		if($data->glyphPriestHealThyself){
+			$multiplier += GLYPH_HEALTHYSELF;
+		}
+
+		//noctenium
+		if($data->nocteniumPriestFocusHeal){
+			$multiplier += NOCTENIUM_FOCUSHEAL;
+		}
+		if($data->nocteniumPriestHealingCircle){
+			$multiplier += NOCTENIUM_HEALINGCIRCLE;
+		}
+		if($data->nocteniumPriestHealThyself){
+			$multiplier += NOCTENIUM_HEALTHYSELF;
+		}
+		if($data->nocteniumMysticTitanicFavor){
+			$multiplier += NOCTENIUM_TITANICFAVOR;
+		}
+
+		//class equip
+		if($data->classEquipStatPriestFocusHeal){
+			$multiplier += CLASSEQUIP_FOCUSHEAL;
+		}
+		if($data->classEquipStatPriestHealingCircle){
+			$multiplier += CLASSEQUIP_HEALINGCIRCLE;
+		}
+
+		$data->multiplier = $multiplier;
+
+		$data->healing = floor($data->healing * ($multiplier/100));
 	}
 
 	/**

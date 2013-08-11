@@ -1,7 +1,7 @@
 <?php
 
 //version
-define('VERSION', 'V0.9');
+define('VERSION', 'V1.0');
 
 //types
 define('TYPE_NONE', 0);                  //no item
@@ -57,6 +57,21 @@ define('BONUS_EARRING_NEW', 2);          //2% recieved bonus with new earrings
 //potion
 define('BONUS_HEART_POTION', 17);        //17% recieved bonus with heart potion 3
 
+//glyphs
+define('GLYPH_HEALINGCIRCLE', 10);		//10% glyph for priest healing circle
+define('GLYPH_HEALINGIMMERSION', 20);	//20% glyph for priest healing immersion
+define('GLYPH_HEALTHYSELF', 20);		//20% glyph for priest heal thyself
+
+//noctenium
+define('NOCTENIUM_FOCUSHEAL', 30);		//30% noctenium bonus for priest focus heal
+define('NOCTENIUM_HEALINGCIRCLE', 30);	//30% noctenium bonus for priest healing circle
+define('NOCTENIUM_HEALTHYSELF', 30);	//30% noctenium bonus for priest heal thyself
+define('NOCTENIUM_TITANICFAVOR', 30);	//30% noctenium bonus for mystic titanic favor
+
+//class equip
+define('CLASSEQUIP_FOCUSHEAL', 15);		//15% equip bonus for priest focus heal
+define('CLASSEQUIP_HEALINGCIRCLE', 10);	//10% equip bonus for priest healing circle
+
 
 //fields
 $fields = new stdClass();
@@ -76,6 +91,13 @@ $fields->number = array(
 );
 $fields->bool = array(
 	'includeTargetBonus' => true,
+	'showCrystals' => true, 'showTarget' => true,
+	'showGlyphs' => false, 'showNoctenium' => false, 'showClassEquipStats' => false,
+	'glyphPriestHealThyself' => false, 'glyphPriestHealingCircle' => false,
+	'glyphPriestHealingImmersion' => false,
+	'nocteniumPriestHealThyself' => false, 'nocteniumPriestHealingCircle' => false,
+	'nocteniumPriestFocusHeal' => false, 'nocteniumMysticTitanicFavor' => false,
+	'classEquipStatPriestFocusHeal' => false, 'classEquipStatPriestHealingCircle' => false
 );
 
 

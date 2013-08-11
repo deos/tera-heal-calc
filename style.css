@@ -38,6 +38,10 @@ hr {
 	border-style: none;
 	border-bottom: 1px solid black;
 }
+hr + hr {
+	padding: 0px;
+	margin-top: -10px;
+}
 input, select {
 	font-size: inherit;
 }
@@ -82,11 +86,12 @@ legend, label {
 legend > label {
 	cursor: pointer;
 }
-fieldset > label {
+fieldset > label, fieldset > section > label {
 	clear: left;
 	display: inline-block;
 }
-fieldset > label, fieldset > select, fieldset > input:not([type="hidden"]):not([type="submit"]) {
+fieldset > label, fieldset > select, fieldset > input:not([type="hidden"]):not([type="submit"]),
+fieldset > section > label, fieldset > section > select, fieldset > section > input:not([type="hidden"]):not([type="submit"]) {
 	float: left;
 }
 input[type="text"], input[type="number"] {
@@ -122,7 +127,7 @@ input[type="submit"] {
 	font-size: 120%;
 	font-weight: bold;
 }
-fieldset > label {
+fieldset > label, fieldset > section > label {
 	width: 450px;
 }
 fieldset fieldset > label {
@@ -187,7 +192,7 @@ fieldset > div > ul > li:first-child:last-child {
 	border-radius: 5px 0px 5px 5px;
 }
 
-/* checkbox toggle magic, had to add some :not selectors to get backward compatibility */
+/* checkbox toggle magic */
 form > input[type="checkbox"] {
 	display: none;
 }

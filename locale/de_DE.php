@@ -3,6 +3,8 @@ $descriptions = array(
 	'title'						=> 'Tera Heilungsrechner',
 	'yes'						=> 'Ja',
 	'no'						=> 'Nein',
+	'mystic'					=> 'Mystiker',
+	'priest'					=> 'Priester',
 
 	'base'						=> 'Basiswerte',
 	'baseWeapon' 				=> 'Basisheilung der Waffe',
@@ -62,8 +64,13 @@ $descriptions = array(
 	'resultJewels' 				=> 'Heilbonus des Schmucks:',
 	'resultCrystals' 			=> 'Heilbonus der Kristalle:',
 	'resultTarget' 				=> 'Heilbonus des Ziels:',
+	'resultMultiplier'			=> 'Multiplikator durch Verstärkungen',
 	'resultHeal' 				=> 'HP durch Heilung:',
 	'resultHealCrit'			=> 'HP durch kritische Heilung:',
+
+	'glyphs'					=> 'Glyphen',
+	'noctenium'					=> 'Noktenium Boni',
+	'classEquipStats'			=> 'Klassenspezifische Ausrüstungs Boni',
 
 	'info'						=> 'Hinweise',
 	'infoTexts'					=> array(
@@ -71,7 +78,7 @@ $descriptions = array(
 		'Es wird für die Berechnung immer von Meisterwerk +12 items ausgegangen',
 		'Begrenzungen einzelner Fertigkeiten werden nicht berücksichtigt',
 		'Die Werte der aufgeführten kommenden Items sind noch nicht endgültig und können sich noch ändern',
-		'Dank für die Berechnungsformel geht an <a href="http://tera-forums.enmasse.com/forums/mystic/topics/Guide-Karyudos-Mystic-Guide">Karyudo</a> und alle die sonst beteiligt waren!'
+		'Dank für die Berechnungsformel geht an Karyudo und alle die sonst beteiligt waren!'
 	),
 
 	'mysticWeapons'				=> 'Mystiker Waffen',
