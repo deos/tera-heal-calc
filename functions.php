@@ -91,7 +91,7 @@ abstract class UI {
 	public static function createInput($id, $description, $value, $type='number'){
 		$html = self::createLabel($id, $description);
 
-		$html .= '<input type="'.r($type).'" id="'.r($id).'" name="'.r($id).'" value="'.r($value).'"/>';
+		$html .= '<input type="'.r($type).'" id="'.r($id).'" name="'.r($id).'" value="'.r($value).'" '.($type=='number' ? 'min="0"' : '').'/>';
 
 		return $html;
 	}
