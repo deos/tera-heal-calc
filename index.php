@@ -56,8 +56,8 @@
 					<?php endif; ?>
 					<?php echo UI::createSpacing(); ?>
 
-					<?php if($data->multiplier AND $data->multiplier!==100): ?>
-						<?php echo UI::createInfo('healMultiplier', $desc->resultMultiplier, '+'.f($data->multiplier-100, 0).' %', null, true); ?>
+					<?php if($data->multiplier AND $data->multiplier!==1): ?>
+						<?php echo UI::createInfo('healMultiplier', $desc->resultMultiplier, '+'.f(($data->multiplier-1)*100, 0).' %', null, true); ?>
 						<?php echo UI::createSpacing(); ?>
 						<?php echo UI::createSpacing(); ?>
 					<?php endif; ?>

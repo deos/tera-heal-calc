@@ -515,44 +515,44 @@ abstract class Data {
 	 * @return void
 	 */
 	public static function multiplyHealing(stdClass $data){
-		$multiplier = 100;
+		$multiplier = 1;
 
 		//glyphs
 		if($data->glyphPriestHealingCircle){
-			$multiplier += GLYPH_HEALINGCIRCLE;
+			$multiplier += (GLYPH_HEALINGCIRCLE/100);
 		}
 		if($data->glyphPriestHealingImmersion){
-			$multiplier += GLYPH_HEALINGIMMERSION;
+			$multiplier += (GLYPH_HEALINGIMMERSION/100);
 		}
 		if($data->glyphPriestHealThyself){
-			$multiplier += GLYPH_HEALTHYSELF;
-		}
-
-		//noctenium
-		if($data->nocteniumPriestFocusHeal){
-			$multiplier += NOCTENIUM_FOCUSHEAL;
-		}
-		if($data->nocteniumPriestHealingCircle){
-			$multiplier += NOCTENIUM_HEALINGCIRCLE;
-		}
-		if($data->nocteniumPriestHealThyself){
-			$multiplier += NOCTENIUM_HEALTHYSELF;
-		}
-		if($data->nocteniumMysticTitanicFavor){
-			$multiplier += NOCTENIUM_TITANICFAVOR;
+			$multiplier += (GLYPH_HEALTHYSELF/100);
 		}
 
 		//class equip
 		if($data->classEquipStatPriestFocusHeal){
-			$multiplier += CLASSEQUIP_FOCUSHEAL;
+			$multiplier += (CLASSEQUIP_FOCUSHEAL/100);
 		}
 		if($data->classEquipStatPriestHealingCircle){
-			$multiplier += CLASSEQUIP_HEALINGCIRCLE;
+			$multiplier += (CLASSEQUIP_HEALINGCIRCLE/100);
+		}
+
+		//noctenium (this works on top of the previous bonuses!)
+		if($data->nocteniumPriestFocusHeal){
+			$multiplier *= (1 + NOCTENIUM_FOCUSHEAL/100);
+		}
+		if($data->nocteniumPriestHealingCircle){
+			$multiplier *= (1 + NOCTENIUM_HEALINGCIRCLE/100);
+		}
+		if($data->nocteniumPriestHealThyself){
+			$multiplier *= (1 + NOCTENIUM_HEALTHYSELF/100);
+		}
+		if($data->nocteniumMysticTitanicFavor){
+			$multiplier *= (1 + NOCTENIUM_TITANICFAVOR/100);
 		}
 
 		$data->multiplier = $multiplier;
 
-		$data->healing = floor($data->healing * ($multiplier/100));
+		$data->healing = floor($data->healing * $multiplier);
 	}
 
 	/**
