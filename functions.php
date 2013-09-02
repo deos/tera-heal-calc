@@ -361,6 +361,7 @@ abstract class Data {
 
 		//part 6: bool keys
 		$boolFieldKeys = array_keys($data->fields->bool);
+		$split[5] = strrev(decbin($split[5]));
 		foreach($boolFieldKeys as $i=>$field){
 			if(isset($split[5][$i])){
 				$loadData[$field] = $split[5][$i];
@@ -423,7 +424,7 @@ abstract class Data {
 		foreach($boolFieldKeys as $field){
 			$tmp .= (int)$data->$field;
 		}
-		$urlData[] = $tmp;
+		$urlData[] = bindec(strrev($tmp));
 
 		//create url from data
 		return createUrl('?'.self::URL_KEY.'='.implode(self::URL_SEPARATOR, $urlData));
