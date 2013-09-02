@@ -34,6 +34,21 @@ function f($number, $comma = 0){
 	return number_format($number, $comma, ',', '.');
 }
 
+/**
+ * create url
+ *
+ * @param string $path Path to file. may be empty for current url or only param part beginning with ? to add to current url
+ *
+ * @return string
+ */
+function createUrl($path = null){
+	$url = ((isset($_SERVER['HTTPS']) AND $_SERVER['HTTPS'] AND !in_array(strtolower($_SERVER['HTTPS']), array('off','no'))) ? 'https' : 'http').'://';
+	$url .= $_SERVER['HTTP_HOST'];
+	$url .= ($path ? ((string)$path[0]=='?' ? str_replace('index.php', '', $_SERVER['SCRIPT_NAME']).$path : $path) : str_replace('index.php', '', $_SERVER['SCRIPT_NAME']));
+
+	return $url;
+}
+
 
 /**
  * Class for creating UI elements
@@ -198,6 +213,20 @@ abstract class UI {
 abstract class Data {
 
 	/**
+	 * Key for storing data in url
+	 *
+	 * @var string
+	 */
+	const URL_KEY = 'd';
+
+	/**
+	 * Separator for storing data in url
+	 *
+	 * @var string
+	 */
+	const URL_SEPARATOR = '-';
+
+	/**
 	 * Init data object
 	 *
 	 * @param stdClass $fields    Field data
@@ -207,8 +236,11 @@ abstract class Data {
 	 */
 	public static function init(stdClass $fields, array $languages){
 		$data = new stdClass();
+		$data->fields = $fields;
 
-		self::getData($data, $fields->type, $fields->enchant, $fields->number, $fields->bool);
+		$loadData = self::parseUrl($data);
+
+		self::getData($data, ($loadData ? : $_POST));
 
 		$data->language = Language::getLanguage($languages);
 
@@ -219,18 +251,15 @@ abstract class Data {
 	 * Fill data object
 	 *
 	 * @param stdClass $data          Data object
-	 * @param array    $typeFields    List of "type" field IDs
-	 * @param array    $enchantFields List of "enchant" field IDs
-	 * @param array    $numberFields  List of "number" fields and their default value (id=>defaultValue)
-	 * @param array    $boolFields    List of "bool" fields and their default value (id=>defaultValue)
+	 * @param array    $source        Data source array, most likely $_POST
 	 *
 	 * @return void
 	 */
-	private static function getData(stdClass $data, array $typeFields, array $enchantFields, array $numberFields, array $boolFields){
+	private static function getData(stdClass $data, array $source){
 		//type fields (default to TYPE_CURRENT)
-		foreach($typeFields as $field){
-			if(array_key_exists($field, $_REQUEST) AND in_array($_REQUEST[$field], array(TYPE_NONE, TYPE_OLD, TYPE_CURRENT, TYPE_NEW))){
-				$data->$field = $_REQUEST[$field];
+		foreach($data->fields->type as $field){
+			if(array_key_exists($field, $source) AND in_array($source[$field], array(TYPE_NONE, TYPE_OLD, TYPE_CURRENT, TYPE_NEW))){
+				$data->$field = (int)$source[$field];
 			}
 			else{
 				$data->$field = TYPE_CURRENT;
@@ -238,9 +267,9 @@ abstract class Data {
 		}
 
 		//echant fields (default to MW+12)
-		foreach($enchantFields as $field){
-			if(array_key_exists($field, $_REQUEST) AND in_array($_REQUEST[$field], array(ENCHANT_NONE, ENCHANT_NINE, ENCHANT_MW_NINE, ENCHANT_MW_TWELVE))){
-				$data->$field = $_REQUEST[$field];
+		foreach($data->fields->enchant as $field){
+			if(array_key_exists($field, $source) AND in_array($source[$field], array(ENCHANT_NONE, ENCHANT_NINE, ENCHANT_MW_NINE, ENCHANT_MW_TWELVE))){
+				$data->$field = (int)$source[$field];
 			}
 			else{
 				$data->$field = ENCHANT_MW_TWELVE;
@@ -248,9 +277,9 @@ abstract class Data {
 		}
 
 		//number fields
-		foreach($numberFields as $field=>$default){
-			if(array_key_exists($field, $_REQUEST)){
-				$data->$field = max(0, (int)$_REQUEST[$field]);
+		foreach($data->fields->number as $field=>$default){
+			if(array_key_exists($field, $source)){
+				$data->$field = max(0, (int)$source[$field]);
 			}
 			else{
 				$data->$field = $default;
@@ -258,17 +287,146 @@ abstract class Data {
 		}
 
 		//bool fields
-		foreach($boolFields as $field=>$default){
-			if(array_key_exists($field, $_REQUEST)){
-				$data->$field = (bool)$_REQUEST[$field];
+		foreach($data->fields->bool as $field=>$default){
+			if(array_key_exists($field, $source)){
+				$data->$field = (bool)$source[$field];
 			}
-			elseif(count($_REQUEST)>0){
+			elseif(count($source)>0){
 				$data->$field = false;
 			}
 			else{
 				$data->$field = $default;
 			}
 		}
+
+		//calculate or not
+		$data->doCalculation = isset($source['doCalculation']);
+	}
+
+	/**
+	 * parse url and get loading data from it
+	 *
+	 * @param stdClass $data Data object
+	 *
+	 * @return string|null
+	 */
+	private static function parseUrl(stdClass $data){
+		if(!isset($_GET[self::URL_KEY])){
+			return null;
+		}
+
+		$urlData = (string)$_GET[self::URL_KEY];
+
+		//check url
+		if(!preg_match('/^((\d+)'.self::URL_SEPARATOR.'){5}(\d+)$/', $urlData)){
+			return null;
+		}
+
+		$split = explode(self::URL_SEPARATOR, $urlData);
+		$loadData = array();
+
+		if(count($split)!=6){
+			return null;
+		}
+
+		//part 1: weaponBase
+		$loadData['weaponBase'] = $split[0];
+
+		//part 2: skillBase
+		$loadData['skillBase'] = $split[1];
+
+		//part 3: types
+		foreach($data->fields->type as $i=>$field){
+			if(isset($split[2][$i])){
+				$loadData[$field] = $split[2][$i];
+			}
+		}
+
+		//part 4: enchants
+		foreach($data->fields->enchant as $i=>$field){
+			if(isset($split[3][$i])){
+				$loadData[$field] = $split[3][$i];
+			}
+		}
+
+		//part 5: number keys (remove the first 2 parts since those are the two base values we got above)
+		$numberFieldKeys = array_keys($data->fields->number);
+		array_shift($numberFieldKeys);
+		array_shift($numberFieldKeys);
+		foreach($numberFieldKeys as $i=>$field){
+			if(isset($split[4][$i])){
+				$loadData[$field] = $split[4][$i];
+			}
+		}
+
+		//part 6: bool keys
+		$boolFieldKeys = array_keys($data->fields->bool);
+		foreach($boolFieldKeys as $i=>$field){
+			if(isset($split[5][$i])){
+				$loadData[$field] = $split[5][$i];
+			}
+		}
+
+		if(count($loadData)<1){
+			return null;
+		}
+
+		//force submit mode to show results when loading
+		$loadData['doCalculation'] = true;
+
+		return $loadData;
+	}
+
+	/**
+	 * Create url
+	 *
+	 * @param stdClass $data Data object
+	 *
+	 * @return string
+	 */
+	private static function createUrl($data){
+		$urlData = array();
+
+		//part 1: weaponBase
+		$urlData[] = $data->weaponBase;
+
+		//part 2: skillBase
+		$urlData[] = $data->skillBase;
+
+		//part 3: types
+		$tmp = '';
+		foreach($data->fields->type as $field){
+			$tmp .= (int)$data->$field;
+		}
+		$urlData[] = $tmp;
+
+		//part 4: enchants
+		$tmp = '';
+		foreach($data->fields->enchant as $field){
+			$tmp .= (int)$data->$field;
+		}
+		$urlData[] = $tmp;
+
+		//part 5: number keys (remove the first 2 parts since those are the two base values we got above)
+		$numberFieldKeys = array_keys($data->fields->number);
+		array_shift($numberFieldKeys);
+		array_shift($numberFieldKeys);
+		$tmp = '';
+		foreach($numberFieldKeys as $field){
+			$tmp .= (int)$data->$field;
+		}
+		$urlData[] = $tmp;
+
+		//part 6: bool keys
+		$boolFieldKeys = array_keys($data->fields->bool);
+		$tmp = '';
+		foreach($boolFieldKeys as $field){
+			$tmp .= (int)$data->$field;
+		}
+		$urlData[] = $tmp;
+
+		//create url from data
+		return createUrl('?'.self::URL_KEY.'='.implode(self::URL_SEPARATOR, $urlData));
 	}
 
 	/**
@@ -290,6 +448,8 @@ abstract class Data {
 		$data->healing = self::calcHeal($data->skillBase, $data->weaponBase, $data->healBonus, $data->targetHealBonus);
 		self::multiplyHealing($data);
 		$data->critHealing = self::calcCritHeal($data->healing);
+
+		$data->url = self::createUrl($data);
 	}
 
 	/**
@@ -521,10 +681,10 @@ abstract class Data {
 		if($data->glyphPriestHealingCircle){
 			$multiplier += (GLYPH_HEALINGCIRCLE/100);
 		}
-		if($data->glyphPriestHealingImmersion){
+		elseif($data->glyphPriestHealingImmersion){
 			$multiplier += (GLYPH_HEALINGIMMERSION/100);
 		}
-		if($data->glyphPriestHealThyself){
+		elseif($data->glyphPriestHealThyself){
 			$multiplier += (GLYPH_HEALTHYSELF/100);
 		}
 
@@ -532,7 +692,7 @@ abstract class Data {
 		if($data->classEquipStatPriestFocusHeal){
 			$multiplier += (CLASSEQUIP_FOCUSHEAL/100);
 		}
-		if($data->classEquipStatPriestHealingCircle){
+		elseif($data->classEquipStatPriestHealingCircle){
 			$multiplier += (CLASSEQUIP_HEALINGCIRCLE/100);
 		}
 
@@ -540,13 +700,13 @@ abstract class Data {
 		if($data->nocteniumPriestFocusHeal){
 			$multiplier *= (1 + NOCTENIUM_FOCUSHEAL/100);
 		}
-		if($data->nocteniumPriestHealingCircle){
+		elseif($data->nocteniumPriestHealingCircle){
 			$multiplier *= (1 + NOCTENIUM_HEALINGCIRCLE/100);
 		}
-		if($data->nocteniumPriestHealThyself){
+		elseif($data->nocteniumPriestHealThyself){
 			$multiplier *= (1 + NOCTENIUM_HEALTHYSELF/100);
 		}
-		if($data->nocteniumMysticTitanicFavor){
+		elseif($data->nocteniumMysticTitanicFavor){
 			$multiplier *= (1 + NOCTENIUM_TITANICFAVOR/100);
 		}
 

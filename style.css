@@ -40,7 +40,7 @@ hr {
 }
 hr + hr {
 	padding: 0px;
-	margin-top: -10px;
+	margin-top: -9px;
 }
 input, select {
 	font-size: inherit;
@@ -121,6 +121,10 @@ form > select {
 form > fieldset:first-child {
 	background-color: rgba(255, 150, 0, 0.9);
 }
+form > fieldset:first-child > section > input:last-child {
+	width: 90%;
+	margin-left: 5%;
+}
 input[type="submit"] {
 	display: block;
 	margin: 15px auto 0px;
@@ -136,6 +140,26 @@ fieldset fieldset > label {
 fieldset > ul > li:before {
 	content:'-';
 	margin-right: 5px;
+}
+fieldset > input + input[type="checkbox"] + label,
+fieldset > select + input[type="checkbox"] + label,
+fieldset > hr + input[type="checkbox"] + label {
+	position: relative;
+	display: block;
+	width: 24%;
+	bottom: -10px;
+	left: -10px;
+	margin: -10px 0px 0px 38%;
+	padding: 0px 10px;
+	cursor: pointer;
+	text-align: center;
+	line-height: 1.2em;
+	border: 1px solid black;
+	border-bottom-style: none;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+	background-color: #FFF;
+	font-size: 75%;
 }
 
 /* info lists */
@@ -193,18 +217,30 @@ fieldset > div > ul > li:first-child:last-child {
 }
 
 /* checkbox toggle magic */
-form > input[type="checkbox"] {
+form > input[type="checkbox"],
+fieldset > input + input[type="checkbox"],
+fieldset > select + input[type="checkbox"],
+fieldset > hr + input[type="checkbox"] {
 	display: none;
 }
 form > input[type="checkbox"]:not(:checked) + fieldset > legend > label > span:last-child {
 	display: none;
 }
-form > input[type="checkbox"]:checked + fieldset > legend > label > span:first-child {
+form > input[type="checkbox"]:checked + fieldset > legend > label > span:first-child,
+fieldset > input + input[type="checkbox"]:checked + label,
+fieldset > select + input[type="checkbox"]:checked + label,
+fieldset > hr + input[type="checkbox"]:checked + label {
 	display: none;
 }
-form > input[type="checkbox"]:not(:checked) + fieldset > section {
+form > input[type="checkbox"]:not(:checked) + fieldset > section,
+fieldset > input + input[type="checkbox"]:not(:checked) + label + section,
+fieldset > select + input[type="checkbox"]:not(:checked) + label + section,
+fieldset > hr + input[type="checkbox"]:not(:checked) + label + section {
 	display: none;
 }
-form > input[type="checkbox"]:checked + fieldset > section {
+form > input[type="checkbox"]:checked + fieldset > section,
+fieldset > input + input[type="checkbox"]:checked + label + section,
+fieldset > hr + input[type="checkbox"]:checked + label + section,
+fieldset > select + input[type="checkbox"]:checked + label + section {
 	display: block;
 }

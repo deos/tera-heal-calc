@@ -5,7 +5,9 @@ $descriptions = array(
 	'no'						=> 'Nein',
 	'mystic'					=> 'Mystiker',
 	'priest'					=> 'Priester',
+
 	'calculate'					=> 'Berechnen',
+	'generateUrl'				=> 'Erzeuge URL zu dieser Einstellung',
 
 	'base'						=> 'Basiswerte',
 	'baseWeapon' 				=> 'Basisheilung der Waffe',

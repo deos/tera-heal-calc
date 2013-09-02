@@ -35,7 +35,7 @@
 		<form action="<?php e($_SERVER['SCRIPT_NAME']); ?>" method="post">
 			<?php
 			//calculate
-			if(array_key_exists('submitButton', $_REQUEST)){
+			if($data->doCalculation){
 				Data::getResults($data);
 				?>
 				<fieldset class="result">
@@ -57,13 +57,20 @@
 					<?php echo UI::createSpacing(); ?>
 
 					<?php if($data->multiplier AND $data->multiplier!==1): ?>
-						<?php echo UI::createInfo('healMultiplier', $desc->resultMultiplier, '+'.f(($data->multiplier-1)*100, 0).' %', null, true); ?>
+						<?php echo UI::createInfo('healMultiplier', $desc->resultMultiplier, '+'.f(($data->multiplier-1)*100, 1).' %', null, true); ?>
 						<?php echo UI::createSpacing(); ?>
 						<?php echo UI::createSpacing(); ?>
 					<?php endif; ?>
 
 					<?php echo UI::createInfo('healOutput', $desc->resultHeal, f($data->healing), null, true); ?>
 					<?php echo UI::createInfo('healOutput', $desc->resultHealCrit, f($data->critHealing), null, true); ?>
+
+					<?php echo UI::createCheck('showUrl', null, false); ?>
+					<?php echo UI::createLabel('showUrl', $desc->generateUrl); ?>
+					<section>
+						<?php echo UI::createSpacing(); ?>
+						<?php echo UI::createInfo('url', null, $data->url, null, true); ?>
+					</section>
 				</fieldset>
 				<?php
 			}
@@ -225,7 +232,7 @@
 				</ul>
 			</fieldset>
 
-			<input type="submit" name="submitButton" value="<?php e($desc->calculate); ?>"/>
+			<input type="submit" name="doCalculation" value="<?php e($desc->calculate); ?>"/>
 		</form>
 
 		<footer>

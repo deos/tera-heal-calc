@@ -1,7 +1,7 @@
 <?php
 
 //version
-define('VERSION', 'V1.0');
+define('VERSION', 'V1.1');
 
 //types
 define('TYPE_NONE', 0);                  //no item
@@ -84,10 +84,11 @@ $fields->number = array(
 	'glovesBonusBase' => 0, 'glovesBonusZero' => 1, 'glovesBonusPlus' => 1,
 	'glovesBonusMw' => 3,
 	'oldJewels' => 3, 'newJewels' => 0, 'specialRings' => 2,
-	'jewelSet1' => 0,
 	'zyrks' => 0, 'pristineZyrks' => 0,
 	'chestBonusBase' => 1, 'chestBonusZero' => 0, 'chestBonusPlus' => 1,
-	'oldEarrings' => 0, 'newEarrings' => 0, 'heartPotion' => 0
+	'oldEarrings' => 0, 'newEarrings' => 0,
+	'heartPotion' => 0,
+	'jewelSet1' => 0
 );
 $fields->bool = array(
 	'includeTargetBonus' => true,
@@ -95,9 +96,9 @@ $fields->bool = array(
 	'showGlyphs' => false, 'showNoctenium' => false, 'showClassEquipStats' => false,
 	'glyphPriestHealThyself' => false, 'glyphPriestHealingCircle' => false,
 	'glyphPriestHealingImmersion' => false,
+	'classEquipStatPriestFocusHeal' => false, 'classEquipStatPriestHealingCircle' => false,
 	'nocteniumPriestHealThyself' => false, 'nocteniumPriestHealingCircle' => false,
-	'nocteniumPriestFocusHeal' => false, 'nocteniumMysticTitanicFavor' => false,
-	'classEquipStatPriestFocusHeal' => false, 'classEquipStatPriestHealingCircle' => false
+	'nocteniumPriestFocusHeal' => false, 'nocteniumMysticTitanicFavor' => false
 );
 
 
