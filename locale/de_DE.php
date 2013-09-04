@@ -78,7 +78,6 @@ $descriptions = array(
 	'info'						=> 'Hinweise',
 	'infoTexts'					=> array(
 		'Geringe Abweichungen der Ergebnisse zu tatsächlichen Heilungen im Spiel sind normal, sind jedoch kaum merklich',
-		'Es wird für die Berechnung immer von Meisterwerk +12 items ausgegangen',
 		'Begrenzungen einzelner Fertigkeiten werden nicht berücksichtigt',
 		'Die Werte der aufgeführten kommenden Items sind noch nicht endgültig und können sich noch ändern',
 		'Dank für die Berechnungsformel geht an Karyudo und alle die sonst beteiligt waren!'

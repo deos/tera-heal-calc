@@ -78,8 +78,7 @@ $descriptions = array(
 	'info'						=> 'Information',
 	'infoTexts'					=> array(
 		'Little deviations between results and real ingame heals are normal, but barely noticeable',
-		'The calculation will be emanated from masterwork +12 items',
-		'Limits of some skills are not regarded',
+		'Limits of some skills are ignored',
 		'Values of the mentioned upcoming items are not yet final and can change',
 		'Thanks for the calculation formula goes to Karyudo and everybody else involved!'
 	),
