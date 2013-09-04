@@ -96,7 +96,7 @@ $descriptions = array(
 	),
 	'skillNames'				=> array(
 		'titanicFavor' 									=> 'Titanic favor',
-		'focusHeal' 									=> 'Fokus heal',
+		'focusHeal' 									=> 'Focus heal',
 		'healingCircle'									=> 'Healing circle',
 		'healingImmersion' 								=> 'Healing immersion',
 		'restorativeBurst' 								=> 'Restoration burst',
