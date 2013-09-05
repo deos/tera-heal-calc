@@ -51,7 +51,7 @@ define('BONUS_CHEST_NEW_PLAIN', 4.5);    //4.5% recieved bonus with new non-mw c
 define('BONUS_CHEST_NEW', 6);            //6% recieved bonus with new chest
 
 //earrings
-define('BONUS_EARRING_OLD', 4.5);        //4.5% recieved bonus with old earrings
+define('BONUS_EARRING_OLD', 4.3);        //4.3% recieved bonus with old earrings
 define('BONUS_EARRING_NEW', 2);          //2% recieved bonus with new earrings
 
 //potion

@@ -58,7 +58,7 @@ $descriptions = array(
 	'chestZero' 				=> 'Has healbonus at +0',
 	'chestPlus' 				=> 'Has healbonus at plus bonuses',
 
-	'earringsOld' 				=> 'Number of current earrings with 4.5% healbonus',
+	'earringsOld' 				=> 'Number of current earrings with 4.3% healbonus',
 	'earringsNew' 				=> 'Number of upcoming earrings with 2% healbonus',
 
 	'result'					=> 'Result',
