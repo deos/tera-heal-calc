@@ -59,7 +59,7 @@ $descriptions = array(
 	'chestPlus' 				=> 'Mit Heilbonus auf Plusboni',
 
 	'earringsOld' 				=> 'Anzahl aktueller Ohrringe des Ziels mit 4,3% Heilbonus',
-	'earringsNew' 				=> 'Anzahl aktueller Ohrringe des Ziels mit 2% Heilbonus',
+	'earringsNew' 				=> 'Anzahl aktueller Ohrringe des Ziels mit 3,2% Heilbonus',
 
 	'result'					=> 'Ergebnis',
 	'resultWeapon' 				=> 'Heilbonus der Waffe:',

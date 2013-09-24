@@ -52,7 +52,7 @@ define('BONUS_CHEST_NEW', 6);            //6% recieved bonus with new chest
 
 //earrings
 define('BONUS_EARRING_OLD', 4.3);        //4.3% recieved bonus with old earrings
-define('BONUS_EARRING_NEW', 2);          //2% recieved bonus with new earrings
+define('BONUS_EARRING_NEW', 3.2);        //3.2% recieved bonus with new earrings
 
 //potion
 define('BONUS_HEART_POTION', 17);        //17% recieved bonus with heart potion 3

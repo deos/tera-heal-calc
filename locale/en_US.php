@@ -19,8 +19,8 @@ $descriptions = array(
 	'weapon'					=> 'Weapon',
 	'weaponTypeNone' 			=> 'Do not calculate weapon',
 	'weaponTypeOld' 			=> 'Weapon from old system (has power on masterwork bonuses)',
-	'weaponTypeCurrent' 		=> 'Weapon from current system (has heal on masterwork bonuses)',
-	'weaponTypeNew' 			=> 'Weapon from upcoming system (has attackspeed on masterwork bonuses)',
+	'weaponTypeCurrent' 		=> 'Weapon from previous system (has heal on masterwork bonuses)',
+	'weaponTypeNew' 			=> 'Weapon from new system (has attackspeed on masterwork bonuses)',
 	'weaponBase' 				=> 'Has healbonus on base stat',
 	'weaponZero' 				=> 'Has healbonus at +0',
 	'weaponPlus' 				=> 'Has healbonus at plus bonuses',
@@ -30,18 +30,18 @@ $descriptions = array(
 	'gloves'					=> 'Gloves',
 	'glovesTypeNone' 			=> 'Do not calculate gloves',
 	'glovesTypeOld' 			=> 'Gloves from old system (has power on masterwork bonuses)',
-	'glovesTypeCurrent'	 		=> 'Gloves from current system (has rollable masterwork bonuses)',
-	'glovesTypeNew' 			=> 'Gloves from upcoming system (has heal on masterwork bonuses)',
+	'glovesTypeCurrent'	 		=> 'Gloves from previous system (has rollable masterwork bonuses)',
+	'glovesTypeNew' 			=> 'Gloves from new system (has heal on masterwork bonuses)',
 	'glovesBase' 				=> 'Has healbonus on base stat',
 	'glovesZero' 				=> 'Has healbonus at +0',
 	'glovesPlus' 				=> 'Has healbonus at plus bonuses',
 	'glovesMw' 					=> 'Has healbonus as masterwork bonuses',
 
 	'jewels'					=> 'Jewels',
-	'jewelsOld' 				=> 'Number of current rings/necklaces with 4.5% healbonus',
-	'jewelsNew' 				=> 'Number of upcoming rings/necklaces with 2% healbonus',
+	'jewelsOld' 				=> 'Number of previous rings/necklaces with 4.5% healbonus',
+	'jewelsNew' 				=> 'Number of new rings/necklaces with 2% healbonus',
 	'jewelsSpecial' 			=> 'Number of rings with special 5% healbonus',
-	'jewelSet1'					=> 'Set bonus on upcoming jewels (needs 2 items)',
+	'jewelSet1'					=> 'Set bonus on new jewels (needs 2 items)',
 
 	'crystals' 					=> 'Crystals',
 	'crystalsZyrks' 			=> 'Number of zyrks with 1% healbonus',
@@ -52,14 +52,14 @@ $descriptions = array(
 	'targetHeartPotion' 		=> 'Target uses heart potion III',
 
 	'chestTypeNone' 			=> 'Do not calculate chest',
-	'chestTypeCurrent' 			=> 'Chest from current system',
-	'chestTypeNew' 				=> 'Chest from upcoming system',
+	'chestTypeCurrent' 			=> 'Chest from previous system',
+	'chestTypeNew' 				=> 'Chest from new system',
 	'chestBase' 				=> 'Has healbonus on base stat',
 	'chestZero' 				=> 'Has healbonus at +0',
 	'chestPlus' 				=> 'Has healbonus at plus bonuses',
 
-	'earringsOld' 				=> 'Number of current earrings with 4.3% healbonus',
-	'earringsNew' 				=> 'Number of upcoming earrings with 2% healbonus',
+	'earringsOld' 				=> 'Number of previous earrings with 4.3% healbonus',
+	'earringsNew' 				=> 'Number of new earrings with 3.2% healbonus',
 
 	'result'					=> 'Result',
 	'resultWeapon' 				=> 'Healbonuses on weapon:',
@@ -79,7 +79,6 @@ $descriptions = array(
 	'infoTexts'					=> array(
 		'Little deviations between results and real ingame heals are normal, but barely noticeable',
 		'Limits of some skills are ignored',
-		'Values of the mentioned upcoming items are not yet final and can change',
 		'Thanks for the calculation formula goes to Karyudo and everybody else involved!'
 	),
 
@@ -90,9 +89,9 @@ $descriptions = array(
 	'weaponNames'				=> array(
 		'abyss'											=> 'Abyss',
 		'nexus/conjunct'								=> 'Nexus / Conjunct',
-		'queen/mayhem/adonis'							=> 'Regent / Mayhem / "Adonis"',
-		'visionmaker/bloodrave/aphrodite/conjunct2'		=> 'Visionmaker / Bloodrave / "Aphrodite" / "Ruthless conjunct"',
-		'visionmaker2'									=> '"Luminous visionmaker" / "Ruthless visionmaker"'
+		'queen/mayhem/adonis'							=> 'Regent / Mayhem / Steadfast',
+		'visionmaker/bloodrave/aphrodite/conjunct2'		=> 'Visionmaker / Bloodrave / Wonderholme / Strikeforce',
+		'visionmaker2'									=> 'Nightforge PvE / Nightforge PvP'
 	),
 	'skillNames'				=> array(
 		'titanicFavor' 									=> 'Titanic favor',
