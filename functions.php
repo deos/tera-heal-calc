@@ -23,15 +23,16 @@ function r($text){
 }
 
 /**
- * format number
+ * format data number
  *
- * @param integer $number The number being formatted
- * @param integer $comma  [optional] Sets the number of decimal points (default 0)
+ * @param stdClass $data  Data object
+ * @param string   $field Data field name
+ * @param integer  $comma [optional] Sets the number of decimal points (default 0)
  *
  * @return string
  */
-function f($number, $comma = 0){
-	return number_format($number, $comma, ',', '.');
+function f(stdClass $data, $field, $comma = 0){
+	return number_format($data->$field, $comma, $data->desc->decimalSeperator, $data->desc->thousandSeperator);
 }
 
 /**
@@ -712,6 +713,7 @@ abstract class Data {
 		}
 
 		$data->multiplier = $multiplier;
+		$data->multiplierPercentage = (($multiplier - 1) * 100);
 
 		$data->healing = floor($data->healing * $multiplier);
 	}
@@ -742,7 +744,7 @@ abstract class Data {
 abstract class Language {
 
 	/**
-	 * Init translation and get description object
+	 * Init translation and get description object, also stores pointer in $data->desc
 	 *
 	 * @param stdClass $data Data object
 	 *
@@ -753,6 +755,9 @@ abstract class Language {
 
 		//create bool option array
 		$desc->boolValues = array(1 => $desc->yes, 0 => $desc->no);
+
+		//store in data
+		$data->desc =& $desc;
 
 		return $desc;
 	}

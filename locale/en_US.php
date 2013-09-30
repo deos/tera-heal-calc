@@ -6,6 +6,9 @@ $descriptions = array(
 	'mystic'					=> 'Mystic',
 	'priest'					=> 'Priest',
 
+	'decimalSeperator'			=> '.',
+	'thousandSeperator'			=> ',',
+
 	'calculate'					=> 'Calculate',
 	'generateUrl'				=> 'Generate URL to this setting',
 

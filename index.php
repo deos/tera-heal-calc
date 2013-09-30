@@ -41,29 +41,29 @@
 				<fieldset class="result">
 					<?php echo UI::createLegend($desc->result); ?>
 
-					<?php echo UI::createInfo('weaponHeal', $desc->resultWeapon, f($data->weaponHealBonus, 2).' %', null, true); ?>
-					<?php echo UI::createInfo('glovesHeal', $desc->resultGloves, f($data->glovesHealBonus, 2).' %', null, true); ?>
-					<?php echo UI::createInfo('jewelsHeal', $desc->resultJewels, f($data->jewelsHealBonus, 2).' %', null, true); ?>
+					<?php echo UI::createInfo('weaponHeal', $desc->resultWeapon, f($data, 'weaponHealBonus', 2).' %', null, true); ?>
+					<?php echo UI::createInfo('glovesHeal', $desc->resultGloves, f($data, 'glovesHealBonus', 2).' %', null, true); ?>
+					<?php echo UI::createInfo('jewelsHeal', $desc->resultJewels, f($data, 'jewelsHealBonus', 2).' %', null, true); ?>
 
 					<?php if($data->showCrystals OR $data->crystalHealBonus>0): ?>
-						<?php echo UI::createInfo('crystalsHeal', $desc->resultCrystals, f($data->crystalHealBonus, 2).' %', null, true); ?>
+						<?php echo UI::createInfo('crystalsHeal', $desc->resultCrystals, f($data, 'crystalHealBonus', 2).' %', null, true); ?>
 					<?php endif; ?>
 					<?php echo UI::createSpacing(); ?>
 
 					<?php if($data->showTarget OR $data->includeTargetBonus): ?>
-						<?php echo UI::createInfo('targetHeal', $desc->resultTarget, f($data->targetHealBonus, 2).' %', null, true); ?>
+						<?php echo UI::createInfo('targetHeal', $desc->resultTarget, f($data, 'targetHealBonus', 2).' %', null, true); ?>
 						<?php echo UI::createSpacing(); ?>
 					<?php endif; ?>
 					<?php echo UI::createSpacing(); ?>
 
 					<?php if($data->multiplier AND $data->multiplier!==1): ?>
-						<?php echo UI::createInfo('healMultiplier', $desc->resultMultiplier, '+'.f(($data->multiplier-1)*100, 1).' %', null, true); ?>
+						<?php echo UI::createInfo('healMultiplier', $desc->resultMultiplier, '+'.f($data, 'multiplierPercentage', 1).' %', null, true); ?>
 						<?php echo UI::createSpacing(); ?>
 						<?php echo UI::createSpacing(); ?>
 					<?php endif; ?>
 
-					<?php echo UI::createInfo('healOutput', $desc->resultHeal, f($data->healing), null, true); ?>
-					<?php echo UI::createInfo('healOutput', $desc->resultHealCrit, f($data->critHealing), null, true); ?>
+					<?php echo UI::createInfo('healOutput', $desc->resultHeal, f($data, 'healing'), null, true); ?>
+					<?php echo UI::createInfo('healOutput', $desc->resultHealCrit, f($data, 'critHealing'), null, true); ?>
 
 					<?php echo UI::createCheck('showUrl', null, false); ?>
 					<?php echo UI::createLabel('showUrl', $desc->generateUrl); ?>
