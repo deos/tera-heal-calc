@@ -41,7 +41,7 @@ $descriptions = array(
 	'glovesMw' 					=> 'Has healbonus as masterwork bonuses',
 
 	'jewels'					=> 'Jewels',
-	'jewelsOld' 				=> 'Number of previous rings/necklaces with 4.5% healbonus',
+	'jewelsOld' 				=> 'Number of previous rings/necklaces with 4.52% healbonus',
 	'jewelsNew' 				=> 'Number of new rings/necklaces with 2% healbonus',
 	'jewelsSpecial' 			=> 'Number of rings with special 5% healbonus',
 	'jewelSet1'					=> 'Set bonus on new jewels (needs 2 items)',
@@ -61,7 +61,7 @@ $descriptions = array(
 	'chestZero' 				=> 'Has healbonus at +0',
 	'chestPlus' 				=> 'Has healbonus at plus bonuses',
 
-	'earringsOld' 				=> 'Number of previous earrings with 4.3% healbonus',
+	'earringsOld' 				=> 'Number of previous earrings with 4.32% healbonus',
 	'earringsNew' 				=> 'Number of new earrings with 3.2% healbonus',
 
 	'result'					=> 'Result',

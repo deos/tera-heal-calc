@@ -1,5 +1,5 @@
 Heal calculator for the MMORPG tera online.
-Includes all current and (known) upcoming items to calculate the heal output on every possible scenario.
+Includes all known cases to calculate the heal output on every possible scenario.
 
 
 version history:
@@ -38,3 +38,7 @@ version history:
 2013-09-02 (V1.1)
 - added system to generate and load urls for saving and linking settings
 - fix in noctenium calculation
+
+2013-11-14 (V1.1.1)
+- better accuracy of numbers
+- changed DE set names and some texts

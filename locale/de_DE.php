@@ -23,7 +23,7 @@ $descriptions = array(
 	'weaponTypeNone' 			=> 'Waffe nicht einberechnen',
 	'weaponTypeOld' 			=> 'Waffe des alten Systems (mit Kraft als Meisterwerk Boni)',
 	'weaponTypeCurrent' 		=> 'Waffe des aktuellen Systems (mit Heilung als Meiswerwerk Boni)',
-	'weaponTypeNew' 			=> 'Waffe des kommenden Systems (mit Angriffsgeschwindigkeit als Meisterwerk Boni)',
+	'weaponTypeNew' 			=> 'Waffe des neuen Systems (mit Angriffsgeschwindigkeit als Meisterwerk Boni)',
 	'weaponBase' 				=> 'Mit Heilbonus auf Basiswerten',
 	'weaponZero' 				=> 'Mit Heilbonus bei +0',
 	'weaponPlus' 				=> 'Mit Heilbonus auf Plusboni',
@@ -34,17 +34,17 @@ $descriptions = array(
 	'glovesTypeNone' 			=> 'Handschuhe nicht einrechnen',
 	'glovesTypeOld' 			=> 'Handschuhe des alten Systems (mit Kraft als Meisterwerk Boni)',
 	'glovesTypeCurrent'	 		=> 'Handschuhe des aktuellen Systems (mit rollbaren Meisterwerk Boni)',
-	'glovesTypeNew' 			=> 'Handschuhe des kommenden Systems (mit Heilung als Meisterwerk Boni)',
+	'glovesTypeNew' 			=> 'Handschuhe des neuen Systems (mit Heilung als Meisterwerk Boni)',
 	'glovesBase' 				=> 'Mit Heilbonus auf Basiswerten',
 	'glovesZero' 				=> 'Mit Heilbonus bei +0',
 	'glovesPlus' 				=> 'Mit Heilbonus auf Plusboni',
 	'glovesMw' 					=> 'Mit Heilbonus auf Meisterwerk Boni',
 
 	'jewels'					=> 'Schmuck',
-	'jewelsOld' 				=> 'Anzahl aktueller Ringe/Halsketten mit 4,5% Heilbonus',
-	'jewelsNew' 				=> 'Anzahl kommender Ringe/Halsketten mit 2% Heilbonus',
+	'jewelsOld' 				=> 'Anzahl aktueller Ringe/Halsketten mit 4,52% Heilbonus',
+	'jewelsNew' 				=> 'Anzahl neuer Ringe/Halsketten mit 2% Heilbonus',
 	'jewelsSpecial' 			=> 'Anzahl Ringe mit besonderem 5% Heilbonus',
-	'jewelSet1'					=> 'Setbonus des kommenden Schmucks (2 Teile nötig)',
+	'jewelSet1'					=> 'Setbonus des neuen Zenith Schmucks (2 Teile nötig)',
 
 	'crystals' 					=> 'Kristalle',
 	'crystalsZyrks' 			=> 'Anzahl Heilzirkone mit 1%',
@@ -56,12 +56,12 @@ $descriptions = array(
 
 	'chestTypeNone' 			=> 'Oberteil nicht einrechnen',
 	'chestTypeCurrent' 			=> 'Oberteil des aktuellen Systems',
-	'chestTypeNew' 				=> 'Oberteil des kommenden Systems',
+	'chestTypeNew' 				=> 'Oberteil des neuen Systems',
 	'chestBase' 				=> 'Mit Heilbonus auf Basiswerten',
 	'chestZero' 				=> 'Mit Heilbonus bei +0',
 	'chestPlus' 				=> 'Mit Heilbonus auf Plusboni',
 
-	'earringsOld' 				=> 'Anzahl aktueller Ohrringe des Ziels mit 4,3% Heilbonus',
+	'earringsOld' 				=> 'Anzahl aktueller Ohrringe des Ziels mit 4,32% Heilbonus',
 	'earringsNew' 				=> 'Anzahl aktueller Ohrringe des Ziels mit 3,2% Heilbonus',
 
 	'result'					=> 'Ergebnis',
@@ -82,7 +82,6 @@ $descriptions = array(
 	'infoTexts'					=> array(
 		'Geringe Abweichungen der Ergebnisse zu tatsächlichen Heilungen im Spiel sind normal, sind jedoch kaum merklich',
 		'Begrenzungen einzelner Fertigkeiten werden nicht berücksichtigt',
-		'Die Werte der aufgeführten kommenden Items sind noch nicht endgültig und können sich noch ändern',
 		'Dank für die Berechnungsformel geht an Karyudo und alle die sonst beteiligt waren!'
 	),
 
@@ -93,9 +92,9 @@ $descriptions = array(
 	'weaponNames'				=> array(
 		'abyss'											=> 'Abgrund',
 		'nexus/conjunct'								=> 'Nexus / Verbund',
-		'queen/mayhem/adonis'							=> 'Regentin / Schlachtenkämpfer / "Adonis"',
-		'visionmaker/bloodrave/aphrodite/conjunct2'		=> 'Visionär / Bluttaumel / "Aphrodite" / "Skrupelloser Verbund"',
-		'visionmaker2'									=> '"Strahlender Visionär" / "Skrupelloser Visionär"'
+		'queen/mayhem/adonis'							=> 'Regentin / Schlachtenkämpfer / Standfesten',
+		'visionmaker/bloodrave/aphrodite/conjunct2'		=> 'Visionär / Bluttaumel / Wunderholm / Streitmacht',
+		'visionmaker2'									=> 'Finterschmied PvE / Finterschmied PvP'
 	),
 	'skillNames'				=> array(
 		'titanicFavor' 									=> 'Gefallen der Titanen',

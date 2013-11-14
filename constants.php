@@ -1,7 +1,7 @@
 <?php
 
 //version
-define('VERSION', 'V1.1');
+define('VERSION', 'V1.1.1');
 
 //types
 define('TYPE_NONE', 0);                  //no item
@@ -25,16 +25,16 @@ define('BONUS_WEAPON_NEW', 6);           //6% on new weapons
 define('BONUS_WEAPON_FIX', 6);           //2+4% at 2/4 on weapons, current and new
 
 //gloves
-define('BONUS_GLOVES_OLD_PLAIN', 4.5);   //4.5% on old non-mw gloves on all stats
+define('BONUS_GLOVES_OLD_PLAIN', 4.52);  //4.52% on old non-mw gloves on all stats
 define('BONUS_GLOVES_OLD_BASE', 5.1);    //5.1% on old gloves at +0
-define('BONUS_GLOVES_OLD', 5.7);         //5.7%% on old gloves
+define('BONUS_GLOVES_OLD', 5.68);        //5.68% on old gloves
 define('BONUS_GLOVES_OLD_MW', 4.5);      //3*1.5% on old gloves mw
 define('BONUS_GLOVES_NEW_PLAIN', 2.25);  //2.25% on old non-mw gloves
 define('BONUS_GLOVES_NEW', 3);           //3% on new gloves
 define('BONUS_GLOVES_NEW_MW', 4.5);      //4.5% at on new globes mw
 
 //jewels
-define('BONUS_JEWELS_OLD', 4.5);         //4.5% healing on old rings and nackless
+define('BONUS_JEWELS_OLD', 4.52);        //4.5% healing on old rings and nackless
 define('BONUS_JEWELS_NEW', 2);           //2% healing on new rings and nackless
 define('BONUS_JEWELS_SPECIAL_RING', 5);  //5% bonus on special rings
 define('BONUS_JEWELS_SET_1', 3);         //3% set bonus on upcoming jewels (set 1 since there may be more in the future)
@@ -45,13 +45,13 @@ define('BONUS_ZYRK_PRISTINE', 2);        //2% healing from pristine healing zyrk
 
 //chest
 define('BONUS_CHEST_OLD_PLAIN', 8.6);    //8.6% recieved bonus with old non-mw chests on all stats
-define('BONUS_CHEST_OLD_BASE', 9.5);     //9.5% recieved bonus with old chest at +0
-define('BONUS_CHEST_OLD', 10.4);         //10.4% recieved bonus with old chest
+define('BONUS_CHEST_OLD_BASE', 9.54);    //9.54% recieved bonus with old chest at +0
+define('BONUS_CHEST_OLD', 10.44);        //10.44% recieved bonus with old chest
 define('BONUS_CHEST_NEW_PLAIN', 4.5);    //4.5% recieved bonus with new non-mw chest
 define('BONUS_CHEST_NEW', 6);            //6% recieved bonus with new chest
 
 //earrings
-define('BONUS_EARRING_OLD', 4.3);        //4.3% recieved bonus with old earrings
+define('BONUS_EARRING_OLD', 4.32);       //4.32% recieved bonus with old earrings
 define('BONUS_EARRING_NEW', 3.2);        //3.2% recieved bonus with new earrings
 
 //potion
