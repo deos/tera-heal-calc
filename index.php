@@ -240,7 +240,7 @@
 		</form>
 
 		<footer>
-			&copy; deos.dev@gmail.com 2013 (<a href="https://github.com/deos/tera-heal-calc">github</a>)
+			&copy; deos.dev@gmail.com 2013-2014 (<a href="https://github.com/deos/tera-heal-calc">github</a>)
 		</footer>
 	</body>
 </html>
