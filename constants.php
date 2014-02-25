@@ -1,7 +1,7 @@
 <?php
 
 //version
-define('VERSION', 'V1.1.1');
+define('VERSION', 'V1.2');
 
 //types
 define('TYPE_NONE', 0);                  //no item
@@ -37,7 +37,9 @@ define('BONUS_GLOVES_NEW_MW', 4.5);      //4.5% at on new globes mw
 define('BONUS_JEWELS_OLD', 4.52);        //4.5% healing on old rings and nackless
 define('BONUS_JEWELS_NEW', 2);           //2% healing on new rings and nackless
 define('BONUS_JEWELS_SPECIAL_RING', 5);  //5% bonus on special rings
-define('BONUS_JEWELS_SET_1', 3);         //3% set bonus on upcoming jewels (set 1 since there may be more in the future)
+define('BONUS_JEWELS_SET_1', 3);         //3% set bonus on zenith jewels
+define('BONUS_JEWELS_SET_2_1', 3);       //3% set bonus 1st on upcoming jewels
+define('BONUS_JEWELS_SET_2_2', 2);       //2% set bonus 2nd on upcoming jewels
 
 //zyrks
 define('BONUS_ZYRK', 1);                 //1% healing from healing zyrk
@@ -63,10 +65,10 @@ define('GLYPH_HEALINGIMMERSION', 20);	//20% glyph for priest healing immersion
 define('GLYPH_HEALTHYSELF', 20);		//20% glyph for priest heal thyself
 
 //noctenium
-define('NOCTENIUM_FOCUSHEAL', 30);		//30% noctenium bonus for priest focus heal
-define('NOCTENIUM_HEALINGCIRCLE', 30);	//30% noctenium bonus for priest healing circle
-define('NOCTENIUM_HEALTHYSELF', 30);	//30% noctenium bonus for priest heal thyself
-define('NOCTENIUM_TITANICFAVOR', 30);	//30% noctenium bonus for mystic titanic favor
+define('NOCTENIUM_FOCUSHEAL', 5);		//5% noctenium bonus for priest focus heal
+define('NOCTENIUM_HEALINGCIRCLE', 5);	//5% noctenium bonus for priest healing circle
+define('NOCTENIUM_HEALTHYSELF', 5);		//5% noctenium bonus for priest heal thyself
+define('NOCTENIUM_TITANICFAVOR', 5);	//5% noctenium bonus for mystic titanic favor
 
 //class equip
 define('CLASSEQUIP_FOCUSHEAL', 15);		//15% equip bonus for priest focus heal
@@ -79,16 +81,17 @@ $fields->type = array('weaponType', 'glovesType', 'chestType');
 $fields->enchant = array('weaponEnchant', 'glovesEnchant', 'chestEnchant');
 $fields->number = array(
 	'weaponBase' => 0, 'skillBase' => 0,
-	'weaponBonusBase' => 1, 'weaponBonusZero' => 0, 'weaponBonusPlus' => 1,
-	'weaponBonusFix' => 1, 'weaponBonusMw' => 1,
-	'glovesBonusBase' => 0, 'glovesBonusZero' => 1, 'glovesBonusPlus' => 1,
+	'weaponBonusBase' => 0, 'weaponBonusZero' => 0, 'weaponBonusPlus' => 1,
+	'weaponBonusFix' => 1, 'weaponBonusMw' => 0,
+	'glovesBonusBase' => 1, 'glovesBonusZero' => 0, 'glovesBonusPlus' => 1,
 	'glovesBonusMw' => 3,
-	'oldJewels' => 3, 'newJewels' => 0, 'specialRings' => 2,
+	'oldJewels' => 2, 'newJewels' => 1, 'specialRings' => 2,
 	'zyrks' => 0, 'pristineZyrks' => 0,
-	'chestBonusBase' => 1, 'chestBonusZero' => 0, 'chestBonusPlus' => 1,
+	'chestBonusBase' => 0, 'chestBonusZero' => 0, 'chestBonusPlus' => 0,
 	'oldEarrings' => 0, 'newEarrings' => 0,
 	'heartPotion' => 0,
-	'jewelSet1' => 0
+	'jewelSet1' => 1,
+	'jewelSet2_1' => 0, 'jewelSet2_2' => 0
 );
 $fields->bool = array(
 	'includeTargetBonus' => true,
@@ -105,17 +108,18 @@ $fields->bool = array(
 //weapon base stat list for shortcuts
 $weapons = new stdClass();
 $weapons->mystic = array(
-	5442, 5823, 6231, 6667, 7133
+	5442, 5823, 6231, 6667, 7133, 7299
 );
 $weapons->priest = array(
-	5852, 6261, 6700, 7169, 7670
+	5852, 6261, 6700, 7169, 7670, 7849
 );
 $weaponNames = array(
 	'abyss',
 	'nexus/conjunct',
 	'queen/mayhem/adonis',
-	'visionmaker/bloodrave/aphrodite/conjunct2',
-	'visionmaker2'
+	'visionmaker/bloodrave/aphrodite/conjunct2/"Wanderholt"',
+	'visionmaker2/"Kushbar"',
+	'"Barthir"'
 );
 
 //skill base stat list for shortcuts

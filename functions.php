@@ -257,13 +257,13 @@ abstract class Data {
 	 * @return void
 	 */
 	private static function getData(stdClass $data, array $source){
-		//type fields (default to TYPE_CURRENT)
+		//type fields (default to TYPE_NEW)
 		foreach($data->fields->type as $field){
 			if(array_key_exists($field, $source) AND in_array($source[$field], array(TYPE_NONE, TYPE_OLD, TYPE_CURRENT, TYPE_NEW))){
 				$data->$field = (int)$source[$field];
 			}
 			else{
-				$data->$field = TYPE_CURRENT;
+				$data->$field = TYPE_NEW;
 			}
 		}
 
@@ -568,6 +568,13 @@ abstract class Data {
 			$bonus += BONUS_JEWELS_SET_1;
 		}
 
+		if($data->jewelSet2_1){
+			$bonus += BONUS_JEWELS_SET_2_1;
+		}
+		if($data->jewelSet2_2){
+			$bonus += BONUS_JEWELS_SET_2_2;
+		}
+
 		return $bonus;
 	}
 
@@ -798,9 +805,12 @@ abstract class Language {
 	 * @return array
 	 */
 	public static function translateWeaponNames(array $weaponNames, stdClass $desc){
-		return array_map(function($step) use ($desc){
-			return $desc->weaponNames[$step];
-		}, $weaponNames);
+		array_walk($weaponNames, function(&$name, $key) use ($desc){
+			if(isset($desc->weaponNames[$key])){
+				$name = $desc->weaponNames[$key];
+			}
+		});
+		return $weaponNames;
 	}
 
 	/**

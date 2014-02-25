@@ -135,6 +135,10 @@
 				<?php echo UI::createSpacing(); ?>
 
 				<?php echo UI::createSelect('jewelSet1', $desc->jewelSet1, $data->jewelSet1, $desc->boolValues); ?>
+				<?php echo UI::createSpacing(); ?>
+
+				<?php echo UI::createSelect('jewelSet2_1', $desc->jewelSet2_1, $data->jewelSet2_1, $desc->boolValues); ?>
+				<?php echo UI::createSelect('jewelSet2_2', $desc->jewelSet2_2, $data->jewelSet2_2, $desc->boolValues); ?>
 			</fieldset>
 
 			<?php echo UI::createCheck('showCrystals', null, $data->showCrystals); ?>

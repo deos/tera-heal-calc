@@ -42,3 +42,9 @@ version history:
 2013-11-14 (V1.1.1)
 - better accuracy of numbers
 - changed DE set names and some texts
+
+2014-02-24 (V1.2)
+- changed noctenium bonuses from 30% to 5%
+- added upcoming T15 weapon values
+- added upcoming new jewel sets
+- changed default setup to wonderholm base with zenith/noctenium jewel mix

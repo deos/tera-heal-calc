@@ -22,7 +22,7 @@ $descriptions = array(
 	'weapon'					=> 'Waffe',
 	'weaponTypeNone' 			=> 'Waffe nicht einberechnen',
 	'weaponTypeOld' 			=> 'Waffe des alten Systems (mit Kraft als Meisterwerk Boni)',
-	'weaponTypeCurrent' 		=> 'Waffe des aktuellen Systems (mit Heilung als Meiswerwerk Boni)',
+	'weaponTypeCurrent' 		=> 'Waffe des vorherigen Systems (mit Heilung als Meiswerwerk Boni)',
 	'weaponTypeNew' 			=> 'Waffe des neuen Systems (mit Angriffsgeschwindigkeit als Meisterwerk Boni)',
 	'weaponBase' 				=> 'Mit Heilbonus auf Basiswerten',
 	'weaponZero' 				=> 'Mit Heilbonus bei +0',
@@ -33,7 +33,7 @@ $descriptions = array(
 	'gloves'					=> 'Handschuhe',
 	'glovesTypeNone' 			=> 'Handschuhe nicht einrechnen',
 	'glovesTypeOld' 			=> 'Handschuhe des alten Systems (mit Kraft als Meisterwerk Boni)',
-	'glovesTypeCurrent'	 		=> 'Handschuhe des aktuellen Systems (mit rollbaren Meisterwerk Boni)',
+	'glovesTypeCurrent'	 		=> 'Handschuhe des vorherigen Systems (mit rollbaren Meisterwerk Boni)',
 	'glovesTypeNew' 			=> 'Handschuhe des neuen Systems (mit Heilung als Meisterwerk Boni)',
 	'glovesBase' 				=> 'Mit Heilbonus auf Basiswerten',
 	'glovesZero' 				=> 'Mit Heilbonus bei +0',
@@ -41,10 +41,12 @@ $descriptions = array(
 	'glovesMw' 					=> 'Mit Heilbonus auf Meisterwerk Boni',
 
 	'jewels'					=> 'Schmuck',
-	'jewelsOld' 				=> 'Anzahl aktueller Ringe/Halsketten mit 4,52% Heilbonus',
+	'jewelsOld' 				=> 'Anzahl vorheriger Ringe/Halsketten mit 4,52% Heilbonus',
 	'jewelsNew' 				=> 'Anzahl neuer Ringe/Halsketten mit 2% Heilbonus',
 	'jewelsSpecial' 			=> 'Anzahl Ringe mit besonderem 5% Heilbonus',
-	'jewelSet1'					=> 'Setbonus des neuen Zenith Schmucks (2 Teile nötig)',
+	'jewelSet1'					=> 'Setbonus des Zenith Schmucks (2 Teile nötig)',
+	'jewelSet2_1'				=> 'Setbonus des kommenden Schmucks (2 Teile nötig)',
+	'jewelSet2_2'				=> 'Setbonus des kommenden Schmucks (5 Teile nötig)',
 
 	'crystals' 					=> 'Kristalle',
 	'crystalsZyrks' 			=> 'Anzahl Heilzirkone mit 1%',
@@ -55,7 +57,7 @@ $descriptions = array(
 	'targetHeartPotion' 		=> 'Ziel nutzt einen Herztrank III',
 
 	'chestTypeNone' 			=> 'Oberteil nicht einrechnen',
-	'chestTypeCurrent' 			=> 'Oberteil des aktuellen Systems',
+	'chestTypeCurrent' 			=> 'Oberteil des vorherigen Systems',
 	'chestTypeNew' 				=> 'Oberteil des neuen Systems',
 	'chestBase' 				=> 'Mit Heilbonus auf Basiswerten',
 	'chestZero' 				=> 'Mit Heilbonus bei +0',
@@ -90,11 +92,12 @@ $descriptions = array(
 	'priestWeapons'				=> 'Priester Waffen',
 	'priestSkills'				=> 'Priester Fertigkeiten',
 	'weaponNames'				=> array(
-		'abyss'											=> 'Abgrund',
-		'nexus/conjunct'								=> 'Nexus / Verbund',
-		'queen/mayhem/adonis'							=> 'Regentin / Schlachtenkämpfer / Standfesten',
-		'visionmaker/bloodrave/aphrodite/conjunct2'		=> 'Visionär / Bluttaumel / Wunderholm / Streitmacht',
-		'visionmaker2'									=> 'Finterschmied PvE / Finterschmied PvP'
+		'Abgrund',
+		'Nexus / Verbund',
+		'Regentin / Schlachtenkämpfer / Standfesten',
+		'Visionär / Bluttaumel / Wunderholm / Streitmacht / "Wanderholt"',
+		'Finterschmied PvE / Finterschmied PvP / "Kushbar"',
+		'"Barthir"'
 	),
 	'skillNames'				=> array(
 		'titanicFavor' 									=> 'Gefallen der Titanen',

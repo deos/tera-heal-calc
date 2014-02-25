@@ -44,7 +44,9 @@ $descriptions = array(
 	'jewelsOld' 				=> 'Number of previous rings/necklaces with 4.52% healbonus',
 	'jewelsNew' 				=> 'Number of new rings/necklaces with 2% healbonus',
 	'jewelsSpecial' 			=> 'Number of rings with special 5% healbonus',
-	'jewelSet1'					=> 'Set bonus on new jewels (needs 2 items)',
+	'jewelSet1'					=> 'Set bonus on zenith jewels (needs 2 items)',
+	'jewelSet2_1'				=> 'Set bonus on upcoming jewels (needs 2 items)',
+	'jewelSet2_2'				=> 'Set bonus on upcoming jewels (needs 5 items)',
 
 	'crystals' 					=> 'Crystals',
 	'crystalsZyrks' 			=> 'Number of zyrks with 1% healbonus',
@@ -90,11 +92,12 @@ $descriptions = array(
 	'priestWeapons'				=> 'Priest weapons',
 	'priestSkills'				=> 'Priest skills',
 	'weaponNames'				=> array(
-		'abyss'											=> 'Abyss',
-		'nexus/conjunct'								=> 'Nexus / Conjunct',
-		'queen/mayhem/adonis'							=> 'Regent / Mayhem / Steadfast',
-		'visionmaker/bloodrave/aphrodite/conjunct2'		=> 'Visionmaker / Bloodrave / Wonderholme / Strikeforce',
-		'visionmaker2'									=> 'Nightforge PvE / Nightforge PvP'
+		'Abyss',
+		'Nexus / Conjunct',
+		'Regent / Mayhem / Steadfast',
+		'Visionmaker / Bloodrave / Wonderholme / Strikeforce / "Wanderholt"',
+		'Nightforge PvE / Nightforge PvP / "Kushbar"',
+		'"Barthir"'
 	),
 	'skillNames'				=> array(
 		'titanicFavor' 									=> 'Titanic favor',
