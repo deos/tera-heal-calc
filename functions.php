@@ -176,21 +176,44 @@ abstract class UI {
 	/**
 	 * Create info list
 	 *
-	 * @param string      $id          Element ID
-	 * @param string      $description Description text
-	 * @param array       $items       Item list (value=>description)
-	 * @param string|null $target      [optional] String for data-target attribute of parent (default: null)
+	 * @param string      $id             Element ID
+	 * @param string      $description    Description text
+	 * @param array       $items          Item list (value=>description)
+	 * @param string|null $target         [optional] String for data-target attribute of parent (default: null)
+	 * @param string|null $categoryPrefix [optional] String as prefix for categories
 	 *
 	 * @return string
 	 */
-	public static function createInfoList($id, $description, array $items, $target=null){
-		$html = '<div id="'.r($id).'" '.($target ? 'data-target="'.r($target).'"' : '').'>';
-		$html .= '<span>'.r($description).'</span>';
-		$html .= '<ul>';
-		foreach($items as $itemId=>$itemText){
-			$html .= '<li data-value='.r($itemId).'>'.r($itemText).'</li>';
+	public static function createInfoList($id, $description, array $items, $target=null, $categoryPrefix=null){
+		$hasSub = false;
+		$subHtml = '';
+
+		foreach($items as $itemId=>$itemValue){
+			if(is_array($itemValue)){
+				$hasSub = true;
+
+				$subHtml .= '<li>';
+				if($categoryPrefix){
+					$subHtml .= r($categoryPrefix);
+				}
+				$subHtml .= r($itemId);
+				$subHtml .= '<ul>';
+
+				foreach($itemValue as $subId=>$subValue){
+					$subHtml .= '<li data-value='.r($subId).'>'.r($subValue).'</li>';
+				}
+
+				$subHtml .= '</ul>';
+				$subHtml .= '</li>';
+			}
+			else{
+				$subHtml .= '<li data-value='.r($itemId).'>'.r($itemValue).'</li>';
+			}
 		}
-		$html .= '</ul>';
+
+		$html = '<div id="'.r($id).'" '.($target ? 'data-target="'.r($target).'"' : '').' '.($hasSub ? 'data-sub' : '').'>';
+		$html .= '<span>'.r($description).'</span>';
+		$html .= '<ul>'.$subHtml.'</ul>';
 		$html .= '</div>';
 
 		return $html;
@@ -447,6 +470,10 @@ abstract class Data {
 
 		$data->targetHealBonus = self::sumTargetHealBonus($data);
 
+		//one of those two has to be it, need to check first
+		$data->skillBaseEtched = $data->skillBase + MISC::getEtchingValue($data->weaponEtching) + MISC::getEtchingValue($data->glovesEtching);
+		$data->weaponBaseEtched = $data->weaponBase + MISC::getEtchingValue($data->weaponEtching) + MISC::getEtchingValue($data->glovesEtching);
+
 		$data->healing = self::calcHeal($data->skillBase, $data->weaponBase, $data->healBonus, $data->targetHealBonus);
 		self::multiplyHealing($data);
 		$data->critHealing = self::calcCritHeal($data->healing);
@@ -563,6 +590,10 @@ abstract class Data {
 		$bonus += $data->oldJewels * BONUS_JEWELS_OLD;
 		$bonus += $data->newJewels * BONUS_JEWELS_NEW;
 		$bonus += $data->specialRings * BONUS_JEWELS_SPECIAL_RING;
+
+		if($data->necklaceBonus){
+			$bonus += MISC::getNecklaceBonusValue($data->necklaceBonus);
+		}
 
 		if($data->jewelSet1){
 			$bonus += BONUS_JEWELS_SET_1;
@@ -805,11 +836,14 @@ abstract class Language {
 	 * @return array
 	 */
 	public static function translateWeaponNames(array $weaponNames, stdClass $desc){
-		array_walk($weaponNames, function(&$name, $key) use ($desc){
-			if(isset($desc->weaponNames[$key])){
-				$name = $desc->weaponNames[$key];
-			}
+		array_walk($weaponNames, function(&$data, $lvl) use ($desc){
+			array_walk($data, function(&$name, $key) use ($desc, $lvl){
+				if(isset($desc->weaponNames[$lvl][$key])){
+					$name = $desc->weaponNames[$lvl][$key];
+				}
+			});
 		});
+
 		return $weaponNames;
 	}
 
@@ -845,6 +879,34 @@ abstract class Language {
 		return array_map(function($enchant) use ($desc){
 			return $desc->enchants[$enchant];
 		}, $enchants);
+	}
+
+	/**
+	 * Get translated etchings
+	 *
+	 * @param array    $etchings Etchings
+	 * @param stdClass $desc     Description object
+	 *
+	 * @return array
+	 */
+	public static function translateEtchings(array $etchings, stdClass $desc){
+		return array_map(function($enchant) use ($desc){
+			return $desc->etchings[$enchant];
+		}, $etchings);
+	}
+
+	/**
+	 * Get translated necklace bonuses
+	 *
+	 * @param array    $necklaceBonuses Necklace bonuses
+	 * @param stdClass $desc            Description object
+	 *
+	 * @return array
+	 */
+	public static function translateNecklaceBonuses(array $necklaceBonuses, stdClass $desc){
+		return array_map(function($bonus) use ($desc){
+			return ($bonus > 0 ? number_format($bonus, 1, $desc->decimalSeperator, $desc->thousandSeperator).'%' : $desc->noNecklaceBonus);
+		}, $necklaceBonuses);
 	}
 
 	/**
@@ -901,5 +963,63 @@ abstract class Language {
 		}
 
 		return $langs;
+	}
+}
+
+/**
+ * Class for misc helper methods
+ */
+abstract class Misc {
+
+	/**
+	 * filter data based on keys
+	 *
+	 * @param array $data    Data to filter
+	 * @param array $exclude Data to exclude
+	 *
+	 * @return array
+	 */
+	public static function filterKeys(array $data, array $exclude){
+		return array_diff_key($data, $exclude);
+	}
+
+	/**
+	 * merge weapon values and names and returns in reverse order
+	 *
+	 * @param array $values Weapon heal values
+	 * @param array $names  Weapon names
+	 *
+	 * @return array
+	 */
+	public static function mergeWeaponValues(array $values, array $names){
+		$result = array();
+
+		array_walk($values, function($values, $lvl) use (&$result, $names){
+			$result[$lvl] = array_combine($values, $names[$lvl]);
+		});
+
+		return array_reverse($result, true);
+	}
+
+	/**
+	 * get etching value based on id
+	 *
+	 * @param int $id Etching id
+	 *
+	 * @return int
+	 */
+	public static function getEtchingValue($id){
+		return (constant('ETCHING_VALUE_'.$id) ? : 0);
+	}
+
+	/**
+	 * get necklace bonus value based on id
+	 *
+	 * @param int $id Necklace bonus id
+	 *
+	 * @return int
+	 */
+	public static function getNecklaceBonusValue($id){
+		return (constant('BONUS_NECKLACE_'.$id) ? : 0);
 	}
 }

@@ -5,6 +5,7 @@ $descriptions = array(
 	'no'						=> 'No',
 	'mystic'					=> 'Mystic',
 	'priest'					=> 'Priest',
+	'level'						=> 'Level',
 
 	'decimalSeperator'			=> '.',
 	'thousandSeperator'			=> ',',
@@ -29,6 +30,7 @@ $descriptions = array(
 	'weaponPlus' 				=> 'Has healbonus at plus bonuses',
 	'weaponFix' 				=> 'Has fixed healbonuses at +4/+8',
 	'weaponMw'	 				=> 'Has healbonus as masterwork bonuses',
+	'weaponEtching'				=> 'Weapon etching',
 
 	'gloves'					=> 'Gloves',
 	'glovesTypeNone' 			=> 'Do not calculate gloves',
@@ -39,14 +41,17 @@ $descriptions = array(
 	'glovesZero' 				=> 'Has healbonus at +0',
 	'glovesPlus' 				=> 'Has healbonus at plus bonuses',
 	'glovesMw' 					=> 'Has healbonus as masterwork bonuses',
+	'glovesEtching'				=> 'Gloves etching',
 
 	'jewels'					=> 'Jewels',
-	'jewelsOld' 				=> 'Number of previous rings/necklaces with 4.52% healbonus',
-	'jewelsNew' 				=> 'Number of new rings/necklaces with 2% healbonus',
-	'jewelsSpecial' 			=> 'Number of rings with special 5% healbonus',
-	'jewelSet1'					=> 'Set bonus on zenith jewels (needs 2 items)',
-	'jewelSet2_1'				=> 'Set bonus on upcoming jewels (needs 2 items)',
-	'jewelSet2_2'				=> 'Set bonus on upcoming jewels (needs 5 items)',
+	'jewelsOld' 				=> 'Number of old rings/necklaces with 4.52% healbonus',
+	'jewelsNew' 				=> 'Number of rings/necklaces with 2% healbonus',
+	'jewelsSpecial' 			=> 'Number of old rings with special 5% healbonus',
+	'necklaceBonus'				=> 'Additional necklace heal bonus',
+	'noNecklaceBonus'			=> 'None',
+	'jewelSet1'					=> 'Set bonus 2 items of healer jewels',
+	'jewelSet2_1'				=> 'Set bonus 2 items of healer jewels',
+	'jewelSet2_2'				=> 'Set bonus 5 items of PvE healer jewels',
 
 	'crystals' 					=> 'Crystals',
 	'crystalsZyrks' 			=> 'Number of zyrks with 1% healbonus',
@@ -63,8 +68,8 @@ $descriptions = array(
 	'chestZero' 				=> 'Has healbonus at +0',
 	'chestPlus' 				=> 'Has healbonus at plus bonuses',
 
-	'earringsOld' 				=> 'Number of previous earrings with 4.32% healbonus',
-	'earringsNew' 				=> 'Number of new earrings with 3.2% healbonus',
+	'earringsOld' 				=> 'Number of old earrings with 4.32% healbonus',
+	'earringsNew' 				=> 'Number of earrings with 3.2% healbonus',
 
 	'result'					=> 'Result',
 	'resultWeapon' 				=> 'Healbonuses on weapon:',
@@ -92,15 +97,23 @@ $descriptions = array(
 	'priestWeapons'				=> 'Priest weapons',
 	'priestSkills'				=> 'Priest skills',
 	'weaponNames'				=> array(
-		'Abyss',
-		'Nexus / Conjunct',
-		'Regent / Mayhem / Steadfast',
-		'Visionmaker / Bloodrave / Wonderholme / Strikeforce / "Wanderholt"',
-		'Nightforge PvE / Nightforge PvP / "Kushbar"',
-		'"Barthir"'
+		60 => array(
+			'Abyss',
+			'Nexus / Conjunct',
+			'Regent / Mayhem / Steadfast',
+			'Visionmaker / Bloodrave / Wonderholme / Strikeforce / Patron / Opportune',
+			'Nightforge PvE / Nightforge PvP / Devastator / Favored',
+			'Archetype / Advantaged'
+		),
+		65 => array(
+			'normal mode set',
+			'hard mode set',
+			'VM4'
+		)
 	),
 	'skillNames'				=> array(
 		'titanicFavor' 									=> 'Titanic favor',
+		'vampiricPulse'									=> 'Vampiric Pulse',
 		'focusHeal' 									=> 'Focus heal',
 		'healingCircle'									=> 'Healing circle',
 		'healingImmersion' 								=> 'Healing immersion',
@@ -114,5 +127,13 @@ $descriptions = array(
 		'nine' 											=> 'Enchantet to +9',
 		'mw_nine'										=> 'Masterwork enchanted to +9',
 		'mw_twelve'										=> 'Masterwork enchanted to +12'
+	),
+	'etchings'					=> array(
+		'none'											=> 'No healing etching',
+		'etching_1_tmp'									=> 'Healing etching I ephemeral',
+		'etching_2_tmp'									=> 'Healing etching II ephemeral',
+		'etching_2'										=> 'Healing etching II',
+		'etching_3_tmp'									=> 'Healing etching III ephemeral',
+		'etching_3'										=> 'Healing etching III'
 	)
 );

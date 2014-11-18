@@ -5,9 +5,9 @@ window.addEvent('domready', function(){
 		el.set('disabled', !enabled);
 		if(!enabled){
 			el.set('value', value || 0);
-            if(callback){
-                callback.apply(el);
-            }
+			if(callback){
+				callback.apply(el);
+			}
 		}
 	};
 
@@ -17,89 +17,112 @@ window.addEvent('domready', function(){
 	};
 
 	var limitFields = function(elements, limit){
-        if(limit<=0 || elements.length<1){
-            return;
-        }
+		if(limit<=0 || elements.length<1){
+			return;
+		}
 
 		var doLimit = function(){
-            var value = (this.get('type')=='checkbox' ? 0+this.get('checked') : this.get('value').toInt());
+			var value = (this.get('type')=='checkbox' ? 0+this.get('checked') : this.get('value').toInt());
 
 			if(value>limit){
-                this.set('value', limit);
-                value = limit;
+				this.set('value', limit);
+				value = limit;
 			}
 
-            var remaining = limit - value;
-            elements.each(function(el){
-                if(el==this){
-                    return;
-                }
-                if(el.get('type')=='checkbox'){
-                    if(remaining==0){
-                        el.set('checked', false);
-                    }
-                    else{
-                        remaining -= 0+el.get('checked');
-                    }
-                }
-                else if(el.get('tag')=='select'){
-                    var values = el.getElements('option').get('value'),
-                        max = Math.max.apply(null, values),
-                        set = Math.min(max, Math.min(el.get('value').toInt(), remaining));
+			var remaining = limit - value;
+			elements.each(function(el){
+				if(el==this){
+					return;
+				}
+				if(el.get('type')=='checkbox'){
+					if(remaining==0){
+						el.set('checked', false);
+					}
+					else{
+						remaining -= 0+el.get('checked');
+					}
+				}
+				else if(el.get('tag')=='select'){
+					var values = el.getElements('option').get('value'),
+						max = Math.max.apply(null, values),
+						set = Math.min(max, Math.min(el.get('value').toInt(), remaining));
 
-                    el.set('value', set);
-                    remaining -= set;
-                }
-                else{
-                    el.set('value', remaining);
-                    remaining = 0;
-                }
-            }, this);
+					el.set('value', set);
+					remaining -= set;
+				}
+				else{
+					el.set('value', remaining);
+					remaining = 0;
+				}
+			}, this);
 		};
 
 		elements.addEvent('change', doLimit);
 		doLimit.apply(elements[0]);
 	};
 
-    //element checker to toggle element visibility based on input
-    var toggleElements = function(){
-        var types = {
-            'weapon': document.id('weaponType').get('value').toInt(),
-            'gloves': document.id('glovesType').get('value').toInt(),
-            'chest': document.id('chestType').get('value').toInt()
-        };
-        var enchants = {
-            'weapon': document.id('weaponEnchant').get('value').toInt(),
-            'gloves': document.id('glovesEnchant').get('value').toInt(),
-            'chest': document.id('chestEnchant').get('value').toInt()
-        };
-        var globalTypes = window.types,
-            globalEnchants = window.enchants;
+	//element checker to toggle element visibility based on input
+	var toggleElements = function(){
+		var types = {
+			'weapon': document.id('weaponType').get('value').toInt(),
+			'gloves': document.id('glovesType').get('value').toInt(),
+			'chest': document.id('chestType').get('value').toInt()
+		};
+		var enchants = {
+			'weapon': document.id('weaponEnchant').get('value').toInt(),
+			'gloves': document.id('glovesEnchant').get('value').toInt(),
+			'chest': document.id('chestEnchant').get('value').toInt()
+		};
+		var globalTypes = window.types,
+			globalEnchants = window.enchants;
 
-        //weapon
-        toggleSelect(document.id('weaponBonusZero'), types.weapon!=globalTypes.new);
-        toggleSelect(document.id('weaponBonusPlus'), enchants.weapon!=globalEnchants.none);
-        toggleInfo(document.id('weaponBonusFix'), types.weapon>=globalTypes.current && enchants.weapon!=globalEnchants.none);
-        toggleInfo(document.id('weaponBonusMw'), types.weapon==globalTypes.current && enchants.weapon==globalEnchants.mw.twelve);
+		//weapon
+		toggleSelect(document.id('weaponBonusZero'), types.weapon!=globalTypes.new);
+		toggleSelect(document.id('weaponBonusPlus'), enchants.weapon!=globalEnchants.none);
+		toggleInfo(document.id('weaponBonusFix'), types.weapon>=globalTypes.current && enchants.weapon!=globalEnchants.none);
+		toggleInfo(document.id('weaponBonusMw'), types.weapon==globalTypes.current && enchants.weapon==globalEnchants.mw.twelve);
 
-        //gloves
-        toggleSelect(document.id('glovesEnchant'), types.gloves!=globalTypes.none, globalEnchants.none, function(){ enchants.gloves = this.get('value').toInt(); });
-        toggleInfo(document.id('glovesBonusBase'), types.gloves==globalTypes.new);
-        toggleSelect(document.id('glovesBonusZero'), types.gloves!=globalTypes.new && types.gloves!=globalTypes.none);
-        toggleSelect(document.id('glovesBonusPlus'), types.gloves!=globalTypes.none && enchants.gloves!=globalEnchants.none);
-        toggleSelect(document.id('glovesBonusMw'), types.gloves==globalTypes.current && types.gloves!=globalTypes.none && enchants.gloves==globalEnchants.mw.twelve, ((types.gloves==globalTypes.new && enchants.gloves==globalEnchants.mw.twelve) ? 3 : 0));
+		//gloves
+		toggleSelect(document.id('glovesEnchant'), types.gloves!=globalTypes.none, globalEnchants.none, function(){ enchants.gloves = this.get('value').toInt(); });
+		toggleInfo(document.id('glovesBonusBase'), types.gloves==globalTypes.new);
+		toggleSelect(document.id('glovesBonusZero'), types.gloves!=globalTypes.new && types.gloves!=globalTypes.none);
+		toggleSelect(document.id('glovesBonusPlus'), types.gloves!=globalTypes.none && enchants.gloves!=globalEnchants.none);
+		toggleSelect(document.id('glovesBonusMw'), types.gloves==globalTypes.current && types.gloves!=globalTypes.none && enchants.gloves==globalEnchants.mw.twelve, ((types.gloves==globalTypes.new && enchants.gloves==globalEnchants.mw.twelve) ? 3 : 0));
 
-        //chest
-        toggleSelect(document.id('chestEnchant'), types.chest!=globalTypes.none, globalEnchants.none, function(){ enchants.chest = this.get('value').toInt(); });
-        toggleSelect(document.id('chestBonusBase'), types.chest!=globalTypes.new && types.chest!=globalTypes.none);
-        toggleSelect(document.id('chestBonusZero'), types.chest!=globalTypes.new && types.chest!=globalTypes.none);
-        toggleSelect(document.id('chestBonusPlus'),  types.chest!=globalTypes.none && enchants.chest!=globalEnchants.none);
-    };
-    document.getElements('#weaponType, #weaponEnchant, #glovesType, #glovesEnchant, #chestType, #chestEnchant').addEvent('change', toggleElements);
-    toggleElements();
+		//chest
+		toggleSelect(document.id('chestEnchant'), types.chest!=globalTypes.none, globalEnchants.none, function(){ enchants.chest = this.get('value').toInt(); });
+		toggleSelect(document.id('chestBonusBase'), types.chest!=globalTypes.new && types.chest!=globalTypes.none);
+		toggleSelect(document.id('chestBonusZero'), types.chest!=globalTypes.new && types.chest!=globalTypes.none);
+		toggleSelect(document.id('chestBonusPlus'),  types.chest!=globalTypes.none && enchants.chest!=globalEnchants.none);
+	};
+	document.getElements('#weaponType, #weaponEnchant, #glovesType, #glovesEnchant, #chestType, #chestEnchant').addEvent('change', toggleElements);
+	toggleElements();
 
 	//cant have more then 3 rings/nacklesses total
 	limitFields(document.getElements('#oldJewels, #newJewels'), 3);
+
+	//element checker to toggle jewel set options based on input
+	var toggleRings = function(){
+		toggleSelect(document.id('specialRings'), document.id('oldJewels').get('value').toInt());
+	};
+	document.getElements('#oldJewels').addEvent('change', toggleRings);
+	toggleRings();
+
+	//element checker to toggle jewel set options based on input
+	var toggleJewelSets = function(){
+		var enabled = {
+			'set1': document.id('jewelSet1').get('value').toInt(),
+			'set2_1': document.id('jewelSet2_1').get('value').toInt(),
+			'set2_2': document.id('jewelSet2_2').get('value').toInt()
+		};
+
+		toggleSelect(document.id('jewelSet2_1'), (enabled.set1 && !enabled.set2_2));
+		enabled.set2_1 = document.id('jewelSet2_1').get('value').toInt();
+
+		toggleSelect(document.id('jewelSet2_2'), ((enabled.set1 && !enabled.set2_1) || (!enabled.set1 && enabled.set2_1)));
+	};
+	document.getElements('#jewelSet1, #jewelSet2_1, #jewelSet2_2').addEvent('change', toggleJewelSets);
+	toggleJewelSets();
 
 	//cant use more then 4 zyrks total
 	limitFields(document.getElements('#zyrks, #pristineZyrks'), 4);
@@ -107,14 +130,14 @@ window.addEvent('domready', function(){
 	//cant have more then 2 earrings total
 	limitFields(document.getElements('#oldEarrings, #newEarrings'), 2);
 
-    //cant use more then one glyph since you can only calc for one skill
-    limitFields(document.getElements('#glyphPriestHealingCircle, #glyphPriestHealingImmersion, #glyphPriestHealThyself'), 1);
+	//cant use more then one glyph since you can only calc for one skill
+	limitFields(document.getElements('#glyphPriestHealingCircle, #glyphPriestHealingImmersion, #glyphPriestHealThyself'), 1);
 
-    //cant use more then one noctenium bonus since you can only calc for one skill
-    limitFields(document.getElements('#nocteniumPriestFocusHeal, #nocteniumPriestHealingCircle, #nocteniumPriestHealThyself, #nocteniumMysticTitanicFavor'), 1);
+	//cant use more then one noctenium bonus since you can only calc for one skill
+	limitFields(document.getElements('#nocteniumPriestFocusHeal, #nocteniumPriestHealingCircle, #nocteniumPriestHealThyself, #nocteniumMysticTitanicFavor'), 1);
 
-    //cant use more then one chest stat since you can only calc for one skill
-    limitFields(document.getElements('#classEquipStatPriestFocusHeal, #classEquipStatPriestHealingCircle'), 1);
+	//cant use more then one chest stat since you can only calc for one skill
+	limitFields(document.getElements('#classEquipStatPriestFocusHeal, #classEquipStatPriestHealingCircle'), 1);
 
 	//add shortcut methods
 	document.getElements('div[data-target]').addEvent('click:relay(li[data-value])', function(e){

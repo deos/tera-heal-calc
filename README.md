@@ -48,3 +48,14 @@ version history:
 - added upcoming T15 weapon values
 - added upcoming new jewel sets
 - changed default setup to wonderholm base with zenith/noctenium jewel mix
+
+2014-11-? (V1.3)
+- added etching
+- added necklace bonus stat
+- added lvl 65 weapon stats (names yet to be set)
+- reworked weapon selection for lvl 65 patch
+- reworked jewel set selection (hope its not too confusing like this)
+- prepared lvl 65 skill update changes (to be enabled when patch hits)
+- changed default to REHM quick setup with full PvE jewel setup (seems to be the norm atm)
+- changed some translations and item names
+- rearranged some elements

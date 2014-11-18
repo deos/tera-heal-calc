@@ -4,9 +4,9 @@ html {
 	margin: 0px;
 }
 body {
-	margin: 0px;
+	margin: 0px auto;
 	padding: 20px;
-	min-width: 950px;
+	width: 950px;
 	background-color: #CCC;
 	color: #000;
 	font-size: 12pt;
@@ -132,7 +132,8 @@ input[type="submit"] {
 	font-weight: bold;
 }
 fieldset > label, fieldset > section > label {
-	width: 450px;
+	width: 330px;
+	padding-right: 5px;
 }
 fieldset fieldset > label {
 	width: 250px;
@@ -179,7 +180,7 @@ fieldset > div:hover {
 	border-radius: 5px 5px 0px 0px;
 	background-color: #EEE;
 }
-fieldset > div > ul {
+fieldset > div ul {
 	display: none;
 	position: absolute;
 	right: -1px;
@@ -192,28 +193,49 @@ fieldset > div > ul {
 	background-color: #EEE;
 	z-index: 100;
 }
+fieldset > div ul ul {
+	right: 100%;
+	top: -1px;
+	margin-top: 0px;
+}
 fieldset > div:hover > ul {
 	display: block;
 }
-fieldset > div > ul > li {
+fieldset > div[data-sub] > ul:hover {
+	-webkit-border-radius: 0px 0px 5px 0px;
+	border-radius: 0px 0px 5px 0px;
+}
+fieldset > div ul > li {
 	padding: 2px 5px;
 	white-space: nowrap;
 	cursor: pointer;
 }
-fieldset > div > ul > li:hover {
+fieldset > div ul > li:hover {
 	background-color: #CCC;
 }
-fieldset > div > ul > li:first-child {
+fieldset > div ul > li:hover > ul {
+	display: block;
+}
+fieldset > div ul > li:first-child {
 	-webkit-border-radius: 5px 0px 0px 0px;
 	border-radius: 5px 0px 0px 0px;
 }
-fieldset > div > ul > li:last-child {
+fieldset > div ul > li:last-child {
 	-webkit-border-radius: 0px 0px 5px 5px;
 	border-radius: 0px 0px 5px 5px;
 }
-fieldset > div > ul > li:first-child:last-child {
+fieldset > div ul > li:first-child:last-child {
 	-webkit-border-radius: 5px 0px 5px 5px;
 	border-radius: 5px 0px 5px 5px;
+}
+fieldset > div[data-sub] > ul:hover > li:first-child {
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+}
+fieldset > div[data-sub] > ul:hover > li:last-child,
+fieldset > div[data-sub] > ul:hover > li:first-child:last-child {
+	-webkit-border-radius: 0px 0px 5px 0px;
+	border-radius: 0px 0px 5px 0px;
 }
 
 /* checkbox toggle magic */

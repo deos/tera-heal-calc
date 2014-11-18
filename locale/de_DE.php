@@ -5,6 +5,7 @@ $descriptions = array(
 	'no'						=> 'Nein',
 	'mystic'					=> 'Mystiker',
 	'priest'					=> 'Priester',
+	'level'						=> 'Level',
 
 	'decimalSeperator'			=> ',',
 	'thousandSeperator'			=> '.',
@@ -29,6 +30,7 @@ $descriptions = array(
 	'weaponPlus' 				=> 'Mit Heilbonus auf Plusboni',
 	'weaponFix' 				=> 'Mit fixem Heilbonus auf +4/+8',
 	'weaponMw'	 				=> 'Mit Heilbonus auf Meisterwerk Boni',
+	'weaponEtching'				=> 'Waffengravierung',
 
 	'gloves'					=> 'Handschuhe',
 	'glovesTypeNone' 			=> 'Handschuhe nicht einrechnen',
@@ -39,14 +41,17 @@ $descriptions = array(
 	'glovesZero' 				=> 'Mit Heilbonus bei +0',
 	'glovesPlus' 				=> 'Mit Heilbonus auf Plusboni',
 	'glovesMw' 					=> 'Mit Heilbonus auf Meisterwerk Boni',
+	'glovesEtching'				=> 'Handschuhgravierung',
 
 	'jewels'					=> 'Schmuck',
-	'jewelsOld' 				=> 'Anzahl vorheriger Ringe/Halsketten mit 4,52% Heilbonus',
-	'jewelsNew' 				=> 'Anzahl neuer Ringe/Halsketten mit 2% Heilbonus',
-	'jewelsSpecial' 			=> 'Anzahl Ringe mit besonderem 5% Heilbonus',
-	'jewelSet1'					=> 'Setbonus des Zenith Schmucks (2 Teile nötig)',
-	'jewelSet2_1'				=> 'Setbonus des kommenden Schmucks (2 Teile nötig)',
-	'jewelSet2_2'				=> 'Setbonus des kommenden Schmucks (5 Teile nötig)',
+	'jewelsOld' 				=> 'Anzahl alten Ringe/Halsketten mit 4,52% Heilbonus',
+	'jewelsNew' 				=> 'Anzahl Ringe/Halsketten mit 2% Heilbonus',
+	'jewelsSpecial' 			=> 'Anzahl alter Ringe mit besonderem 5% Heilbonus',
+	'necklaceBonus'				=> 'Zusätzlicher Heilbonus der Halskette',
+	'noNecklaceBonus'			=> 'Nichts',
+	'jewelSet1'					=> 'Setbonus 2 Teile Schmuckset für Heiler',
+	'jewelSet2_1'				=> 'Setbonus 2 Teile Schmuckset für Heiler',
+	'jewelSet2_2'				=> 'Setbonus 5 Teile PvE Schmuckset für Heiler',
 
 	'crystals' 					=> 'Kristalle',
 	'crystalsZyrks' 			=> 'Anzahl Heilzirkone mit 1%',
@@ -63,8 +68,8 @@ $descriptions = array(
 	'chestZero' 				=> 'Mit Heilbonus bei +0',
 	'chestPlus' 				=> 'Mit Heilbonus auf Plusboni',
 
-	'earringsOld' 				=> 'Anzahl aktueller Ohrringe des Ziels mit 4,32% Heilbonus',
-	'earringsNew' 				=> 'Anzahl aktueller Ohrringe des Ziels mit 3,2% Heilbonus',
+	'earringsOld' 				=> 'Anzahl alter Ohrringe des Ziels mit 4,32% Heilbonus',
+	'earringsNew' 				=> 'Anzahl Ohrringe des Ziels mit 3,2% Heilbonus',
 
 	'result'					=> 'Ergebnis',
 	'resultWeapon' 				=> 'Heilbonus der Waffe:',
@@ -92,15 +97,23 @@ $descriptions = array(
 	'priestWeapons'				=> 'Priester Waffen',
 	'priestSkills'				=> 'Priester Fertigkeiten',
 	'weaponNames'				=> array(
-		'Abgrund',
-		'Nexus / Verbund',
-		'Regentin / Schlachtenkämpfer / Standfesten',
-		'Visionär / Bluttaumel / Wunderholm / Streitmacht / "Wanderholt"',
-		'Finterschmied PvE / Finterschmied PvP / "Kushbar"',
-		'"Barthir"'
+		60 => array(
+			'Abgrund',
+			'Nexus / Verbund',
+			'Regentin / Schlachtenkämpfer / Standfesten',
+			'Visionär / Bluttaumel / Wunderholm / Streitmacht / Patron / ...',
+			'Finterschmied PvE / Finterschmied PvP / Verwüster / ...',
+			'Prototyp / ...'
+		),
+		65 => array(
+			'normal mode set',
+			'hard mode set',
+			'VM4'
+		)
 	),
 	'skillNames'				=> array(
 		'titanicFavor' 									=> 'Gefallen der Titanen',
+		'vampiricPulse'									=> 'Vampirimpuls',
 		'focusHeal' 									=> 'Konzentrierte Heilung',
 		'healingCircle'									=> 'Heilungskreis',
 		'healingImmersion' 								=> 'Heilendes Eintauchen',
@@ -114,5 +127,13 @@ $descriptions = array(
 		'nine' 											=> 'Verzaubert auf +9',
 		'mw_nine'										=> 'Meisterwerk verzaubert auf +9',
 		'mw_twelve'										=> 'Meisterwerk verzaubert auf +12'
+	),
+	'etchings'					=> array(
+		'none'											=> 'Keine Heilungsgravierung',
+		'etching_1_tmp'									=> 'Heilungsgravierung I temporär',
+		'etching_2_tmp'									=> 'Heilungsgravierung II temporär',
+		'etching_2'										=> 'Heilungsgravierung II',
+		'etching_3_tmp'									=> 'Heilungsgravierung III temporär',
+		'etching_3'										=> 'Heilungsgravierung III'
 	)
 );

@@ -14,6 +14,8 @@
 		$weaponNames = Language::translateWeaponNames($weaponNames, $desc);
 		$skills = Language::translateSkills($skills, $desc);
 		$enchants = Language::translateEnchants($enchants, $desc);
+		$etchings = Language::translateEtchings($etchings, $desc);
+		$necklaceBonuses = Language::translateNecklaceBonuses($necklaceBonuses, $desc);
 		?>
 
 		<meta charset="utf-8" />
@@ -82,8 +84,8 @@
 				<?php echo UI::createLegend($desc->base); ?>
 
 				<?php echo UI::createInput('weaponBase', $desc->baseWeapon, $data->weaponBase); ?>
-				<?php echo UI::createInfoList('weaponBaseMystic', $desc->mysticWeapons, array_combine($weapons->mystic, $weaponNames), 'weaponBase'); ?>
-				<?php echo UI::createInfoList('weaponBasePriest', $desc->priestWeapons, array_combine($weapons->priest, $weaponNames), 'weaponBase'); ?>
+				<?php echo UI::createInfoList('weaponBaseMystic', $desc->mysticWeapons, Misc::mergeWeaponValues($weapons->mystic, $weaponNames), 'weaponBase', $desc->level.' '); ?>
+				<?php echo UI::createInfoList('weaponBasePriest', $desc->priestWeapons, Misc::mergeWeaponValues($weapons->priest, $weaponNames), 'weaponBase', $desc->level.' '); ?>
 
 				<?php echo UI::createInput('skillBase', $desc->baseSkill, $data->skillBase); ?>
 				<?php echo UI::createInfoList('skillBaseMystic', $desc->mysticSkills, $skills->mystic, 'skillBase'); ?>
@@ -106,6 +108,9 @@
 				<?php echo UI::createSelect('weaponBonusPlus', $desc->weaponPlus, $data->weaponBonusPlus, $desc->boolValues); ?>
 				<?php echo UI::createInfo('weaponBonusFix', $desc->weaponFix, $desc->yes, $data->weaponBonusFix); ?>
 				<?php echo UI::createInfo('weaponBonusMw', $desc->weaponMw, $desc->yes, $data->weaponBonusMw); ?>
+
+				<?php echo UI::createSpacing(); ?>
+				<?php echo UI::createSelect('weaponEtching', $desc->weaponEtching, $data->weaponEtching, $etchings); ?>
 			</fieldset>
 
 			<fieldset>
@@ -124,19 +129,23 @@
 				<?php echo UI::createSelect('glovesBonusZero', $desc->glovesZero, $data->glovesBonusZero, $desc->boolValues); ?>
 				<?php echo UI::createSelect('glovesBonusPlus', $desc->glovesPlus, $data->glovesBonusPlus, $desc->boolValues); ?>
 				<?php echo UI::createSelect('glovesBonusMw', $desc->glovesMw, $data->glovesBonusMw, range(0, 3)); ?>
+
+				<?php echo UI::createSpacing(); ?>
+				<?php echo UI::createSelect('glovesEtching', $desc->glovesEtching, $data->glovesEtching, Misc::filterKeys($etchings, $etchingGlovesExclude)); ?>
 			</fieldset>
 
 			<fieldset>
 				<?php echo UI::createLegend($desc->jewels); ?>
 
-				<?php echo UI::createSelect('oldJewels', $desc->jewelsOld, $data->oldJewels, range(0, 3)); ?>
 				<?php echo UI::createSelect('newJewels', $desc->jewelsNew, $data->newJewels, range(0, 3)); ?>
+				<?php echo UI::createSelect('oldJewels', $desc->jewelsOld, $data->oldJewels, range(0, 3)); ?>
 				<?php echo UI::createSelect('specialRings', $desc->jewelsSpecial, $data->specialRings, range(0, 2)); ?>
 				<?php echo UI::createSpacing(); ?>
 
-				<?php echo UI::createSelect('jewelSet1', $desc->jewelSet1, $data->jewelSet1, $desc->boolValues); ?>
+				<?php echo UI::createSelect('necklaceBonus', $desc->necklaceBonus, $data->necklaceBonus, $necklaceBonuses); ?>
 				<?php echo UI::createSpacing(); ?>
 
+				<?php echo UI::createSelect('jewelSet1', $desc->jewelSet1, $data->jewelSet1, $desc->boolValues); ?>
 				<?php echo UI::createSelect('jewelSet2_1', $desc->jewelSet2_1, $data->jewelSet2_1, $desc->boolValues); ?>
 				<?php echo UI::createSelect('jewelSet2_2', $desc->jewelSet2_2, $data->jewelSet2_2, $desc->boolValues); ?>
 			</fieldset>
@@ -170,8 +179,8 @@
 					<?php echo UI::createSelect('chestBonusPlus', $desc->chestPlus, $data->chestBonusPlus, $desc->boolValues); ?>
 					<?php echo UI::createSpacing(); ?>
 
-					<?php echo UI::createSelect('oldEarrings', $desc->earringsOld, $data->oldEarrings, range(0, 2)); ?>
 					<?php echo UI::createSelect('newEarrings', $desc->earringsNew, $data->newEarrings, range(0, 2)); ?>
+					<?php echo UI::createSelect('oldEarrings', $desc->earringsOld, $data->oldEarrings, range(0, 2)); ?>
 					<?php echo UI::createSpacing(); ?>
 
 					<?php echo UI::createSelect('heartPotion', $desc->targetHeartPotion, $data->heartPotion, $desc->boolValues); ?>
