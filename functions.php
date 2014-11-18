@@ -470,11 +470,10 @@ abstract class Data {
 
 		$data->targetHealBonus = self::sumTargetHealBonus($data);
 
-		//one of those two has to be it, need to check first
-		$data->skillBaseEtched = $data->skillBase + MISC::getEtchingValue($data->weaponEtching) + MISC::getEtchingValue($data->glovesEtching);
+		//add etching to base weapon heal stat
 		$data->weaponBaseEtched = $data->weaponBase + MISC::getEtchingValue($data->weaponEtching) + MISC::getEtchingValue($data->glovesEtching);
 
-		$data->healing = self::calcHeal($data->skillBase, $data->weaponBase, $data->healBonus, $data->targetHealBonus);
+		$data->healing = self::calcHeal($data->skillBase, $data->weaponBaseEtched, $data->healBonus, $data->targetHealBonus);
 		self::multiplyHealing($data);
 		$data->critHealing = self::calcCritHeal($data->healing);
 

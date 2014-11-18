@@ -101,9 +101,9 @@ $descriptions = array(
 			'Abgrund',
 			'Nexus / Verbund',
 			'Regentin / Schlachtenkämpfer / Standfesten',
-			'Visionär / Bluttaumel / Wunderholm / Streitmacht / Patron / ...',
-			'Finterschmied PvE / Finterschmied PvP / Verwüster / ...',
-			'Prototyp / ...'
+			'Visionär / Bluttaumel / Wunderholm / Streitmacht / Patron / Novize',
+			'Finterschmied PvE / Finterschmied PvP / Verwüster / Günstling',
+			'Prototyp / Überflieger'
 		),
 		65 => array(
 			'normal mode set',
