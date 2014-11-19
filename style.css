@@ -90,8 +90,8 @@ fieldset > label, fieldset > section > label {
 	clear: left;
 	display: inline-block;
 }
-fieldset > label, fieldset > select, fieldset > input:not([type="hidden"]):not([type="submit"]),
-fieldset > section > label, fieldset > section > select, fieldset > section > input:not([type="hidden"]):not([type="submit"]) {
+fieldset > label, fieldset > select, fieldset > span, fieldset > input:not([type="hidden"]):not([type="submit"]),
+fieldset > section > label, fieldset > section > select, fieldset > section > span, fieldset > section > input:not([type="hidden"]):not([type="submit"]) {
 	float: left;
 }
 input[type="text"], input[type="number"] {
@@ -132,7 +132,7 @@ input[type="submit"] {
 	font-weight: bold;
 }
 fieldset > label, fieldset > section > label {
-	width: 330px;
+	width: 380px;
 	padding-right: 5px;
 }
 fieldset fieldset > label {
@@ -265,4 +265,8 @@ fieldset > input + input[type="checkbox"]:checked + label + section,
 fieldset > hr + input[type="checkbox"]:checked + label + section,
 fieldset > select + input[type="checkbox"]:checked + label + section {
 	display: block;
+}
+
+/* info checkbox styling */
+input[type="checkbox"][id^="info_"]:disabled {
 }

@@ -1,10 +1,16 @@
 window.addEvent('domready', function(){
 
 	//helper functions
-	var toggleSelect = function(el, enabled, value, callback){
+	var toggleInput = function(el, enabled, value, callback){
 		el.set('disabled', !enabled);
 		if(!enabled){
-			el.set('value', value || 0);
+			if(el.get('tag')=='input' && el.get('type')=='checkbox'){
+				el.set('checked', value || false);
+			}
+			else{
+				el.set('value', value || 0);
+			}
+
 			if(callback){
 				callback.apply(el);
 			}
@@ -77,23 +83,24 @@ window.addEvent('domready', function(){
 			globalEnchants = window.enchants;
 
 		//weapon
-		toggleSelect(document.id('weaponBonusZero'), types.weapon!=globalTypes.new);
-		toggleSelect(document.id('weaponBonusPlus'), enchants.weapon!=globalEnchants.none);
+		toggleInput(document.id('weaponBonusZero'), types.weapon!=globalTypes.new);
+		toggleInput(document.id('weaponBonusPlus'), enchants.weapon!=globalEnchants.none);
 		toggleInfo(document.id('weaponBonusFix'), types.weapon>=globalTypes.current && enchants.weapon!=globalEnchants.none);
 		toggleInfo(document.id('weaponBonusMw'), types.weapon==globalTypes.current && enchants.weapon==globalEnchants.mw.twelve);
 
 		//gloves
-		toggleSelect(document.id('glovesEnchant'), types.gloves!=globalTypes.none, globalEnchants.none, function(){ enchants.gloves = this.get('value').toInt(); });
+		toggleInput(document.id('glovesEnchant'), types.gloves!=globalTypes.none, globalEnchants.none, function(){ enchants.gloves = this.get('value').toInt(); });
 		toggleInfo(document.id('glovesBonusBase'), types.gloves==globalTypes.new);
-		toggleSelect(document.id('glovesBonusZero'), types.gloves!=globalTypes.new && types.gloves!=globalTypes.none);
-		toggleSelect(document.id('glovesBonusPlus'), types.gloves!=globalTypes.none && enchants.gloves!=globalEnchants.none);
-		toggleSelect(document.id('glovesBonusMw'), types.gloves==globalTypes.current && types.gloves!=globalTypes.none && enchants.gloves==globalEnchants.mw.twelve, ((types.gloves==globalTypes.new && enchants.gloves==globalEnchants.mw.twelve) ? 3 : 0));
+		toggleInput(document.id('glovesBonusZero'), types.gloves!=globalTypes.new && types.gloves!=globalTypes.none);
+		toggleInput(document.id('glovesBonusPlus'), types.gloves!=globalTypes.none && enchants.gloves!=globalEnchants.none);
+		toggleInput(document.id('glovesBonusMw'), types.gloves==globalTypes.current && types.gloves!=globalTypes.none && enchants.gloves==globalEnchants.mw.twelve, ((types.gloves==globalTypes.new && enchants.gloves==globalEnchants.mw.twelve) ? 3 : 0));
+		toggleInput(document.id('glovesEtching'), types.gloves!=globalTypes.none);
 
 		//chest
-		toggleSelect(document.id('chestEnchant'), types.chest!=globalTypes.none, globalEnchants.none, function(){ enchants.chest = this.get('value').toInt(); });
-		toggleSelect(document.id('chestBonusBase'), types.chest!=globalTypes.new && types.chest!=globalTypes.none);
-		toggleSelect(document.id('chestBonusZero'), types.chest!=globalTypes.new && types.chest!=globalTypes.none);
-		toggleSelect(document.id('chestBonusPlus'),  types.chest!=globalTypes.none && enchants.chest!=globalEnchants.none);
+		toggleInput(document.id('chestEnchant'), types.chest!=globalTypes.none, globalEnchants.none, function(){ enchants.chest = this.get('value').toInt(); });
+		toggleInput(document.id('chestBonusBase'), types.chest!=globalTypes.new && types.chest!=globalTypes.none);
+		toggleInput(document.id('chestBonusZero'), types.chest!=globalTypes.new && types.chest!=globalTypes.none);
+		toggleInput(document.id('chestBonusPlus'),  types.chest!=globalTypes.none && enchants.chest!=globalEnchants.none);
 	};
 	document.getElements('#weaponType, #weaponEnchant, #glovesType, #glovesEnchant, #chestType, #chestEnchant').addEvent('change', toggleElements);
 	toggleElements();
@@ -103,23 +110,21 @@ window.addEvent('domready', function(){
 
 	//element checker to toggle jewel set options based on input
 	var toggleRings = function(){
-		toggleSelect(document.id('specialRings'), document.id('oldJewels').get('value').toInt());
+		toggleInput(document.id('specialRings'), document.id('oldJewels').get('value').toInt());
 	};
-	document.getElements('#oldJewels').addEvent('change', toggleRings);
+	document.getElements('#oldJewels, #newJewels').addEvent('change', toggleRings);
 	toggleRings();
 
 	//element checker to toggle jewel set options based on input
 	var toggleJewelSets = function(){
 		var enabled = {
-			'set1': document.id('jewelSet1').get('value').toInt(),
-			'set2_1': document.id('jewelSet2_1').get('value').toInt(),
-			'set2_2': document.id('jewelSet2_2').get('value').toInt()
+			'set1': document.id('jewelSet1').get('checked'),
+			'set2_1': document.id('jewelSet2_1').get('checked'),
+			'set2_2': document.id('jewelSet2_2').get('checked')
 		};
 
-		toggleSelect(document.id('jewelSet2_1'), (enabled.set1 && !enabled.set2_2));
-		enabled.set2_1 = document.id('jewelSet2_1').get('value').toInt();
-
-		toggleSelect(document.id('jewelSet2_2'), ((enabled.set1 && !enabled.set2_1) || (!enabled.set1 && enabled.set2_1)));
+		toggleInput(document.id('jewelSet2_1'), (enabled.set1 && !enabled.set2_2), false, function(){ enabled.set2_1 = this.get('checked'); });
+		toggleInput(document.id('jewelSet2_2'), (enabled.set1 && !enabled.set2_1));
 	};
 	document.getElements('#jewelSet1, #jewelSet2_1, #jewelSet2_2').addEvent('change', toggleJewelSets);
 	toggleJewelSets();

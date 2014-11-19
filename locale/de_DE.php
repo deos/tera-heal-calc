@@ -22,9 +22,9 @@ $descriptions = array(
 
 	'weapon'					=> 'Waffe',
 	'weaponTypeNone' 			=> 'Waffe nicht einberechnen',
-	'weaponTypeOld' 			=> 'Waffe des alten Systems (mit Kraft als Meisterwerk Boni)',
-	'weaponTypeCurrent' 		=> 'Waffe des vorherigen Systems (mit Heilung als Meiswerwerk Boni)',
-	'weaponTypeNew' 			=> 'Waffe des neuen Systems (mit Angriffsgeschwindigkeit als Meisterwerk Boni)',
+	'weaponTypeOld' 			=> 'Sehr alte Waffe mit Kraft als Meisterwerk Boni',
+	'weaponTypeCurrent' 		=> 'Alte Waffe mit Heilung als Meiswerwerk Boni',
+	'weaponTypeNew' 			=> 'Aktuelle Waffe mit Angriffsgeschw. als Meisterwerk Boni',
 	'weaponBase' 				=> 'Mit Heilbonus auf Basiswerten',
 	'weaponZero' 				=> 'Mit Heilbonus bei +0',
 	'weaponPlus' 				=> 'Mit Heilbonus auf Plusboni',
@@ -34,9 +34,9 @@ $descriptions = array(
 
 	'gloves'					=> 'Handschuhe',
 	'glovesTypeNone' 			=> 'Handschuhe nicht einrechnen',
-	'glovesTypeOld' 			=> 'Handschuhe des alten Systems (mit Kraft als Meisterwerk Boni)',
-	'glovesTypeCurrent'	 		=> 'Handschuhe des vorherigen Systems (mit rollbaren Meisterwerk Boni)',
-	'glovesTypeNew' 			=> 'Handschuhe des neuen Systems (mit Heilung als Meisterwerk Boni)',
+	'glovesTypeOld' 			=> 'Sehr alte Handschuhe mit Kraft als Meisterwerk Boni',
+	'glovesTypeCurrent'	 		=> 'Alte Handschuhe mit rollbaren Meisterwerk Boni',
+	'glovesTypeNew' 			=> 'Aktuelle Handschuhe mit Heilung als Meisterwerk Boni',
 	'glovesBase' 				=> 'Mit Heilbonus auf Basiswerten',
 	'glovesZero' 				=> 'Mit Heilbonus bei +0',
 	'glovesPlus' 				=> 'Mit Heilbonus auf Plusboni',
@@ -44,7 +44,7 @@ $descriptions = array(
 	'glovesEtching'				=> 'Handschuhgravierung',
 
 	'jewels'					=> 'Schmuck',
-	'jewelsOld' 				=> 'Anzahl alten Ringe/Halsketten mit 4,52% Heilbonus',
+	'jewelsOld' 				=> 'Anzahl alter Ringe/Halsketten mit 4,52% Heilbonus',
 	'jewelsNew' 				=> 'Anzahl Ringe/Halsketten mit 2% Heilbonus',
 	'jewelsSpecial' 			=> 'Anzahl alter Ringe mit besonderem 5% Heilbonus',
 	'necklaceBonus'				=> 'Zusätzlicher Heilbonus der Halskette',
@@ -64,8 +64,8 @@ $descriptions = array(
 	'targetHeartPotion' 		=> 'Ziel nutzt einen Herztrank III',
 
 	'chestTypeNone' 			=> 'Oberteil nicht einrechnen',
-	'chestTypeCurrent' 			=> 'Oberteil des vorherigen Systems',
-	'chestTypeNew' 				=> 'Oberteil des neuen Systems',
+	'chestTypeCurrent' 			=> 'Altes Oberteil',
+	'chestTypeNew' 				=> 'Aktuelles Oberteil',
 	'chestBase' 				=> 'Mit Heilbonus auf Basiswerten',
 	'chestZero' 				=> 'Mit Heilbonus bei +0',
 	'chestPlus' 				=> 'Mit Heilbonus auf Plusboni',
@@ -89,7 +89,7 @@ $descriptions = array(
 
 	'info'						=> 'Hinweise',
 	'infoTexts'					=> array(
-		'Geringe Abweichungen der Ergebnisse zu tatsächlichen Heilungen im Spiel sind normal, sind jedoch kaum merklich',
+		'Bei Schmucksets kann entweder ein Set voll genutzt werden oder 2 Sets gemischt um je den Bonus für 2 Teile zu erhalten',
 		'Begrenzungen einzelner Fertigkeiten werden nicht berücksichtigt',
 		'Dank für die Berechnungsformel geht an Karyudo und alle die sonst beteiligt waren!'
 	),

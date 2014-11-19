@@ -114,8 +114,8 @@ $fields->number = array(
 	'weaponEtching' => 0, 'glovesEtching' => 0
 );
 $fields->bool = array(
-	'includeTargetBonus' => true,
-	'showCrystals' => true, 'showTarget' => true,
+	'includeTargetBonus' => false,
+	'showCrystals' => true, 'showTarget' => false,
 	'showGlyphs' => false, 'showNoctenium' => false, 'showClassEquipStats' => false,
 	'glyphPriestHealThyself' => false, 'glyphPriestHealingCircle' => false,
 	'glyphPriestHealingImmersion' => false,

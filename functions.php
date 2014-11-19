@@ -148,7 +148,13 @@ abstract class UI {
 	public static function createInfo($id, $description, $info, $value = null, $selectable = false){
 		$html = self::createLabel(null, $description, false, $id);
 
-		$html .= '<input '.($selectable ? 'type="text" readonly="readonly"' : 'type="button" disabled="disabled"').' value="'.r($info).'" id="info_'.r($id).'"/>';
+		if($info===true || $info===false){
+			$html .= self::createCheck('info_'.$id, null, $info, true, true);
+		}
+		else{
+			$html .= '<input '.($selectable ? 'type="text" readonly="readonly"' : 'type="button" disabled="disabled"').' value="'.r($info).'" id="info_'.r($id).'"/>';
+		}
+
 		if($value!==null){
 			$html .= '<input type="hidden" name="'.r($id).'" id="'.r($id).'" value="'.r($value).'"/>';
 		}
@@ -162,13 +168,23 @@ abstract class UI {
 	 * @param string $id          Element ID
 	 * @param string $description Description text
 	 * @param bool   $checked     Checked state
+	 * @param bool   $wrap        [optional] Wrap checkbox in span (default false)
+	 * @param bool   $disabled    [optional] Disable checkbox (default false)
 	 *
 	 * @return string
 	 */
-	public static function createCheck($id, $description, $checked){
+	public static function createCheck($id, $description, $checked, $wrap=false, $disabled=false){
 		$html = self::createLabel($id, $description);
 
-		$html .= '<input type="checkbox" value="1" id="'.r($id).'" name="'.r($id).'" '.($checked ? 'checked="checked"' : '').'/>';
+		if($wrap){
+			$html .= '<span>';
+		}
+
+		$html .= '<input type="checkbox" value="1" id="'.r($id).'" name="'.r($id).'" '.($checked ? 'checked="checked"' : '').' '.($disabled ? 'disabled="disabled"' : '').'/>';
+
+		if($wrap){
+			$html .= '</span>';
+		}
 
 		return $html;
 	}
@@ -709,6 +725,7 @@ abstract class Data {
 	 */
 	public static function calcHeal($skillBase, $weaponBase, $healBonus = 0.0, $etchingBonus = 0, $targetHealBonus = 0.0){
 		//Healing done = HealSpellBase * (1 + HPOnWeapon * (1 + BonusHealingDone) / 1000) * (1 + HealingReceivedOnTarget)
+		//etching is simply added on weaponBase HP value
 		return floor($skillBase * (1 + ($weaponBase + $etchingBonus) * (1 + $healBonus/100) / 1000) * (1 + $targetHealBonus/100));
 	}
 
@@ -1011,7 +1028,7 @@ abstract class Misc {
 		$result = array();
 
 		array_walk($values, function($values, $lvl) use (&$result, $names){
-			$result[$lvl] = array_combine($values, $names[$lvl]);
+			$result[$lvl] = array_reverse(array_combine($values, $names[$lvl]), true);
 		});
 
 		return array_reverse($result, true);

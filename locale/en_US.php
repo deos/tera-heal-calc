@@ -22,9 +22,9 @@ $descriptions = array(
 
 	'weapon'					=> 'Weapon',
 	'weaponTypeNone' 			=> 'Do not calculate weapon',
-	'weaponTypeOld' 			=> 'Weapon from old system (has power on masterwork bonuses)',
-	'weaponTypeCurrent' 		=> 'Weapon from previous system (has heal on masterwork bonuses)',
-	'weaponTypeNew' 			=> 'Weapon from new system (has attackspeed on masterwork bonuses)',
+	'weaponTypeOld' 			=> 'Very old weapon with power masterwork bonuses',
+	'weaponTypeCurrent' 		=> 'Old weapon with heal masterwork bonuses',
+	'weaponTypeNew' 			=> 'Current weapon with attackspeed masterwork bonuses',
 	'weaponBase' 				=> 'Has healbonus on base stat',
 	'weaponZero' 				=> 'Has healbonus at +0',
 	'weaponPlus' 				=> 'Has healbonus at plus bonuses',
@@ -34,9 +34,9 @@ $descriptions = array(
 
 	'gloves'					=> 'Gloves',
 	'glovesTypeNone' 			=> 'Do not calculate gloves',
-	'glovesTypeOld' 			=> 'Gloves from old system (has power on masterwork bonuses)',
-	'glovesTypeCurrent'	 		=> 'Gloves from previous system (has rollable masterwork bonuses)',
-	'glovesTypeNew' 			=> 'Gloves from new system (has heal on masterwork bonuses)',
+	'glovesTypeOld' 			=> 'Very old gloves with power masterwork bonuses',
+	'glovesTypeCurrent'	 		=> 'Old gloves with rollable masterwork bonuses',
+	'glovesTypeNew' 			=> 'Current gloves with heal masterwork bonuses',
 	'glovesBase' 				=> 'Has healbonus on base stat',
 	'glovesZero' 				=> 'Has healbonus at +0',
 	'glovesPlus' 				=> 'Has healbonus at plus bonuses',
@@ -64,8 +64,8 @@ $descriptions = array(
 	'targetHeartPotion' 		=> 'Target uses heart potion III',
 
 	'chestTypeNone' 			=> 'Do not calculate chest',
-	'chestTypeCurrent' 			=> 'Chest from previous system',
-	'chestTypeNew' 				=> 'Chest from new system',
+	'chestTypeCurrent' 			=> 'Old chest',
+	'chestTypeNew' 				=> 'Current chest',
 	'chestBase' 				=> 'Has healbonus on base stat',
 	'chestZero' 				=> 'Has healbonus at +0',
 	'chestPlus' 				=> 'Has healbonus at plus bonuses',
@@ -89,7 +89,7 @@ $descriptions = array(
 
 	'info'						=> 'Information',
 	'infoTexts'					=> array(
-		'Little deviations between results and real ingame heals are normal, but barely noticeable',
+		'On jewel sets you can either use one set full or combine 2 sets to get double the bonus for 2 items',
 		'Limits of some skills are ignored',
 		'Thanks for the calculation formula goes to Karyudo and everybody else involved!'
 	),

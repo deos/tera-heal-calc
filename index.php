@@ -103,11 +103,11 @@
 				<?php echo UI::createSelect('weaponEnchant', $desc->enchant, $data->weaponEnchant, $enchants); ?>
 				<?php echo UI::createSpacing(); ?>
 
-				<?php echo UI::createSelect('weaponBonusBase', $desc->weaponBase, $data->weaponBonusBase, $desc->boolValues); ?>
-				<?php echo UI::createSelect('weaponBonusZero', $desc->weaponZero, $data->weaponBonusZero, $desc->boolValues); ?>
-				<?php echo UI::createSelect('weaponBonusPlus', $desc->weaponPlus, $data->weaponBonusPlus, $desc->boolValues); ?>
-				<?php echo UI::createInfo('weaponBonusFix', $desc->weaponFix, $desc->yes, $data->weaponBonusFix); ?>
-				<?php echo UI::createInfo('weaponBonusMw', $desc->weaponMw, $desc->yes, $data->weaponBonusMw); ?>
+				<?php echo UI::createCheck('weaponBonusBase', $desc->weaponBase, $data->weaponBonusBase, true); ?>
+				<?php echo UI::createCheck('weaponBonusZero', $desc->weaponZero, $data->weaponBonusZero, true); ?>
+				<?php echo UI::createCheck('weaponBonusPlus', $desc->weaponPlus, $data->weaponBonusPlus, true); ?>
+				<?php echo UI::createInfo('weaponBonusFix', $desc->weaponFix, true, $data->weaponBonusFix); ?>
+				<?php echo UI::createInfo('weaponBonusMw', $desc->weaponMw, true, $data->weaponBonusMw); ?>
 
 				<?php echo UI::createSpacing(); ?>
 				<?php echo UI::createSelect('weaponEtching', $desc->weaponEtching, $data->weaponEtching, $etchings); ?>
@@ -125,9 +125,9 @@
 				<?php echo UI::createSelect('glovesEnchant', $desc->enchant, $data->glovesEnchant, $enchants); ?>
 				<?php echo UI::createSpacing(); ?>
 
-				<?php echo UI::createInfo('glovesBonusBase', $desc->glovesBase, $desc->yes, $data->glovesBonusBase); ?>
-				<?php echo UI::createSelect('glovesBonusZero', $desc->glovesZero, $data->glovesBonusZero, $desc->boolValues); ?>
-				<?php echo UI::createSelect('glovesBonusPlus', $desc->glovesPlus, $data->glovesBonusPlus, $desc->boolValues); ?>
+				<?php echo UI::createInfo('glovesBonusBase', $desc->glovesBase, true, $data->glovesBonusBase); ?>
+				<?php echo UI::createCheck('glovesBonusZero', $desc->glovesZero, $data->glovesBonusZero, true); ?>
+				<?php echo UI::createCheck('glovesBonusPlus', $desc->glovesPlus, $data->glovesBonusPlus, true); ?>
 				<?php echo UI::createSelect('glovesBonusMw', $desc->glovesMw, $data->glovesBonusMw, range(0, 3)); ?>
 
 				<?php echo UI::createSpacing(); ?>
@@ -145,13 +145,13 @@
 				<?php echo UI::createSelect('necklaceBonus', $desc->necklaceBonus, $data->necklaceBonus, $necklaceBonuses); ?>
 				<?php echo UI::createSpacing(); ?>
 
-				<?php echo UI::createSelect('broochBonus1', $desc->broochBonus1, $data->broochBonus1, $desc->boolValues); ?>
-				<?php echo UI::createSelect('broochBonus2', $desc->broochBonus2, $data->broochBonus2, $desc->boolValues); ?>
+				<?php echo UI::createCheck('broochBonus1', $desc->broochBonus1, $data->broochBonus1, true); ?>
+				<?php echo UI::createCheck('broochBonus2', $desc->broochBonus2, $data->broochBonus2, true); ?>
 				<?php echo UI::createSpacing(); ?>
 
-				<?php echo UI::createSelect('jewelSet1', $desc->jewelSet1, $data->jewelSet1, $desc->boolValues); ?>
-				<?php echo UI::createSelect('jewelSet2_1', $desc->jewelSet2_1, $data->jewelSet2_1, $desc->boolValues); ?>
-				<?php echo UI::createSelect('jewelSet2_2', $desc->jewelSet2_2, $data->jewelSet2_2, $desc->boolValues); ?>
+				<?php echo UI::createCheck('jewelSet1', $desc->jewelSet1, $data->jewelSet1, true); ?>
+				<?php echo UI::createCheck('jewelSet2_1', $desc->jewelSet2_1, $data->jewelSet2_1, true); ?>
+				<?php echo UI::createCheck('jewelSet2_2', $desc->jewelSet2_2, $data->jewelSet2_2, true); ?>
 			</fieldset>
 
 			<?php echo UI::createCheck('showCrystals', null, $data->showCrystals); ?>
@@ -169,7 +169,7 @@
 				<?php echo UI::createLegend($desc->target, 'showTarget'); ?>
 
 				<section>
-					<?php echo UI::createCheck('includeTargetBonus', $desc->targetInclude, $data->includeTargetBonus); ?>
+					<?php echo UI::createCheck('includeTargetBonus', $desc->targetInclude, $data->includeTargetBonus, true); ?>
 					<?php echo UI::createSpacing(); ?>
 
 					<?php echo UI::createSelect('chestType', $desc->type, $data->chestType, array(
@@ -178,16 +178,16 @@
 						TYPE_NEW 		=> $desc->chestTypeNew
 					)); ?>
 					<?php echo UI::createSelect('chestEnchant', $desc->enchant, $data->chestEnchant, $enchants); ?>
-					<?php echo UI::createSelect('chestBonusBase', $desc->chestBase, $data->chestBonusBase, $desc->boolValues); ?>
-					<?php echo UI::createSelect('chestBonusZero', $desc->chestZero, $data->chestBonusZero, $desc->boolValues); ?>
-					<?php echo UI::createSelect('chestBonusPlus', $desc->chestPlus, $data->chestBonusPlus, $desc->boolValues); ?>
+					<?php echo UI::createCheck('chestBonusBase', $desc->chestBase, $data->chestBonusBase, true); ?>
+					<?php echo UI::createCheck('chestBonusZero', $desc->chestZero, $data->chestBonusZero, true); ?>
+					<?php echo UI::createCheck('chestBonusPlus', $desc->chestPlus, $data->chestBonusPlus, true); ?>
 					<?php echo UI::createSpacing(); ?>
 
 					<?php echo UI::createSelect('newEarrings', $desc->earringsNew, $data->newEarrings, range(0, 2)); ?>
 					<?php echo UI::createSelect('oldEarrings', $desc->earringsOld, $data->oldEarrings, range(0, 2)); ?>
 					<?php echo UI::createSpacing(); ?>
 
-					<?php echo UI::createSelect('heartPotion', $desc->targetHeartPotion, $data->heartPotion, $desc->boolValues); ?>
+					<?php echo UI::createCheck('heartPotion', $desc->targetHeartPotion, $data->heartPotion, true); ?>
 				</section>
 			</fieldset>
 
@@ -199,9 +199,9 @@
 					<fieldset>
 						<?php echo UI::createLegend($desc->priest); ?>
 
-						<?php echo UI::createCheck('glyphPriestHealingCircle', $desc->skillNames['healingCircle'].' +'.GLYPH_HEALINGCIRCLE.'%', $data->glyphPriestHealingCircle); ?>
-						<?php echo UI::createCheck('glyphPriestHealingImmersion', $desc->skillNames['healingImmersion'].' +'.GLYPH_HEALINGIMMERSION.'%', $data->glyphPriestHealingImmersion); ?>
-						<?php echo UI::createCheck('glyphPriestHealThyself', $desc->skillNames['healThyself'].' +'.GLYPH_HEALTHYSELF.'%', $data->glyphPriestHealThyself); ?>
+						<?php echo UI::createCheck('glyphPriestHealingCircle', $desc->skillNames['healingCircle'].' +'.GLYPH_HEALINGCIRCLE.'%', $data->glyphPriestHealingCircle, true); ?>
+						<?php echo UI::createCheck('glyphPriestHealingImmersion', $desc->skillNames['healingImmersion'].' +'.GLYPH_HEALINGIMMERSION.'%', $data->glyphPriestHealingImmersion, true); ?>
+						<?php echo UI::createCheck('glyphPriestHealThyself', $desc->skillNames['healThyself'].' +'.GLYPH_HEALTHYSELF.'%', $data->glyphPriestHealThyself, true); ?>
 					</fieldset>
 				</section>
 			</fieldset>
@@ -214,14 +214,14 @@
 					<fieldset>
 						<?php echo UI::createLegend($desc->priest); ?>
 
-						<?php echo UI::createCheck('nocteniumPriestFocusHeal', $desc->skillNames['focusHeal'].' +'.NOCTENIUM_FOCUSHEAL.'%', $data->nocteniumPriestFocusHeal); ?>
-						<?php echo UI::createCheck('nocteniumPriestHealingCircle', $desc->skillNames['healingCircle'].' +'.NOCTENIUM_HEALINGCIRCLE.'%', $data->nocteniumPriestHealingCircle); ?>
-						<?php echo UI::createCheck('nocteniumPriestHealThyself', $desc->skillNames['healThyself'].' +'.NOCTENIUM_HEALTHYSELF.'%', $data->nocteniumPriestHealThyself); ?>
+						<?php echo UI::createCheck('nocteniumPriestFocusHeal', $desc->skillNames['focusHeal'].' +'.NOCTENIUM_FOCUSHEAL.'%', $data->nocteniumPriestFocusHeal, true); ?>
+						<?php echo UI::createCheck('nocteniumPriestHealingCircle', $desc->skillNames['healingCircle'].' +'.NOCTENIUM_HEALINGCIRCLE.'%', $data->nocteniumPriestHealingCircle, true); ?>
+						<?php echo UI::createCheck('nocteniumPriestHealThyself', $desc->skillNames['healThyself'].' +'.NOCTENIUM_HEALTHYSELF.'%', $data->nocteniumPriestHealThyself, true); ?>
 					</fieldset>
 					<fieldset>
 						<?php echo UI::createLegend($desc->mystic); ?>
 
-						<?php echo UI::createCheck('nocteniumMysticTitanicFavor', $desc->skillNames['titanicFavor'].' +'.NOCTENIUM_TITANICFAVOR.'%', $data->nocteniumMysticTitanicFavor); ?>
+						<?php echo UI::createCheck('nocteniumMysticTitanicFavor', $desc->skillNames['titanicFavor'].' +'.NOCTENIUM_TITANICFAVOR.'%', $data->nocteniumMysticTitanicFavor, true); ?>
 					</fieldset>
 				</section>
 			</fieldset>
@@ -234,8 +234,8 @@
 					<fieldset>
 						<?php echo UI::createLegend($desc->priest); ?>
 
-						<?php echo UI::createCheck('classEquipStatPriestFocusHeal', $desc->skillNames['focusHeal'].' +'.CLASSEQUIP_FOCUSHEAL.'%', $data->classEquipStatPriestFocusHeal); ?>
-						<?php echo UI::createCheck('classEquipStatPriestHealingCircle', $desc->skillNames['healingCircle'].' +'.CLASSEQUIP_HEALINGCIRCLE.'%', $data->classEquipStatPriestHealingCircle); ?>
+						<?php echo UI::createCheck('classEquipStatPriestFocusHeal', $desc->skillNames['focusHeal'].' +'.CLASSEQUIP_FOCUSHEAL.'%', $data->classEquipStatPriestFocusHeal, true); ?>
+						<?php echo UI::createCheck('classEquipStatPriestHealingCircle', $desc->skillNames['healingCircle'].' +'.CLASSEQUIP_HEALINGCIRCLE.'%', $data->classEquipStatPriestHealingCircle, true); ?>
 					</fieldset>
 				</section>
 			</fieldset>
