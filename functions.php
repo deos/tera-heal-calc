@@ -699,15 +699,15 @@ abstract class Data {
 	/**
 	 * Calculate healing
 	 *
-	 * @param int $skillBase        Skill base heal
-	 * @param int $weaponBase       Weapon base heal
-	 * @param int $healBonus        [optional] Equip heal bonus (default 0)
-	 * @param int $etchingBonus     [optional] Sum of heal etching on equip (default to 0)
-	 * @param int $targetHealBonus  [optional] Target heal bonus (default 0)
+	 * @param int   $skillBase       Skill base heal
+	 * @param int   $weaponBase      Weapon base heal
+	 * @param float $healBonus       [optional] Equip heal bonus (default 0)
+	 * @param int   $etchingBonus    [optional] Sum of heal etching on equip (default to 0)
+	 * @param float $targetHealBonus [optional] Target heal bonus (default 0)
 	 *
 	 * @return int
 	 */
-	public static function calcHeal($skillBase, $weaponBase, $healBonus = 0, $etchingBonus = 0, $targetHealBonus = 0){
+	public static function calcHeal($skillBase, $weaponBase, $healBonus = 0.0, $etchingBonus = 0, $targetHealBonus = 0.0){
 		//Healing done = HealSpellBase * (1 + HPOnWeapon * (1 + BonusHealingDone) / 1000) * (1 + HealingReceivedOnTarget)
 		return floor($skillBase * (1 + ($weaponBase + $etchingBonus) * (1 + $healBonus/100) / 1000) * (1 + $targetHealBonus/100));
 	}

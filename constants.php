@@ -4,75 +4,75 @@
 define('VERSION', 'V1.3 PRE');
 
 //types
-define('TYPE_NONE', 0);                  //no item
-define('TYPE_OLD', 1);                   //item pre patch QoA2
-define('TYPE_CURRENT', 2);               //item past patch QoA2 (current items)
-define('TYPE_NEW', 3);                   //items past patch Fortress (upcoming items)
+define('TYPE_NONE', 0);					//no item
+define('TYPE_OLD', 1);					//item pre patch QoA2
+define('TYPE_CURRENT', 2);				//item past patch QoA2 (current items)
+define('TYPE_NEW', 3);					//items past patch Fortress (upcoming items)
 
 //enchantments
-define('ENCHANT_NONE', 0);               //no enchant or non-enchantable item
-define('ENCHANT_NINE', 1);               //enchant to +9
-define('ENCHANT_MW_NINE', 2);            //enchant to +9 and masterwork
-define('ENCHANT_MW_TWELVE', 3);          //enchant to +12 and masterwork (max)
+define('ENCHANT_NONE', 0);				//no enchant or non-enchantable item
+define('ENCHANT_NINE', 1);				//enchant to +9
+define('ENCHANT_MW_NINE', 2);			//enchant to +9 and masterwork
+define('ENCHANT_MW_TWELVE', 3);			//enchant to +12 and masterwork (max)
 
 //weapon
-define('BONUS_WEAPON_OLD_PLAIN', 7);     //7% on old non-mw weapons on all stats
-define('BONUS_WEAPON_OLD_BASE', 7.5);    //7.5% on old weapons at base and +0
-define('BONUS_WEAPON_OLD', 8);           //8% on old weapons
-define('BONUS_WEAPON_OLD_MW', 4.5);      //3*1.5% on old weapon mw
-define('BONUS_WEAPON_NEW_PLAIN', 4.5);   //4.5% on new non-mw weapons
-define('BONUS_WEAPON_NEW', 6);           //6% on new weapons
-define('BONUS_WEAPON_FIX', 6);           //2+4% at 2/4 on weapons, current and new
+define('BONUS_WEAPON_OLD_PLAIN', 7);	//7% on old non-mw weapons on all stats
+define('BONUS_WEAPON_OLD_BASE', 7.5);	//7.5% on old weapons at base and +0
+define('BONUS_WEAPON_OLD', 8);			//8% on old weapons
+define('BONUS_WEAPON_OLD_MW', 4.5);		//3*1.5% on old weapon mw
+define('BONUS_WEAPON_NEW_PLAIN', 4.5);	//4.5% on new non-mw weapons
+define('BONUS_WEAPON_NEW', 6);			//6% on new weapons
+define('BONUS_WEAPON_FIX', 6);			//2+4% at 2/4 on weapons, current and new
 
 //gloves
-define('BONUS_GLOVES_OLD_PLAIN', 4.52);  //4.52% on old non-mw gloves on all stats
-define('BONUS_GLOVES_OLD_BASE', 5.1);    //5.1% on old gloves at +0
-define('BONUS_GLOVES_OLD', 5.68);        //5.68% on old gloves
-define('BONUS_GLOVES_OLD_MW', 4.5);      //3*1.5% on old gloves mw
-define('BONUS_GLOVES_NEW_PLAIN', 2.25);  //2.25% on old non-mw gloves
-define('BONUS_GLOVES_NEW', 3);           //3% on new gloves
-define('BONUS_GLOVES_NEW_MW', 4.5);      //4.5% at on new globes mw
+define('BONUS_GLOVES_OLD_PLAIN', 4.52);	//4.52% on old non-mw gloves on all stats
+define('BONUS_GLOVES_OLD_BASE', 5.1);	//5.1% on old gloves at +0
+define('BONUS_GLOVES_OLD', 5.68);		//5.68% on old gloves
+define('BONUS_GLOVES_OLD_MW', 4.5);		//3*1.5% on old gloves mw
+define('BONUS_GLOVES_NEW_PLAIN', 2.25);	//2.25% on old non-mw gloves
+define('BONUS_GLOVES_NEW', 3);			//3% on new gloves
+define('BONUS_GLOVES_NEW_MW', 4.5);		//4.5% at on new globes mw
 
 //jewels
-define('BONUS_JEWELS_OLD', 4.52);        //4.5% healing on old rings and necklace
-define('BONUS_JEWELS_NEW', 2);           //2% healing on new rings and necklace
-define('BONUS_JEWELS_SPECIAL_RING', 5);  //5% bonus on special rings
-define('BONUS_JEWELS_SET_1', 3);         //3% set bonus on zenith jewels
-define('BONUS_JEWELS_SET_2_1', 3);       //3% set bonus 1st on upcoming jewels
-define('BONUS_JEWELS_SET_2_2', 2);       //2% set bonus 2nd on upcoming jewels
+define('BONUS_JEWELS_OLD', 4.52);		//4.5% healing on old rings and necklace
+define('BONUS_JEWELS_NEW', 2);			//2% healing on new rings and necklace
+define('BONUS_JEWELS_SPECIAL_RING', 5);	//5% bonus on special rings
+define('BONUS_JEWELS_SET_1', 3);		//3% set bonus on zenith jewels
+define('BONUS_JEWELS_SET_2_1', 3);		//3% set bonus 1st on upcoming jewels
+define('BONUS_JEWELS_SET_2_2', 2);		//2% set bonus 2nd on upcoming jewels
 
 //necklace
-define('BONUS_NECKLACE_1', 1);           //1% additional healing stat on necklace
-define('BONUS_NECKLACE_2', 1.5);         //1.5% additional healing stat on necklace
+define('BONUS_NECKLACE_1', 1);			//1% additional healing stat on necklace
+define('BONUS_NECKLACE_2', 1.5);		//1.5% additional healing stat on necklace
 
 //brooch
-define('BONUS_BROOCH_1', 1);             //1% additional healing stat on brooch
-define('BONUS_BROOCH_2', 1.5);           //1.5% additional healing stat on brooch
+define('BONUS_BROOCH_1', 1);			//1% additional healing stat on brooch
+define('BONUS_BROOCH_2', 1.5);			//1.5% additional healing stat on brooch
 
 //zyrks
-define('BONUS_ZYRK', 1);                 //1% healing from healing zyrk
-define('BONUS_ZYRK_PRISTINE', 2);        //2% healing from pristine healing zyrk
+define('BONUS_ZYRK', 1);				//1% healing from healing zyrk
+define('BONUS_ZYRK_PRISTINE', 2);		//2% healing from pristine healing zyrk
 
 //chest
-define('BONUS_CHEST_OLD_PLAIN', 8.6);    //8.6% recieved bonus with old non-mw chests on all stats
-define('BONUS_CHEST_OLD_BASE', 9.54);    //9.54% recieved bonus with old chest at +0
-define('BONUS_CHEST_OLD', 10.44);        //10.44% recieved bonus with old chest
-define('BONUS_CHEST_NEW_PLAIN', 4.5);    //4.5% recieved bonus with new non-mw chest
-define('BONUS_CHEST_NEW', 6);            //6% recieved bonus with new chest
+define('BONUS_CHEST_OLD_PLAIN', 8.6);	//8.6% recieved bonus with old non-mw chests on all stats
+define('BONUS_CHEST_OLD_BASE', 9.54);	//9.54% recieved bonus with old chest at +0
+define('BONUS_CHEST_OLD', 10.44);		//10.44% recieved bonus with old chest
+define('BONUS_CHEST_NEW_PLAIN', 4.5);	//4.5% recieved bonus with new non-mw chest
+define('BONUS_CHEST_NEW', 6);			//6% recieved bonus with new chest
 
 //earrings
-define('BONUS_EARRING_OLD', 4.32);       //4.32% recieved bonus with old earrings
-define('BONUS_EARRING_NEW', 3.2);        //3.2% recieved bonus with new earrings
+define('BONUS_EARRING_OLD', 4.32);		//4.32% recieved bonus with old earrings
+define('BONUS_EARRING_NEW', 3.2);		//3.2% recieved bonus with new earrings
 
 //etchings
-define('ETCHING_VALUE_1', 150);          //150 base healing increase from temporary I etching
-define('ETCHING_VALUE_2', 208);          //208 base healing increase from temporary II etching
-define('ETCHING_VALUE_3', 259);          //259 base healing increase from permanent II etching
-define('ETCHING_VALUE_4', 300);          //300 base healing increase from temporary III etching
-define('ETCHING_VALUE_5', 370);          //370 base healing increase from permanent III etching
+define('ETCHING_VALUE_1', 150);			//150 base healing increase from temporary I etching
+define('ETCHING_VALUE_2', 208);			//208 base healing increase from temporary II etching
+define('ETCHING_VALUE_3', 259);			//259 base healing increase from permanent II etching
+define('ETCHING_VALUE_4', 300);			//300 base healing increase from temporary III etching
+define('ETCHING_VALUE_5', 370);			//370 base healing increase from permanent III etching
 
 //potion
-define('BONUS_HEART_POTION', 17);        //17% recieved bonus with heart potion 3
+define('BONUS_HEART_POTION', 17);		//17% recieved bonus with heart potion 3
 
 //glyphs
 define('GLYPH_HEALINGCIRCLE', 10);		//10% glyph for priest healing circle
