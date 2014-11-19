@@ -321,6 +321,9 @@ abstract class Data {
 			if(array_key_exists($field, $source)){
 				$data->$field = max(0, (int)$source[$field]);
 			}
+			elseif(count($source)>0){
+				$data->$field = 0;
+			}
 			else{
 				$data->$field = $default;
 			}
