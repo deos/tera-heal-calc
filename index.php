@@ -145,6 +145,10 @@
 				<?php echo UI::createSelect('necklaceBonus', $desc->necklaceBonus, $data->necklaceBonus, $necklaceBonuses); ?>
 				<?php echo UI::createSpacing(); ?>
 
+				<?php echo UI::createSelect('broochBonus1', $desc->broochBonus1, $data->broochBonus1, $desc->boolValues); ?>
+				<?php echo UI::createSelect('broochBonus2', $desc->broochBonus2, $data->broochBonus2, $desc->boolValues); ?>
+				<?php echo UI::createSpacing(); ?>
+
 				<?php echo UI::createSelect('jewelSet1', $desc->jewelSet1, $data->jewelSet1, $desc->boolValues); ?>
 				<?php echo UI::createSelect('jewelSet2_1', $desc->jewelSet2_1, $data->jewelSet2_1, $desc->boolValues); ?>
 				<?php echo UI::createSelect('jewelSet2_2', $desc->jewelSet2_2, $data->jewelSet2_2, $desc->boolValues); ?>

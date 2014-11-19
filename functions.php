@@ -468,12 +468,10 @@ abstract class Data {
 		$data->crystalHealBonus = self::sumHealBonusCrystals($data);
 		$data->healBonus = $data->weaponHealBonus + $data->glovesHealBonus + $data->jewelsHealBonus + $data->crystalHealBonus;
 
+		$data->etchingHealBonus = self::sumHealBonusEtching($data);
 		$data->targetHealBonus = self::sumTargetHealBonus($data);
 
-		//add etching to base weapon heal stat
-		$data->weaponBaseEtched = $data->weaponBase + MISC::getEtchingValue($data->weaponEtching) + MISC::getEtchingValue($data->glovesEtching);
-
-		$data->healing = self::calcHeal($data->skillBase, $data->weaponBaseEtched, $data->healBonus, $data->targetHealBonus);
+		$data->healing = self::calcHeal($data->skillBase, $data->weaponBase, $data->healBonus, $data->etchingHealBonus, $data->targetHealBonus);
 		self::multiplyHealing($data);
 		$data->critHealing = self::calcCritHeal($data->healing);
 
@@ -594,6 +592,13 @@ abstract class Data {
 			$bonus += MISC::getNecklaceBonusValue($data->necklaceBonus);
 		}
 
+		if($data->broochBonus1){
+			$bonus += BONUS_BROOCH_1;
+		}
+		if($data->broochBonus2){
+			$bonus += BONUS_BROOCH_2;
+		}
+
 		if($data->jewelSet1){
 			$bonus += BONUS_JEWELS_SET_1;
 		}
@@ -625,6 +630,17 @@ abstract class Data {
 		$bonus += $data->pristineZyrks * BONUS_ZYRK_PRISTINE;
 
 		return $bonus;
+	}
+
+	/**
+	 * Sum heal bonuses from etching
+	 *
+	 * @param stdClass $data Data object
+	 *
+	 * @return float
+	 */
+	public static function sumHealBonusEtching(stdClass $data){
+		return MISC::getEtchingValue($data->weaponEtching) + MISC::getEtchingValue($data->glovesEtching);
 	}
 
 	/**
@@ -686,13 +702,14 @@ abstract class Data {
 	 * @param int $skillBase        Skill base heal
 	 * @param int $weaponBase       Weapon base heal
 	 * @param int $healBonus        [optional] Equip heal bonus (default 0)
+	 * @param int $etchingBonus     [optional] Sum of heal etching on equip (default to 0)
 	 * @param int $targetHealBonus  [optional] Target heal bonus (default 0)
 	 *
 	 * @return int
 	 */
-	public static function calcHeal($skillBase, $weaponBase, $healBonus = 0, $targetHealBonus = 0){
+	public static function calcHeal($skillBase, $weaponBase, $healBonus = 0, $etchingBonus = 0, $targetHealBonus = 0){
 		//Healing done = HealSpellBase * (1 + HPOnWeapon * (1 + BonusHealingDone) / 1000) * (1 + HealingReceivedOnTarget)
-		return floor($skillBase * (1 + $weaponBase * (1 + $healBonus/100) / 1000) * (1 + $targetHealBonus/100));
+		return floor($skillBase * (1 + ($weaponBase + $etchingBonus) * (1 + $healBonus/100) / 1000) * (1 + $targetHealBonus/100));
 	}
 
 	/**
@@ -703,7 +720,7 @@ abstract class Data {
 	 * @return int
 	 */
 	public static function calcCritHeal($heal){
-		return floor($heal * 1.5);
+		return floor($heal * CRIT_HEAL_MULTIPLIER);
 	}
 
 	/**

@@ -45,6 +45,10 @@ define('BONUS_JEWELS_SET_2_2', 2);       //2% set bonus 2nd on upcoming jewels
 define('BONUS_NECKLACE_1', 1);           //1% additional healing stat on necklace
 define('BONUS_NECKLACE_2', 1.5);         //1.5% additional healing stat on necklace
 
+//brooch
+define('BONUS_BROOCH_1', 1);             //1% additional healing stat on brooch
+define('BONUS_BROOCH_2', 1.5);           //1.5% additional healing stat on brooch
+
 //zyrks
 define('BONUS_ZYRK', 1);                 //1% healing from healing zyrk
 define('BONUS_ZYRK_PRISTINE', 2);        //2% healing from pristine healing zyrk
@@ -85,6 +89,9 @@ define('NOCTENIUM_TITANICFAVOR', 5);	//5% noctenium bonus for mystic titanic fav
 define('CLASSEQUIP_FOCUSHEAL', 15);		//15% equip bonus for priest focus heal
 define('CLASSEQUIP_HEALINGCIRCLE', 10);	//10% equip bonus for priest healing circle
 
+//crit heal multiplier
+define('CRIT_HEAL_MULTIPLIER', 1.5);	//+50% heal done on crits
+
 
 //fields
 $fields = new stdClass();
@@ -114,7 +121,8 @@ $fields->bool = array(
 	'glyphPriestHealingImmersion' => false,
 	'classEquipStatPriestFocusHeal' => false, 'classEquipStatPriestHealingCircle' => false,
 	'nocteniumPriestHealThyself' => false, 'nocteniumPriestHealingCircle' => false,
-	'nocteniumPriestFocusHeal' => false, 'nocteniumMysticTitanicFavor' => false
+	'nocteniumPriestFocusHeal' => false, 'nocteniumMysticTitanicFavor' => false,
+	'broochBonus1' => false, 'broochBonus2' => false
 );
 
 
@@ -185,9 +193,9 @@ $etchingGlovesExclude = array(
 
 //necklace bonuses (uses translation noNecklaceBonus for null value, other values are just numbers)
 $necklaceBonuses = array(
-    null,
-    BONUS_NECKLACE_1,
-    BONUS_NECKLACE_2
+	null,
+	BONUS_NECKLACE_1,
+	BONUS_NECKLACE_2
 );
 
 
