@@ -7,6 +7,7 @@ version history:
 2014-11-? (V2.0)
 - added etching
 - added necklace bonus stat
+- added earring bonus stats
 - added brooch heal stats
 - added lvl 65 weapon stats (names to be set after patch hits)
 - reworked weapon selection for lvl 65 patch

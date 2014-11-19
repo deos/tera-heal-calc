@@ -72,6 +72,9 @@ $descriptions = array(
 
 	'earringsOld' 				=> 'Anzahl alter Ohrringe des Ziels mit 4,32% Heilbonus',
 	'earringsNew' 				=> 'Anzahl Ohrringe des Ziels mit 3,2% Heilbonus',
+	'earringBonusLeft'			=> 'Zusätzlicher Heilbonus auf linkem Ohrring',
+	'earringBonusRight'			=> 'Zusätzlicher Heilbonus auf rechtem Ohrring',
+	'noEarringBonus'			=> 'Nichts',
 
 	'result'					=> 'Ergebnis',
 	'resultWeapon' 				=> 'Heilbonus der Waffe:',
@@ -89,7 +92,7 @@ $descriptions = array(
 
 	'info'						=> 'Hinweise',
 	'infoTexts'					=> array(
-		'Bei Schmucksets kann entweder ein Set voll genutzt werden oder 2 Sets gemischt um je den Bonus für 2 Teile zu erhalten',
+		'Bei Schmucksets kann entweder ein Set voll genutzt werden oder 2 Sets gemischt um den Bonus für 2 Teile von beiden Sets zu erhalten',
 		'Begrenzungen einzelner Fertigkeiten werden nicht berücksichtigt',
 		'Dank für die Berechnungsformel geht an Karyudo und alle die sonst beteiligt waren!'
 	),

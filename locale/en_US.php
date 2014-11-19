@@ -72,6 +72,9 @@ $descriptions = array(
 
 	'earringsOld' 				=> 'Number of old earrings with 4.32% healbonus',
 	'earringsNew' 				=> 'Number of earrings with 3.2% healbonus',
+	'earringBonusLeft'			=> 'Additional healbonus on left earring',
+	'earringBonusRight'			=> 'Additional healbonus on right earring',
+	'noEarringBonus'			=> 'None',
 
 	'result'					=> 'Result',
 	'resultWeapon' 				=> 'Healbonuses on weapon:',
@@ -89,7 +92,7 @@ $descriptions = array(
 
 	'info'						=> 'Information',
 	'infoTexts'					=> array(
-		'On jewel sets you can either use one set full or combine 2 sets to get double the bonus for 2 items',
+		'You can either use one full jewel set or combine 2 sets to receive the bonus for 2 items from both sets',
 		'Limits of some skills are ignored',
 		'Thanks for the calculation formula goes to Karyudo and everybody else involved!'
 	),

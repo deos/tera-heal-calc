@@ -15,7 +15,8 @@
 		$skills = Language::translateSkills($skills, $desc);
 		$enchants = Language::translateEnchants($enchants, $desc);
 		$etchings = Language::translateEtchings($etchings, $desc);
-		$necklaceBonuses = Language::translateNecklaceBonuses($necklaceBonuses, $desc);
+		$necklaceBonuses = Language::translateNumericBonuses($necklaceBonuses, $desc, 'noNecklaceBonus');
+		$earringBonuses = Language::translateNumericBonuses($earringBonuses, $desc, 'noEarringBonus');
 		?>
 
 		<meta charset="utf-8" />
@@ -185,6 +186,10 @@
 
 					<?php echo UI::createSelect('newEarrings', $desc->earringsNew, $data->newEarrings, range(0, 2)); ?>
 					<?php echo UI::createSelect('oldEarrings', $desc->earringsOld, $data->oldEarrings, range(0, 2)); ?>
+					<?php echo UI::createSpacing(); ?>
+
+					<?php echo UI::createSelect('earringBonusLeft', $desc->earringBonusLeft, $data->earringBonusLeft, $earringBonuses); ?>
+					<?php echo UI::createSelect('earringBonusRight', $desc->earringBonusRight, $data->earringBonusRight, $earringBonuses); ?>
 					<?php echo UI::createSpacing(); ?>
 
 					<?php echo UI::createCheck('heartPotion', $desc->targetHeartPotion, $data->heartPotion, true); ?>

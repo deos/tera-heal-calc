@@ -64,6 +64,12 @@ define('BONUS_CHEST_NEW', 6);			//6% recieved bonus with new chest
 define('BONUS_EARRING_OLD', 4.32);		//4.32% recieved bonus with old earrings
 define('BONUS_EARRING_NEW', 3.2);		//3.2% recieved bonus with new earrings
 
+//earring fixed bonus on some sets
+define('BONUS_EARRING_FIXED_1', 0.8);	//0.8% recieved bonus from low old earrings
+define('BONUS_EARRING_FIXED_2', 1.2);	//1.2% recieved bonus from high old earrings
+define('BONUS_EARRING_FIXED_3', 1.0);	//1.0% recieved bonus from low new earrings
+define('BONUS_EARRING_FIXED_4', 1.5);	//1.5% recieved bonus from high new earrings
+
 //etchings
 define('ETCHING_VALUE_1', 150);			//150 base healing increase from temporary I etching
 define('ETCHING_VALUE_2', 208);			//208 base healing increase from temporary II etching
@@ -111,7 +117,8 @@ $fields->number = array(
 	'jewelSet1' => 1,
 	'jewelSet2_1' => 0, 'jewelSet2_2' => 1,
 	'necklaceBonus' => 1,
-	'weaponEtching' => 0, 'glovesEtching' => 0
+	'weaponEtching' => 0, 'glovesEtching' => 0,
+	'earringBonusLeft' => 0, 'earringBonusRight' => 0
 );
 $fields->bool = array(
 	'includeTargetBonus' => false,
@@ -196,6 +203,15 @@ $necklaceBonuses = array(
 	null,
 	BONUS_NECKLACE_1,
 	BONUS_NECKLACE_2
+);
+
+//earring fixed bonuses (uses translation noEarringBonus for null value, other values are just numbers)
+$earringBonuses = array(
+	null,
+	BONUS_EARRING_FIXED_1,
+	BONUS_EARRING_FIXED_2,
+	BONUS_EARRING_FIXED_3,
+	BONUS_EARRING_FIXED_4
 );
 
 

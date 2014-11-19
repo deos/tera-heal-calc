@@ -681,6 +681,14 @@ abstract class Data {
 		$bonus += $data->oldEarrings * BONUS_EARRING_OLD;
 		$bonus += $data->newEarrings * BONUS_EARRING_NEW;
 
+		//earring bonus stats
+		if($data->earringBonusLeft){
+			$bonus += MISC::getEarringBonusValue($data->earringBonusLeft);
+		}
+		if($data->earringBonusRight){
+			$bonus += MISC::getEarringBonusValue($data->earringBonusRight);
+		}
+
 		//heart potion
 		if($data->heartPotion){
 			$bonus += BONUS_HEART_POTION;
@@ -933,12 +941,15 @@ abstract class Language {
 	 *
 	 * @param array    $necklaceBonuses Necklace bonuses
 	 * @param stdClass $desc            Description object
+	 * @param string   $nullTextKey     Key used from description to replace NULL values
+	 * @param string   $prefix          [optional] Prefix for values (default '')
+	 * @param string   $suffix          [optional] Suffix for values (default '%')
 	 *
 	 * @return array
 	 */
-	public static function translateNecklaceBonuses(array $necklaceBonuses, stdClass $desc){
-		return array_map(function($bonus) use ($desc){
-			return ($bonus > 0 ? number_format($bonus, 1, $desc->decimalSeperator, $desc->thousandSeperator).'%' : $desc->noNecklaceBonus);
+	public static function translateNumericBonuses(array $necklaceBonuses, stdClass $desc, $nullTextKey, $prefix = '', $suffix = '%'){
+		return array_map(function($bonus) use ($desc, $nullTextKey, $prefix, $suffix){
+			return ($bonus===null ? $desc->$nullTextKey : $prefix.number_format($bonus, 1, $desc->decimalSeperator, $desc->thousandSeperator).$suffix);
 		}, $necklaceBonuses);
 	}
 
@@ -1054,5 +1065,16 @@ abstract class Misc {
 	 */
 	public static function getNecklaceBonusValue($id){
 		return (constant('BONUS_NECKLACE_'.$id) ? : 0);
+	}
+
+	/**
+	 * get earring bonus value based on id
+	 *
+	 * @param int $id Earring bonus id
+	 *
+	 * @return int
+	 */
+	public static function getEarringBonusValue($id){
+		return (constant('BONUS_EARRING_FIXED_'.$id) ? : 0);
 	}
 }
