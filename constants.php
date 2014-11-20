@@ -1,7 +1,7 @@
 <?php
 
 //version
-define('VERSION', 'V1.3 PRE');
+define('VERSION', 'V2.0 PRE');
 
 //types
 define('TYPE_NONE', 0);					//no item
