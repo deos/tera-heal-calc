@@ -641,12 +641,13 @@ abstract class Data {
 	 */
 	public static function sumHealBonusCrystals(stdClass $data){
 		//limit max crystals to 4
-		self::limit($data, array('zyrks', 'pristineZyrks'), 4);
+		self::limit($data, array('zyrks', 'pristineZyrks', 'pristineZyrks2'), 4);
 
 		$bonus = 0;
 
 		$bonus += $data->zyrks * BONUS_ZYRK;
 		$bonus += $data->pristineZyrks * BONUS_ZYRK_PRISTINE;
+		$bonus += $data->pristineZyrks2 * BONUS_ZYRK_PRISTINE_2;
 
 		return $bonus;
 	}

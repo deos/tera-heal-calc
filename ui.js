@@ -130,7 +130,7 @@ window.addEvent('domready', function(){
 	toggleJewelSets();
 
 	//cant use more then 4 zyrks total
-	limitFields(document.getElements('#zyrks, #pristineZyrks'), 4);
+	limitFields(document.getElements('#zyrks, #pristineZyrks, #pristineZyrks2'), 4);
 
 	//cant have more then 2 earrings total
 	limitFields(document.getElements('#oldEarrings, #newEarrings'), 2);

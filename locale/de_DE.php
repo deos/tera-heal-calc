@@ -56,8 +56,9 @@ $descriptions = array(
 	'jewelSet2_2'				=> 'Setbonus 5 Teile PvE Schmuckset für Heiler',
 
 	'crystals' 					=> 'Kristalle',
-	'crystalsZyrks' 			=> 'Anzahl Heilzirkone mit 1%',
-	'crystalsPristineZyrks'		=> 'Anzahl Heilzirkone mit 2%',
+	'crystalsZyrks' 			=> 'Anzahl Heilzirkone mit 1% Heilbonus',
+	'crystalsPristineZyrks'		=> 'Anzahl Heilzirkone mit 2% Heilbonus',
+	'crystalsPristineZyrks2'	=> 'Anzahl Heilzirkone mit 2,5% Heilbonus',
 
 	'target'					=> 'Heilboni des Ziels',
 	'targetInclude' 			=> 'Heilboni des Ziels mit einrechnen',

@@ -162,6 +162,7 @@
 				<section>
 					<?php echo UI::createSelect('zyrks', $desc->crystalsZyrks, $data->zyrks, range(0, 4)); ?>
 					<?php echo UI::createSelect('pristineZyrks', $desc->crystalsPristineZyrks, $data->pristineZyrks, range(0, 4)); ?>
+					<?php echo UI::createSelect('pristineZyrks2', $desc->crystalsPristineZyrks2, $data->pristineZyrks2, range(0, 4)); ?>
 				</section>
 			</fieldset>
 

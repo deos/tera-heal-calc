@@ -58,6 +58,7 @@ $descriptions = array(
 	'crystals' 					=> 'Crystals',
 	'crystalsZyrks' 			=> 'Number of zyrks with 1% healbonus',
 	'crystalsPristineZyrks'		=> 'Number of zyrks with 2% healbonus',
+	'crystalsPristineZyrks2'	=> 'Number of zyrks with 2.5% healbonus',
 
 	'target'					=> 'Healbonuses on target',
 	'targetInclude' 			=> 'Include healbonuses on target',

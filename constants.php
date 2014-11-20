@@ -52,6 +52,7 @@ define('BONUS_BROOCH_2', 1.5);			//1.5% additional healing stat on brooch
 //zyrks
 define('BONUS_ZYRK', 1);				//1% healing from healing zyrk
 define('BONUS_ZYRK_PRISTINE', 2);		//2% healing from pristine healing zyrk
+define('BONUS_ZYRK_PRISTINE_2', 2.5);	//2.5% healing from pristine healing zyrk 2
 
 //chest
 define('BONUS_CHEST_OLD_PLAIN', 8.6);	//8.6% recieved bonus with old non-mw chests on all stats
@@ -118,7 +119,8 @@ $fields->number = array(
 	'jewelSet2_1' => 0, 'jewelSet2_2' => 1,
 	'necklaceBonus' => 1,
 	'weaponEtching' => 0, 'glovesEtching' => 0,
-	'earringBonusLeft' => 0, 'earringBonusRight' => 0
+	'earringBonusLeft' => 0, 'earringBonusRight' => 0,
+	'pristineZyrks2' => 0
 );
 $fields->bool = array(
 	'includeTargetBonus' => false,
