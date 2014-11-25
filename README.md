@@ -4,7 +4,7 @@ Includes all known cases to calculate the heal output on every possible scenario
 
 version history:
 
-2014-11-? (V2.0)
+2014-11-24 (V2.0)
 - added etching
 - added necklace bonus stat
 - added earring bonus stats
