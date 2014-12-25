@@ -164,17 +164,17 @@ $weaponNames = array(
 //skill base stat list for shortcuts //lvl 65 updates to be enabled
 $skills = new stdClass();
 $skills->mystic = array(
-	'titanicFavor' => 2536 //2547,
-	//'vampiricPulse' => 2439
+	'titanicFavor' => 2547,
+	'vampiricPulse' => 2439
 );
 $skills->priest = array(
-	'focusHeal' => 2360, //2438
-	'healingCircle' => 4227, //3981
-	'healingImmersion' => 3543, //3937
-	'restorativeBurst' => 575, //588
-	'regenerationCircle' => 214, //220
+	'focusHeal' => 2438,
+	'healingCircle' => 3981,
+	'healingImmersion' => 3937,
+	'restorativeBurst' => 588,
+	'regenerationCircle' => 220,
 	'blessingOfBalder' => 73,
-	'healThyself' => 2437 //2447
+	'healThyself' => 2447
 );
 
 //enchant levels
