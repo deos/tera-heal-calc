@@ -112,9 +112,9 @@ $descriptions = array(
 			'Prototyp / Überflieger'
 		),
 		65 => array(
-			'normal mode set',
-			'hard mode set',
-			'VM4'
+			'Grenzgänger / Anfechter',
+			'Entdecker / Missachter',
+			'Schöpfer / Abtrünnigen'
 		)
 	),
 	'skillNames'				=> array(

@@ -112,9 +112,9 @@ $descriptions = array(
 			'Archetype / Advantaged'
 		),
 		65 => array(
-			'normal mode set',
-			'hard mode set',
-			'VM4'
+			'Ambit / Controvert',
+			'Discovery / Defiance',
+			'Generation / Renegade'
 		)
 	),
 	'skillNames'				=> array(
