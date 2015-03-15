@@ -4,6 +4,10 @@ Includes all known cases to calculate the heal output on every possible scenario
 
 version history:
 
+2015-03-15 (V2.0.1)
+- added english and german names for lvl 65 items
+- added portuguese translation from JasonLucas
+
 2014-11-24 (V2.0)
 - added etching
 - added necklace bonus stat
